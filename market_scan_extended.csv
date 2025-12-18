@@ -1,13 +1,13 @@
 TICKER,PRICE,TARGET,TO TARGET %,CONSENSUS,INDUSTRY,TREND,RSI,STATUS,ATR,SUGGESTED STOP,SMA 50,SMA 200
-AAPL,271.84,292.83,7.72,Buy,Consumer Electronics,Strong Bullish,45.11,Neutral,0.0,0,268.86,229.54
-MSFT,476.12,630.33,32.39,Strong Buy,Software - Infrastructure,Bullish Pullback,40.65,Neutral,0.0,0,501.81,473.19
-GOOGL,296.72,334.12,12.6,Strong Buy,Internet Content & Information,Strong Bullish,45.12,Neutral,0.0,0,285.06,210.87
-AMZN,221.27,297.45,34.43,Strong Buy,Internet Retail,Bullish Pullback,39.73,Neutral,0.0,0,229.25,215.41
-TSLA,467.26,417.99,-10.54,Hold,Auto Manufacturers,Strong Bullish,58.42,Neutral,0.0,0,437.92,348.99
-NVDA,170.94,257.79,50.81,Strong Buy,Semiconductors,Bullish Pullback,37.15,Neutral,0.0,0,186.19,156.93
-SPY,671.4,0.0,0.0,Hold,Exchange Traded Fund,Bullish Pullback,43.37,Neutral,0.0,0,674.84,621.49
-QQQ,600.41,0.0,0.0,Hold,Exchange Traded Fund,Bullish Pullback,38.95,Neutral,0.0,0,613.54,551.59
-IWM,247.24,0.0,0.0,Hold,Exchange Traded Fund,Strong Bullish,49.75,Neutral,0.0,0,245.16,222.58
-GLD,399.29,0.0,0.0,Hold,Exchange Traded Fund,Strong Bullish,72.24,Overbought,0.0,0,380.02,326.08
-SMR,15.73,36.58,132.55,Hold,Specialty Industrial Machinery,Bearish,31.52,Neutral,0.0,0,29.9,30.58
-UUUU,13.47,22.23,65.03,Buy,Uranium,Bullish Pullback,39.45,Neutral,0.0,0,17.39,10.04
+AAPL,269.38,292.83,8.71,Buy,Consumer Electronics,Strong Bullish,41.19,Neutral,0.0,0,269.06,229.71
+MSFT,479.14,630.33,31.55,Strong Buy,Software - Infrastructure,Bullish Pullback,43.3,Neutral,0.0,0,500.88,473.55
+GOOGL,301.52,334.12,10.81,Strong Buy,Internet Content & Information,Strong Bullish,49.14,Neutral,0.0,0,286.21,211.52
+AMZN,225.22,297.45,32.07,Strong Buy,Internet Retail,Bullish Pullback,45.69,Neutral,0.0,0,229.25,215.5
+TSLA,474.11,417.99,-11.84,Hold,Auto Manufacturers,Strong Bullish,60.39,Neutral,0.0,0,438.63,349.97
+NVDA,173.27,257.79,48.78,Strong Buy,Semiconductors,Bullish Pullback,40.4,Neutral,0.0,0,185.87,157.2
+SPY,677.27,0.0,0.0,Hold,Exchange Traded Fund,Strong Bullish,49.41,Neutral,0.0,0,674.91,621.98
+QQQ,608.86,0.0,0.0,Hold,Exchange Traded Fund,Bullish Pullback,46.13,Neutral,0.0,0,613.52,552.15
+IWM,250.88,0.0,0.0,Hold,Exchange Traded Fund,Strong Bullish,54.83,Neutral,0.0,0,245.24,222.79
+GLD,398.08,0.0,0.0,Hold,Exchange Traded Fund,Strong Bullish,69.57,Neutral,0.0,0,380.54,326.72
+SMR,16.71,36.58,118.91,Hold,Specialty Industrial Machinery,Bearish,35.06,Neutral,0.0,0,29.46,30.57
+UUUU,14.1,22.23,57.66,Buy,Uranium,Bullish Pullback,43.61,Neutral,0.0,0,17.32,10.1
