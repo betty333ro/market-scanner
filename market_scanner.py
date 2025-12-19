@@ -242,35 +242,69 @@ def calculate_verdict(cortex):
         term_text = "Flat (Caution)"
         term_color = "text-warning"
         
-    # 2. Bullish Probability (Fictiv - bazat pe VIX si SPX status)
-    # Daca VIX scade si SPX creste -> Bullish
-    bull_prob = 50
-    if cortex['VIX']['change'] < 0: bull_prob += 10
-    if cortex['VIX3M']['change'] < 0: bull_prob += 10
-    if cortex['GVZ']['change'] < 0: bull_prob += 5
-    if cortex['SPX']['change'] > 0: bull_prob += 10
+    # 2. Bullish Probability / SCOR ANTIGRAVITY (0-100)
+    # Factori:
+    # - VIX Change (Inv): scade = bullish (+20p)
+    # - Term Structure: >1.1 = bullish (+20p), <1 = bearish (-20p)
+    # - SMA200% > 50%: bullish (+20p)
+    # - Highs-Lows > 0: bullish (+10p)
+    # - Crypto Fear > 40: risk-on (+10p)
+    # - MOVE < 100: stable macro (+10p)
+    # - Base: 10p
     
-    # Cap la 95% si 5%
-    bull_prob = max(5, min(95, bull_prob))
-    bear_prob = 100 - bull_prob
+    score = 10 
     
-    # 3. AI Sentiment (Mockup pt moment)
-    sentiment = 65 
+    # 1. Structural Vol inputs
+    if term_structure > 1.1: score += 20
+    elif term_structure < 1.0: score -= 20
     
-    verdict = "Neutral"
-    if bull_prob > 60: verdict = "Bullish"
-    if bull_prob > 80: verdict = "Strong Bullish"
-    if bear_prob > 60: verdict = "Bearish"
-    if bear_prob > 80: verdict = "Strong Bearish"
+    # 2. VIX Momentum
+    if cortex['VIX']['change'] < 0: score += 20
+    
+    # 3. Breadth (SMA200) - Handle string "59.4%"
+    try:
+        sma_str = cortex['SMA200%']['value'].replace('%','')
+        if float(sma_str) > 50: score += 20
+    except: pass
+    
+    # 4. Breadth (Highs-Lows)
+    try:
+        hl_val = int(cortex['Highs-Lows']['value'])
+        if hl_val > 0: score += 10
+    except: pass
+    
+    # 5. Risk-On Sentiment
+    if cortex['CRYPTO FEAR']['value'] > 45: score += 10
+    
+    # 6. Macro Stability
+    if cortex['MOVE']['value'] < 110: score += 10
+
+    # Clamp Score 0-100
+    score = max(0, min(100, score))
+    
+    # DETERMINARE VERDICT (BUY/HOLD/SELL)
+    final_signal = "HOLD"
+    signal_color = "text-warning"
+    
+    if score >= 75:
+        final_signal = "BUY"
+        signal_color = "text-success"
+    elif score <= 35:
+        final_signal = "SELL"
+        signal_color = "text-danger"
+        
+    bull_prob = score
+    bear_prob = 100 - score
 
     return {
+        'verdict': f"{final_signal} ({score}/100)",
+        'signal_pure': final_signal,
         'term_val': term_structure,
         'term_text': term_text,
         'term_color': term_color,
         'bull_prob': bull_prob,
         'bear_prob': bear_prob,
-        'verdict': verdict,
-        'sentiment': sentiment
+        'sentiment': int(bull_prob) # Folosim scorul ca proxy pt sentiment general
     }
 
 # --- EXISTING ANALYZE TICKER ---
