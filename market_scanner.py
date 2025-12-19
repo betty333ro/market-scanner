@@ -90,11 +90,12 @@ def get_finviz_breadth():
         
         return {
             'sma200_pct': round((sma200_count / 503) * 100, 1),
-            'highs_lows': nh_count - nl_count
+            'highs_lows': nh_count - nl_count,
+            'valid': True if sma200_count > 0 else False
         }
     except Exception as e:
         print(f"Eroare Breadth: {e}")
-        return {'sma200_pct': 50.0, 'highs_lows': 0}
+        return {'sma200_pct': 50.0, 'highs_lows': 0, 'valid': False}
 
 def get_market_cortex_data():
     print("\nPreiau date Market Cortex (yfinance)...")
@@ -187,38 +188,40 @@ def get_market_cortex_data():
             'status_color': "#888",
             'text_color': "text-success" if fng > 50 else "text-danger" # Doar coloram textul
         }
-        
-        # MARKET BREADTH (Finviz)
-        breadth = get_finviz_breadth()
-        
-        # SMA200 Logic
-        sma_val = breadth['sma200_pct']
-        sma_status = "BULLISH" if sma_val > 50 else "BEARISH"
-        sma_color = "#4caf50" if sma_val > 50 else "#f44336"
-        cortex_data['SMA200%'] = {
-            'value': f"{sma_val}%",
-            'change': 0, 
-            'sparkline': "",
-            'status': sma_status,
-            'status_color': sma_color,
-            'text_color': "text-success" if sma_val > 50 else "text-danger"
-        }
-        
-        # Highs-Lows Logic
-        hl_val = breadth['highs_lows']
-        hl_status = "NET HIGHS" if hl_val > 0 else "NET LOWS"
-        hl_color = "#4caf50" if hl_val > 0 else "#f44336"
-        cortex_data['Highs-Lows'] = {
-            'value': hl_val,
-            'change': 0,
-            'sparkline': "",
-            'status': hl_status,
-            'status_color': hl_color,
-            'text_color': "text-success" if hl_val > 0 else "text-danger"
-        }
 
     except Exception as e:
         print(f"Eroare critica fetching yfinance: {e}")
+
+    # MARKET BREADTH (Finviz)
+    breadth = get_finviz_breadth()
+    
+    # SMA200 Logic
+    sma_val = breadth['sma200_pct']
+    sma_status = "BULLISH" if sma_val > 50 else "BEARISH"
+    sma_color = "#4caf50" if sma_val > 50 else "#f44336"
+    cortex_data['SMA200%'] = {
+        'value': f"{sma_val}%",
+        'change': 0, 
+        'sparkline': "",
+        'status': sma_status,
+        'status_color': sma_color,
+        'text_color': "text-success" if sma_val > 50 else "text-danger"
+    }
+    
+    # Highs-Lows Logic
+    hl_val = breadth['highs_lows']
+    hl_status = "NET HIGHS" if hl_val > 0 else "NET LOWS"
+    hl_color = "#4caf50" if hl_val > 0 else "#f44336"
+    cortex_data['Highs-Lows'] = {
+        'value': hl_val,
+        'change': 0,
+        'sparkline': "",
+        'status': hl_status,
+        'status_color': hl_color,
+        'text_color': "text-success" if hl_val > 0 else "text-danger"
+    }
+    
+    cortex_data['breadth_valid'] = breadth.get('valid', False)
 
     return cortex_data
 
@@ -272,7 +275,7 @@ def calculate_verdict(cortex):
         hl_val = int(cortex['Highs-Lows']['value'])
         if hl_val > 0: score += 10
     except: pass
-    
+        
     # 5. Risk-On Sentiment
     if cortex['CRYPTO FEAR']['value'] > 45: score += 10
     
@@ -295,9 +298,15 @@ def calculate_verdict(cortex):
         
     bull_prob = score
     bear_prob = 100 - score
+    
+    verdict_text = f"{final_signal} ({score}/100)"
+    
+    # WARNING PENTRU DATE INCOMPLETE
+    if not cortex.get('breadth_valid', True):
+        verdict_text += " ⚠️ Date incomplete (Finviz Fail)"
 
     return {
-        'verdict': f"{final_signal} ({score}/100)",
+        'verdict': verdict_text,
         'signal_pure': final_signal,
         'term_val': term_structure,
         'term_text': term_text,
