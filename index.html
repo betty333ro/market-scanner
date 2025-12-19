@@ -28,12 +28,48 @@
                 padding: 10px;
                 text-align: center;
                 border: 1px solid #333;
+                position: relative;
+                transition: all 0.3s ease;
+            }
+            .index-card:hover {
+                border-color: #4caf50;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
             }
             .index-title { font-size: 0.8rem; font-weight: bold; color: #aaa; margin-bottom: 2px; }
+            .index-threshold {
+                font-size: 0.65rem;
+                color: #666;
+                margin-bottom: 5px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+            }
+            .info-icon { 
+                font-size: 0.7rem; 
+                color: #4caf50; 
+                cursor: help;
+                margin-left: 3px;
+            }
             .index-status { font-size: 0.65rem; margin-bottom: 5px; text-transform: uppercase; }
             .sparkline-container { height: 40px; margin: 5px 0; }
             .index-value { font-size: 1.2rem; font-weight: bold; }
-            .index-change { font-size: 0.8rem; }
+            .index-change { font-size: 0.8rem; margin-bottom: 8px; }
+            .index-explanation {
+                display: none;
+                background: #2a2a2a;
+                border-top: 1px solid #444;
+                padding: 8px;
+                margin-top: 8px;
+                text-align: left;
+                border-radius: 0 0 6px 6px;
+            }
+            .index-card:hover .index-explanation {
+                display: block;
+            }
+            .index-explanation small {
+                font-size: 0.7rem;
+                line-height: 1.4;
+            }
 
             /* CORTEX PANEL */
             .cortex-panel {
@@ -78,106 +114,166 @@
             <!-- HEADER -->
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="text-white"><span class="text-primary">📊</span> Indicatori de Piață</h4>
-                <small class="text-muted">Updated: 2025-12-19 07:23</small>
+                <small class="text-muted">Updated: 2025-12-19 07:32</small>
             </div>
 
             <!-- 1. INDICES ROW -->
             <div class="indices-container">
                 
-        <div class="index-card">
-            <div class="index-title">VIX3M</div>
+        <div class="index-card" title="Volatilitate așteptată pe 3 luni\n\n< 15 = Calm | 15-20 = Normal | 20-30 = Frică | > 30 = Panică">
+            <div class="index-title">VIX3M <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">15 NORMAL 20</div>
             <div class="index-status" style="color: #888">NORMAL</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,10.551416966531583 6.0,0.0 12.0,10.730258589250113 18.0,23.308490429005566 24.0,29.98509653144012 30.0,34.21757927079031 36.0,36.48286101115614 42.0,33.025335896551795 48.0,35.29060626673371 54.0,36.06557526166346 60.0,37.377046384381 66.0,38.688517507098545 72.0,34.873320517241034 78.0,33.85990739553715 84.0,38.21161788336636 90.0,40.0 96.0,38.80774525557757 102.0,36.24440551419809 108.0,36.3040193884376 114.0,33.85990739553715 120.0,36.78091901216979" fill="none" stroke="#4caf50" stroke-width="2" /></svg></div>
             <div class="index-value text-success">19.59</div>
             <div class="index-change text-success">-0.49</div>
+            <div class="index-explanation">
+                <small class="text-muted">Volatilitate așteptată pe 3 luni</small>
+                <small class="text-info d-block mt-1">< 15 = Calm | 15-20 = Normal | 20-30 = Frică | > 30 = Panică</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">VIX</div>
+        <div class="index-card" title="Volatilitate așteptată pe 30 zile\n\n< 12 = Complacență | 12-20 = Normal | 20-30 = Frică | > 30 = Panică">
+            <div class="index-title">VIX <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">15 NORMAL 20</div>
             <div class="index-status" style="color: #888">NORMAL</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,9.541919798378245 6.0,0.0 12.0,10.337078133046887 18.0,20.39757916733432 24.0,27.17372797811808 30.0,31.910111618638407 36.0,34.81417445267171 42.0,31.73725340470807 48.0,33.98444315639336 54.0,35.74762463377916 60.0,36.78479040265664 66.0,38.06396030868386 72.0,33.74243901924362 78.0,32.80898883813616 84.0,36.81936006720725 90.0,40.0 96.0,36.92307895203636 102.0,34.29559321676251 108.0,34.36473913998192 114.0,30.423507240012054 120.0,33.0164200136762" fill="none" stroke="#4caf50" stroke-width="2" /></svg></div>
             <div class="index-value text-success">16.87</div>
             <div class="index-change text-success">-0.75</div>
+            <div class="index-explanation">
+                <small class="text-muted">Volatilitate așteptată pe 30 zile</small>
+                <small class="text-info d-block mt-1">< 12 = Complacență | 12-20 = Normal | 20-30 = Frică | > 30 = Panică</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">VIX1D</div>
+        <div class="index-card" title="Volatilitate pe termen foarte scurt\n\nValori mari = Risc imediat">
+            <div class="index-title">VIX1D <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">VOLATILITY INDEX</div>
             <div class="index-status" style="color: #888">NORMAL</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,4.590496437631025 6.0,0.0 12.0,11.830132377036158 18.0,30.091001648776594 24.0,35.24772606770422 30.0,29.2214358025061 36.0,36.58240727361336 42.0,35.24772606770422 48.0,37.79575487638322 54.0,39.08999026220403 60.0,38.0788679027501 66.0,38.928210838976426 72.0,40.0 78.0,31.284126341502294 84.0,35.34883868936219 90.0,37.35086049822589 96.0,33.87259904170676 102.0,32.92214348382247 108.0,34.82305459959106 114.0,24.7522748965772 120.0,27.07785748045896" fill="none" stroke="#4caf50" stroke-width="2" /></svg></div>
             <div class="index-value text-success">15.78</div>
             <div class="index-change text-success">-1.15</div>
+            <div class="index-explanation">
+                <small class="text-muted">Volatilitate pe termen foarte scurt</small>
+                <small class="text-info d-block mt-1">Valori mari = Risc imediat</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">VIX9D</div>
+        <div class="index-card" title="Volatilitate pe 9 zile\n\nCompară cu VIX pentru trend">
+            <div class="index-title">VIX9D <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">VOLATILITY INDEX</div>
             <div class="index-status" style="color: #4caf50">COMPLACENCY</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,9.35925102856416 6.0,0.0 12.0,13.93808504811043 18.0,22.462205764188685 24.0,31.562274347720084 30.0,37.49460082345553 36.0,36.688266119206816 42.0,28.221744858689704 48.0,31.475882030283998 54.0,34.24046090549898 60.0,34.7012235936411 66.0,35.85313306035866 72.0,28.97048010737727 78.0,28.941687245502337 84.0,33.60691083612244 90.0,40.0 96.0,37.062636489912855 102.0,34.989201646911056 108.0,35.91072702319529 114.0,30.52555829940031 120.0,35.79553635115977" fill="none" stroke="#4caf50" stroke-width="2" /></svg></div>
             <div class="index-value text-success">13.92</div>
             <div class="index-change text-success">-1.83</div>
+            <div class="index-explanation">
+                <small class="text-muted">Volatilitate pe 9 zile</small>
+                <small class="text-info d-block mt-1">Compară cu VIX pentru trend</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">VXN</div>
+        <div class="index-card" title="Volatilitate specifică tech stocks\n\n< 20 = Calm | > 30 = Frică în tech">
+            <div class="index-title">VXN <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">20 NORMAL 30</div>
             <div class="index-status" style="color: #ff9800">FEAR</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,9.553077097766923 6.0,0.0 12.0,10.53072635743736 18.0,19.97206906679116 24.0,25.279329977270322 30.0,29.217876596421988 36.0,32.26256941942419 42.0,29.776537882909853 48.0,31.955305179076973 54.0,33.71508450206152 60.0,34.99999800207917 66.0,36.59217574244403 72.0,33.43575385881759 78.0,33.407820261714306 84.0,36.45251308471651 90.0,40.0 96.0,33.798879965582486 102.0,33.54748824723072 108.0,34.99999800207917 114.0,30.558657290646202 120.0,33.51955465012743" fill="none" stroke="#4caf50" stroke-width="2" /></svg></div>
             <div class="index-value text-success">20.72</div>
             <div class="index-change text-success">-1.06</div>
+            <div class="index-explanation">
+                <small class="text-muted">Volatilitate specifică tech stocks</small>
+                <small class="text-info d-block mt-1">< 20 = Calm | > 30 = Frică în tech</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">LTV</div>
+        <div class="index-card" title="Volatilitate pe 6 luni\n\nCompară cu VIX pentru structură">
+            <div class="index-title">LTV <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">VOLATILITY INDEX</div>
             <div class="index-status" style="color: #888">NORMAL</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,10.18633177362496 6.0,0.0 12.0,8.86128125652813 18.0,20.538298810849064 24.0,26.91511429678266 30.0,31.30433821122287 36.0,34.20289214081525 42.0,31.30433821122287 48.0,33.37473161866769 54.0,34.20289214081525 60.0,35.61076028971165 66.0,37.4327165976059 72.0,33.706002145865966 78.0,32.96065925551798 84.0,37.68115369715647 90.0,40.0 96.0,38.178043692105746 102.0,35.445125026112514 108.0,35.279505558361514 114.0,33.87163740946511 120.0,37.4327165976059" fill="none" stroke="#4caf50" stroke-width="2" /></svg></div>
             <div class="index-value text-success">21.71</div>
             <div class="index-change text-success">-0.43</div>
+            <div class="index-explanation">
+                <small class="text-muted">Volatilitate pe 6 luni</small>
+                <small class="text-info d-block mt-1">Compară cu VIX pentru structură</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">SKEW</div>
+        <div class="index-card" title="Risc de Black Swan (crash)\n\n< 130 = Risc scăzut | 130-145 = Normal | > 145 = Risc EXTREM">
+            <div class="index-title">SKEW <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">130 NORMAL 145</div>
             <div class="index-status" style="color: #f44336">PANIC (BS)</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,39.8939489922808 6.0,35.84303997786424 12.0,28.67445139962573 18.0,28.122999104375452 24.0,21.590684210228243 30.0,35.6733972001822 36.0,40.0 42.0,36.05514199330264 48.0,35.8854668533967 54.0,26.78685996623002 60.0,27.465528163629877 66.0,27.635203303535818 72.0,23.817593561211932 78.0,24.47506450195751 84.0,30.349940817583043 90.0,28.71684591293429 96.0,17.539775195811682 102.0,0.0 108.0,10.328727379816812 114.0,17.751844849026178 120.0,13.74336271014208" fill="none" stroke="#f44336" stroke-width="2" /></svg></div>
             <div class="index-value text-danger">155.38</div>
             <div class="index-change text-danger">+1.89</div>
+            <div class="index-explanation">
+                <small class="text-muted">Risc de Black Swan (crash)</small>
+                <small class="text-info d-block mt-1">< 130 = Risc scăzut | 130-145 = Normal | > 145 = Risc EXTREM</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">MOVE</div>
+        <div class="index-card" title="Volatilitate obligațiuni (Bond Vol)\n\n< 80 = Calm | 80-120 = Normal | > 120 = Stres în bonds">
+            <div class="index-title">MOVE <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">80 NORMAL 120</div>
             <div class="index-status" style="color: #888">NORMAL</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,0.0 6.0,10.71164420974965 12.0,9.06623089258105 18.0,12.3405998787645 24.0,18.9222531474389 30.0,20.43603038639225 36.0,25.29000720414404 42.0,21.341012732237925 48.0,23.7103993725757 54.0,29.387082848911792 60.0,30.654045579588374 66.0,28.037844430973834 72.0,19.777862548823336 78.0,14.709999072609644 84.0,25.832984058144078 90.0,24.81283583574426 96.0,24.796378187590513 102.0,18.116004137008353 108.0,28.268201291096847 114.0,35.50801612058648 120.0,40.0" fill="none" stroke="#4caf50" stroke-width="2" /></svg></div>
             <div class="index-value text-success">60.01</div>
             <div class="index-change text-success">-2.73</div>
+            <div class="index-explanation">
+                <small class="text-muted">Volatilitate obligațiuni (Bond Vol)</small>
+                <small class="text-info d-block mt-1">< 80 = Calm | 80-120 = Normal | > 120 = Stres în bonds</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">CRYPTO FEAR</div>
+        <div class="index-card" title="Sentiment piață crypto\n\n< 25 = Extreme Fear | 25-45 = Fear | 55-75 = Greed | > 75 = Extreme Greed">
+            <div class="index-title">CRYPTO FEAR <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">25 NEUTRAL 75</div>
             <div class="index-status" style="color: #888">EXTREME FEAR</div>
             <div class="sparkline-container"></div>
             <div class="index-value text-danger">16</div>
             <div class="index-change text-danger">0.0</div>
+            <div class="index-explanation">
+                <small class="text-muted">Sentiment piață crypto</small>
+                <small class="text-info d-block mt-1">< 25 = Extreme Fear | 25-45 = Fear | 55-75 = Greed | > 75 = Extreme Greed</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">GVZ</div>
+        <div class="index-card" title="Volatilitate aur (safe haven)\n\nCreștere = Incertitudine globală">
+            <div class="index-title">GVZ <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">VOLATILITY INDEX</div>
             <div class="index-status" style="color: #888">NORMAL</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,0.0 6.315789473684211,8.909505368235603 12.631578947368421,18.190248977621177 18.94736842105263,12.43619785270576 25.263157894736842,13.828305853790866 31.578947368421055,18.004629857046194 37.89473684210526,9.466345028346922 44.21052631578947,5.104401904516614 50.526315789473685,12.993037512817075 56.8421052631579,17.911837998372334 63.15789473684211,30.812065950901918 69.47368421052632,36.844545756679814 75.78947368421052,40.0 82.10526315789474,32.85382317238584 88.42105263157895,34.24593117347094 94.73684210526316,27.099772047470417 101.05263157894737,24.965187564085376 107.36842105263158,34.43155029404593 113.6842105263158,24.779586145124025 120.0,23.94431780415023" fill="none" stroke="#f44336" stroke-width="2" /></svg></div>
             <div class="index-value text-danger">21.31</div>
             <div class="index-change text-danger">+0.09</div>
+            <div class="index-explanation">
+                <small class="text-muted">Volatilitate aur (safe haven)</small>
+                <small class="text-info d-block mt-1">Creștere = Incertitudine globală</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">OVX</div>
+        <div class="index-card" title="Volatilitate petrol\n\nCreștere = Risc geopolitic/economic">
+            <div class="index-title">OVX <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">VOLATILITY INDEX</div>
             <div class="index-status" style="color: #888">NORMAL</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,18.062832662598986 6.0,6.230359799878173 12.0,8.376956031116748 18.0,6.649217587553302 24.0,0.0 30.0,9.790571106162432 36.0,8.481670478035532 42.0,9.162304396888324 48.0,8.795813818791878 54.0,20.15706168425888 60.0,22.356025125076144 66.0,28.848161056131975 72.0,23.76964020012183 78.0,35.340316959426396 84.0,35.54973586714467 90.0,29.79058109228173 96.0,40.0 102.0,24.712050250152288 108.0,7.015708165649748 114.0,4.345539699817252 120.0,20.785348365771576" fill="none" stroke="#4caf50" stroke-width="2" /></svg></div>
             <div class="index-value text-success">33.6</div>
             <div class="index-change text-success">-3.14</div>
+            <div class="index-explanation">
+                <small class="text-muted">Volatilitate petrol</small>
+                <small class="text-info d-block mt-1">Creștere = Risc geopolitic/economic</small>
+            </div>
         </div>
         
-        <div class="index-card">
-            <div class="index-title">SPX</div>
+        <div class="index-card" title="Indicele principal US\n\nTrend = Direcția pieței">
+            <div class="index-title">SPX <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">MARKET INDEX</div>
             <div class="index-status" style="color: #4caf50">6774</div>
             <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,28.58211973019459 6.0,40.0 12.0,32.90741749206058 18.0,21.62983172208533 24.0,14.920497986164655 30.0,9.760388640566788 36.0,5.732124852399622 42.0,9.758178004712427 48.0,7.909655086888769 54.0,5.662516781961216 60.0,4.845390285064191 66.0,3.378983862358268 72.0,6.0170272878733115 78.0,6.679571028808354 84.0,1.581251651237146 90.0,0.0 96.0,8.126081728825074 102.0,9.329745992548538 108.0,11.124135290914285 114.0,19.828810516156512 120.0,13.939946189888225" fill="none" stroke="#4caf50" stroke-width="2" /></svg></div>
             <div class="index-value text-success">6774.76</div>
             <div class="index-change text-success">+53.33</div>
+            <div class="index-explanation">
+                <small class="text-muted">Indicele principal US</small>
+                <small class="text-info d-block mt-1">Trend = Direcția pieței</small>
+            </div>
         </div>
         
             </div>
@@ -201,23 +297,34 @@
                     <!-- VERDICT & METRICS -->
                     <div class="col-md-6">
                         <div class="d-flex align-items-center mb-3">
-                            <h4 class="me-3 mb-0 text-white">Verdict Sistem: <span class="text-success">Bullish</span></h4>
+                            <h4 class="text-white">Verdict Sistem: <span class="text-success">Bullish</span></h4>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <div class="kpi-box">
-                                    <div class="small text-muted">Term Structure (3M/1M)</div>
-                                    <div class="h3 my-1 text-success">1.16</div>
-                                    <div class="small text-muted">Contango (Normal)</div>
+                                    <div class="small text-muted mb-2">Term Structure (3M/1M)</div>
+                                    <div class="h3 my-2 text-success">1.16</div>
+                                    <div class="small text-muted mb-2">Raport VIX3M / VIX.</div>
+                                    <div class="small">
+                                        <span class="text-success">&gt; 1.1 (Contango)</span> = Normal/Bullish<br>
+                                        <span class="text-danger">&lt; 1.0 (Backwardation)</span> = Panică/Bearish
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="kpi-box">
-                                    <div class="small text-muted">AI Market Sentiment</div>
-                                    <div class="h3 my-1 text-success">65/100</div>
-                                    <div class="small text-muted">Analiză semantică știri</div>
+                                    <div class="small text-muted mb-2">AI Market Sentiment</div>
+                                    <div class="h3 my-2 text-success">65/100</div>
+                                    <div class="small text-muted mb-2">Analiză semantică știri.</div>
+                                    <div class="small">
+                                        <span class="text-success">&gt; 60</span> = Știri Pozitive<br>
+                                        <span class="text-danger">&lt; 40</span> = Știri Negative
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="mt-3">
+                            <small class="text-muted">*Scorul "Verdict Sistem" include și factori invizibili aici: VIX Level, MOVE Index (Bond Vol) și SKEW (Black Swan Risk), afișați în secțiunea "Indicatori".</small>
                         </div>
                     </div>
                 </div>

@@ -255,8 +255,72 @@ def analyze_ticker(ticker):
 
 # --- NEW DASHBOARD GENERATION ---
 def generate_html(df, cortex_data, verdict_data):
-    # 1. Header Indices Cards
+    # 1. Header Indices Cards with Educational Tooltips
     indices_order = ['VIX3M', 'VIX', 'VIX1D', 'VIX9D', 'VXN', 'LTV', 'SKEW', 'MOVE', 'CRYPTO FEAR', 'GVZ', 'OVX', 'SPX']
+    
+    # Educational explanations for each indicator
+    explanations = {
+        'VIX3M': {
+            'title': 'VIX 3-Month',
+            'desc': 'Volatilitate așteptată pe 3 luni',
+            'thresholds': '< 15 = Calm | 15-20 = Normal | 20-30 = Frică | > 30 = Panică'
+        },
+        'VIX': {
+            'title': 'VIX (Fear Index)',
+            'desc': 'Volatilitate așteptată pe 30 zile',
+            'thresholds': '< 12 = Complacență | 12-20 = Normal | 20-30 = Frică | > 30 = Panică'
+        },
+        'VIX1D': {
+            'title': 'VIX 1-Day',
+            'desc': 'Volatilitate pe termen foarte scurt',
+            'thresholds': 'Valori mari = Risc imediat'
+        },
+        'VIX9D': {
+            'title': 'VIX 9-Day',
+            'desc': 'Volatilitate pe 9 zile',
+            'thresholds': 'Compară cu VIX pentru trend'
+        },
+        'VXN': {
+            'title': 'Nasdaq Volatility',
+            'desc': 'Volatilitate specifică tech stocks',
+            'thresholds': '< 20 = Calm | > 30 = Frică în tech'
+        },
+        'LTV': {
+            'title': 'Long-Term Volatility',
+            'desc': 'Volatilitate pe 6 luni',
+            'thresholds': 'Compară cu VIX pentru structură'
+        },
+        'SKEW': {
+            'title': 'SKEW Index',
+            'desc': 'Risc de Black Swan (crash)',
+            'thresholds': '< 130 = Risc scăzut | 130-145 = Normal | > 145 = Risc EXTREM'
+        },
+        'MOVE': {
+            'title': 'MOVE Index',
+            'desc': 'Volatilitate obligațiuni (Bond Vol)',
+            'thresholds': '< 80 = Calm | 80-120 = Normal | > 120 = Stres în bonds'
+        },
+        'CRYPTO FEAR': {
+            'title': 'Crypto Fear & Greed',
+            'desc': 'Sentiment piață crypto',
+            'thresholds': '< 25 = Extreme Fear | 25-45 = Fear | 55-75 = Greed | > 75 = Extreme Greed'
+        },
+        'GVZ': {
+            'title': 'Gold Volatility',
+            'desc': 'Volatilitate aur (safe haven)',
+            'thresholds': 'Creștere = Incertitudine globală'
+        },
+        'OVX': {
+            'title': 'Oil Volatility',
+            'desc': 'Volatilitate petrol',
+            'thresholds': 'Creștere = Risc geopolitic/economic'
+        },
+        'SPX': {
+            'title': 'S&P 500',
+            'desc': 'Indicele principal US',
+            'thresholds': 'Trend = Direcția pieței'
+        }
+    }
     
     indices_html = ""
     for name in indices_order:
@@ -266,17 +330,45 @@ def generate_html(df, cortex_data, verdict_data):
         spark = data.get('sparkline', '')
         status = data.get('status', '')
         
+        # Get explanation
+        exp = explanations.get(name, {'title': name, 'desc': '', 'thresholds': ''})
+        
+        # Extract simple threshold range for display (e.g., "< 15 NORMAL 20-30")
+        threshold_display = ""
+        if name in ['VIX', 'VIX3M']:
+            threshold_display = "15 NORMAL 20"
+        elif name == 'VXN':
+            threshold_display = "20 NORMAL 30"
+        elif name == 'SKEW':
+            threshold_display = "130 NORMAL 145"
+        elif name == 'MOVE':
+            threshold_display = "80 NORMAL 120"
+        elif name == 'CRYPTO FEAR':
+            threshold_display = "25 NEUTRAL 75"
+        elif name in ['VIX1D', 'VIX9D', 'LTV', 'GVZ', 'OVX']:
+            threshold_display = "VOLATILITY INDEX"
+        elif name == 'SPX':
+            threshold_display = "MARKET INDEX"
+        
         # Formatare speciala change
         chg_sign = "+" if chg > 0 else ""
         chg_str = f"{chg_sign}{chg}"
         
+        # Create tooltip content
+        tooltip_content = f"{exp['desc']}\\n\\n{exp['thresholds']}"
+        
         indices_html += f"""
-        <div class="index-card">
-            <div class="index-title">{name}</div>
+        <div class="index-card" title="{tooltip_content}">
+            <div class="index-title">{name} <span class="info-icon">ⓘ</span></div>
+            <div class="index-threshold">{threshold_display}</div>
             <div class="index-status" style="color: {data.get('status_color', '#888')}">{status}</div>
             <div class="sparkline-container">{spark}</div>
             <div class="index-value {data.get('text_color', 'text-white')}">{val}</div>
             <div class="index-change {data.get('text_color', 'text-white')}">{chg_str}</div>
+            <div class="index-explanation">
+                <small class="text-muted">{exp['desc']}</small>
+                <small class="text-info d-block mt-1">{exp['thresholds']}</small>
+            </div>
         </div>
         """
 
@@ -332,12 +424,48 @@ def generate_html(df, cortex_data, verdict_data):
                 padding: 10px;
                 text-align: center;
                 border: 1px solid #333;
+                position: relative;
+                transition: all 0.3s ease;
+            }}
+            .index-card:hover {{
+                border-color: #4caf50;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
             }}
             .index-title {{ font-size: 0.8rem; font-weight: bold; color: #aaa; margin-bottom: 2px; }}
+            .index-threshold {{
+                font-size: 0.65rem;
+                color: #666;
+                margin-bottom: 5px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+            }}
+            .info-icon {{ 
+                font-size: 0.7rem; 
+                color: #4caf50; 
+                cursor: help;
+                margin-left: 3px;
+            }}
             .index-status {{ font-size: 0.65rem; margin-bottom: 5px; text-transform: uppercase; }}
             .sparkline-container {{ height: 40px; margin: 5px 0; }}
             .index-value {{ font-size: 1.2rem; font-weight: bold; }}
-            .index-change {{ font-size: 0.8rem; }}
+            .index-change {{ font-size: 0.8rem; margin-bottom: 8px; }}
+            .index-explanation {{
+                display: none;
+                background: #2a2a2a;
+                border-top: 1px solid #444;
+                padding: 8px;
+                margin-top: 8px;
+                text-align: left;
+                border-radius: 0 0 6px 6px;
+            }}
+            .index-card:hover .index-explanation {{
+                display: block;
+            }}
+            .index-explanation small {{
+                font-size: 0.7rem;
+                line-height: 1.4;
+            }}
 
             /* CORTEX PANEL */
             .cortex-panel {{
@@ -409,23 +537,34 @@ def generate_html(df, cortex_data, verdict_data):
                     <!-- VERDICT & METRICS -->
                     <div class="col-md-6">
                         <div class="d-flex align-items-center mb-3">
-                            <h4 class="me-3 mb-0 text-white">Verdict Sistem: <span class="{verdict_data['term_color']}">{verdict_data['verdict']}</span></h4>
+                            <h4 class="text-white">Verdict Sistem: <span class="{verdict_data['term_color']}">{verdict_data['verdict']}</span></h4>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <div class="kpi-box">
-                                    <div class="small text-muted">Term Structure (3M/1M)</div>
-                                    <div class="h3 my-1 {verdict_data['term_color']}">{verdict_data['term_val']}</div>
-                                    <div class="small text-muted">{verdict_data['term_text']}</div>
+                                    <div class="small text-muted mb-2">Term Structure (3M/1M)</div>
+                                    <div class="h3 my-2 {verdict_data['term_color']}">{verdict_data['term_val']}</div>
+                                    <div class="small text-muted mb-2">Raport VIX3M / VIX.</div>
+                                    <div class="small">
+                                        <span class="text-success">&gt; 1.1 (Contango)</span> = Normal/Bullish<br>
+                                        <span class="text-danger">&lt; 1.0 (Backwardation)</span> = Panică/Bearish
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="kpi-box">
-                                    <div class="small text-muted">AI Market Sentiment</div>
-                                    <div class="h3 my-1 text-success">{verdict_data['sentiment']}/100</div>
-                                    <div class="small text-muted">Analiză semantică știri</div>
+                                    <div class="small text-muted mb-2">AI Market Sentiment</div>
+                                    <div class="h3 my-2 text-success">{verdict_data['sentiment']}/100</div>
+                                    <div class="small text-muted mb-2">Analiză semantică știri.</div>
+                                    <div class="small">
+                                        <span class="text-success">&gt; 60</span> = Știri Pozitive<br>
+                                        <span class="text-danger">&lt; 40</span> = Știri Negative
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="mt-3">
+                            <small class="text-muted">*Scorul "Verdict Sistem" include și factori invizibili aici: VIX Level, MOVE Index (Bond Vol) și SKEW (Black Swan Risk), afișați în secțiunea "Indicatori".</small>
                         </div>
                     </div>
                 </div>
