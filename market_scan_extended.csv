@@ -1,13 +1,81 @@
 TICKER,PRICE,TARGET,TO TARGET %,CONSENSUS,INDUSTRY,TREND,RSI,STATUS,ATR,SUGGESTED STOP
-AAPL,272.19,292.83,7.58,Buy,Consumer Electronics,Strong Bullish,45.85,Neutral,0.0,0
-MSFT,483.98,630.33,30.24,Strong Buy,Software - Infrastructure,Bullish Pullback,47.09,Neutral,0.0,0
-GOOGL,302.46,334.12,10.47,Strong Buy,Internet Content & Information,Strong Bullish,49.87,Neutral,0.0,0
-AMZN,226.76,297.45,31.17,Strong Buy,Internet Retail,Bullish Pullback,47.71,Neutral,0.0,0
+GOOG,303.75,333.98,9.95,Strong Buy,Internet Content & Information,Strong Bullish,50.28,Neutral,0.0,0
 TSLA,483.37,417.99,-13.53,Hold,Auto Manufacturers,Strong Bullish,62.78,Neutral,0.0,0
-NVDA,174.14,257.79,48.04,Strong Buy,Semiconductors,Bullish Pullback,41.54,Neutral,0.0,0
-SPY,676.47,0.0,0.0,Hold,Exchange Traded Fund,Strong Bullish,48.66,Neutral,0.0,0
-QQQ,609.11,0.0,0.0,Hold,Exchange Traded Fund,Bullish Pullback,46.32,Neutral,0.0,0
-IWM,248.71,0.0,0.0,Hold,Exchange Traded Fund,Strong Bullish,51.93,Neutral,0.0,0
-GLD,398.57,0.0,0.0,Hold,Exchange Traded Fund,Strong Bullish,70.63,Overbought,0.0,0
-SMR,15.79,36.58,131.67,Hold,Specialty Industrial Machinery,Bearish,31.75,Neutral,0.0,0
+AMD,201.06,286.01,42.25,Buy,Semiconductors,Bullish Pullback,37.89,Neutral,0.0,0
+WDC,175.01,183.76,5.0,Buy,Computer Hardware,Strong Bullish,57.96,Neutral,0.0,0
+DXCM,65.91,86.42,31.12,Strong Buy,Medical Devices,Bearish Bounce,54.85,Neutral,0.0,0
+MGNX,1.57,3.4,116.56,Buy,Biotechnology,Bearish Bounce,57.37,Neutral,0.0,0
+OKLO,77.72,118.76,52.8,Buy,Utilities - Independent Power Producers,Bullish Pullback,36.15,Neutral,0.0,0
+PRAX,269.26,419.13,55.66,Strong Buy,Biotechnology,Strong Bullish,68.63,Neutral,0.0,0
+PLTR,185.69,189.4,2.0,Hold,Software - Infrastructure,Strong Bullish,55.92,Neutral,0.0,0
+SUN,52.31,63.86,22.08,Strong Buy,Oil & Gas Refining & Marketing,Bearish,40.95,Neutral,0.0,0
+RGTI,22.82,39.78,74.32,Strong Buy,Computer Hardware,Bullish Pullback,38.54,Neutral,0.0,0
+CHDN,116.57,137.3,17.78,Strong Buy,Gambling,Strong Bullish,73.58,Overbought,0.0,0
+CRC,44.13,64.57,46.32,Strong Buy,Oil & Gas E&P,Bullish Pullback,34.82,Neutral,0.0,0
+NNE,30.23,45.0,48.86,Buy,Specialty Industrial Machinery,Bullish Pullback,39.37,Neutral,0.0,0
+ARX,15.82,20.67,30.66,Strong Buy,Insurance Brokers,Bearish Bounce,63.77,Neutral,0.0,0
+NFE,1.19,3.5,194.12,Hold,Oil & Gas Midstream,Bearish,43.92,Neutral,0.0,0
+LAES,4.18,6.5,55.5,Strong Buy,Semiconductors,Bullish Pullback,44.24,Neutral,0.0,0
+SHOP,166.8,175.46,5.19,Buy,Software - Application,Strong Bullish,57.66,Neutral,0.0,0
+RBLX,83.91,142.5,69.82,Buy,Electronic Gaming & Multimedia,Bullish Pullback,28.11,Oversold,0.0,0
+VRT,154.39,200.62,29.94,Buy,Electrical Equipment & Parts,Bullish Pullback,37.83,Neutral,0.0,0
+CTRA,25.43,32.81,29.02,Buy,Oil & Gas E&P,Strong Bullish,44.27,Neutral,0.0,0
+CRM,257.85,330.08,28.01,Buy,Software - Application,Bearish Bounce,59.23,Neutral,0.0,0
+OMC,81.66,98.82,21.01,Buy,Advertising Agencies,Bearish Bounce,67.55,Neutral,0.0,0
+HD,354.99,401.11,12.99,Buy,Home Improvement Retail,Bearish,47.69,Neutral,0.0,0
+UEC,11.93,16.75,40.4,Strong Buy,Uranium,Bullish Pullback,44.96,Neutral,0.0,0
+IONQ,46.44,75.5,62.58,Strong Buy,Computer Hardware,Bullish Pullback,43.38,Neutral,0.0,0
+UAL,112.85,128.05,13.47,Strong Buy,Airlines,Strong Bullish,66.01,Neutral,0.0,0
+VST,166.17,244.05,46.87,Strong Buy,Utilities - Independent Power Producers,Bullish Pullback,44.21,Neutral,0.0,0
+AAPL,272.19,292.83,7.58,Buy,Consumer Electronics,Strong Bullish,45.85,Neutral,0.0,0
+BLK,1064.99,1319.0,23.85,Buy,Asset Management,Bullish Pullback,48.2,Neutral,0.0,0
+RTX,178.29,197.75,10.91,Buy,Aerospace & Defense,Strong Bullish,57.55,Neutral,0.0,0
+VG,6.06,11.62,91.75,Buy,Oil & Gas Midstream,Bearish,33.13,Neutral,0.0,0
+HOOD,117.16,155.29,32.55,Buy,Capital Markets,Bullish Pullback,43.05,Neutral,0.0,0
+PBR,11.72,14.72,25.6,Buy,Oil & Gas Integrated,Bullish Pullback,32.99,Neutral,0.0,0
+PAAS,50.05,51.12,2.14,Buy,Gold,Strong Bullish,71.71,Overbought,0.0,0
+BA,208.27,247.52,18.85,Buy,Aerospace & Defense,Bearish Bounce,60.8,Neutral,0.0,0
 UUUU,13.98,21.95,57.01,Strong Buy,Uranium,Bullish Pullback,42.88,Neutral,0.0,0
+URG,1.4,2.19,56.43,Strong Buy,Uranium,Bullish Pullback,54.24,Neutral,0.0,0
+TE,6.02,7.3,21.26,Strong Buy,Electrical Equipment & Parts,Strong Bullish,63.04,Neutral,0.0,0
+SMR,15.79,36.58,131.67,Hold,Specialty Industrial Machinery,Bearish,31.75,Neutral,0.0,0
+QBTS,24.89,39.64,59.26,Strong Buy,Computer Hardware,Bullish Pullback,47.5,Neutral,0.0,0
+NVDA,174.14,257.79,48.04,Strong Buy,Semiconductors,Bullish Pullback,41.54,Neutral,0.0,0
+MSTR,158.24,497.71,214.53,Strong Buy,Software - Application,Bearish,31.42,Neutral,0.0,0
+MSFT,483.98,630.33,30.24,Strong Buy,Software - Infrastructure,Bullish Pullback,47.09,Neutral,0.0,0
+META,664.45,837.2,26.0,Strong Buy,Internet Content & Information,Bearish Bounce,55.82,Neutral,0.0,0
+MELI,1964.46,2853.0,45.23,Strong Buy,Internet Retail,Bearish,41.81,Neutral,0.0,0
+MARA,9.69,22.64,133.64,Buy,Capital Markets,Bearish,28.15,Oversold,0.0,0
+LNG,189.85,271.79,43.16,Strong Buy,Oil & Gas Midstream,Bearish,23.37,Oversold,0.0,0
+FCX,47.92,50.97,6.36,Buy,Copper,Strong Bullish,71.11,Overbought,0.0,0
+DNN,2.57,3.54,37.74,Strong Buy,Uranium,Bullish Pullback,47.6,Neutral,0.0,0
+APLD,23.9,42.9,79.5,Strong Buy,Information Technology Services,Bullish Pullback,41.71,Neutral,0.0,0
+AMZN,226.76,297.45,31.17,Strong Buy,Internet Retail,Bullish Pullback,47.71,Neutral,0.0,0
+AMPX,9.15,17.17,87.65,Strong Buy,Electrical Equipment & Parts,Bullish Pullback,37.83,Neutral,0.0,0
+ACHR,7.82,12.5,59.85,Buy,Aerospace & Defense,Bearish,43.44,Neutral,0.0,0
+ALAB,145.88,206.5,41.55,Buy,Semiconductors,Bullish Pullback,44.74,Neutral,0.0,0
+AVGO,329.88,461.63,39.94,Strong Buy,Semiconductors,Bullish Pullback,36.87,Neutral,0.0,0
+BWXT,170.75,223.2,30.72,Buy,Aerospace & Defense,Bullish Pullback,39.73,Neutral,0.0,0
+CCJ,87.58,105.55,20.52,Buy,Uranium,Bullish Pullback,46.94,Neutral,0.0,0
+CEG,361.05,406.95,12.71,Buy,Utilities - Independent Power Producers,Bullish Pullback,50.96,Neutral,0.0,0
+CRNC,10.73,11.33,5.59,Hold,Software - Application,Bullish Pullback,47.11,Neutral,0.0,0
+CSTE,1.72,4.0,132.56,Strong Buy,Building Products & Equipment,Bearish Bounce,60.27,Neutral,0.0,0
+DLR,147.93,198.04,33.87,Buy,REIT - Specialty,Bearish,28.68,Oversold,0.0,0
+DRS,33.17,46.9,41.39,Strong Buy,Aerospace & Defense,Bearish,39.23,Neutral,0.0,0
+ENVX,7.47,18.78,151.41,Strong Buy,Electrical Equipment & Parts,Bullish Pullback,39.36,Neutral,0.0,0
+HWM,198.0,233.52,17.94,Strong Buy,Aerospace & Defense,Bullish Pullback,51.18,Neutral,0.0,0
+IBM,300.45,294.24,-2.07,Buy,Information Technology Services,Strong Bullish,45.33,Neutral,0.0,0
+MUR,31.04,30.69,-1.13,Hold,Oil & Gas E&P,Strong Bullish,47.94,Neutral,0.0,0
+SFM,80.15,120.43,50.26,Buy,Grocery Stores,Bearish,39.48,Neutral,0.0,0
+TSM,284.68,357.62,25.62,Strong Buy,Semiconductors,Bullish Pullback,45.51,Neutral,0.0,0
+AEHR,21.47,25.67,19.56,Buy,Semiconductor Equipment & Materials,Bullish Pullback,41.82,Neutral,0.0,0
+MOS,23.96,32.9,37.31,Buy,Agricultural Inputs,Bearish,42.91,Neutral,0.0,0
+MP,52.04,79.0,51.81,Strong Buy,Other Industrial Metals & Mining,Bullish Pullback,38.08,Neutral,0.0,0
+MU,248.55,308.61,24.16,Strong Buy,Semiconductors,Strong Bullish,56.1,Neutral,0.0,0
+NKE,65.63,80.73,23.01,Buy,Footwear & Accessories,Bearish Bounce,50.85,Neutral,0.0,0
+ROIV,21.79,26.6,22.07,Strong Buy,Biotechnology,Strong Bullish,58.3,Neutral,0.0,0
+RH,172.63,197.88,14.63,Hold,Specialty Retail,Bearish Bounce,59.5,Neutral,0.0,0
+ADPT,16.5,19.86,20.36,Strong Buy,Biotechnology,Strong Bullish,51.3,Neutral,0.0,0
+PVLA,96.24,183.73,90.91,Strong Buy,Biotechnology,Strong Bullish,54.62,Neutral,0.0,0
+SNOW,221.31,289.14,30.65,Strong Buy,Software - Application,Bullish Pullback,39.71,Neutral,0.0,0
+MRVL,84.47,118.03,39.73,Buy,Semiconductors,Bullish Pullback,45.59,Neutral,0.0,0
