@@ -1,5 +1,6 @@
 import pandas as pd
 from finvizfinance.quote import finvizfinance
+from finvizfinance.screener.overview import Overview
 import yfinance as yf
 import time
 import glob
@@ -52,6 +53,49 @@ def get_crypto_fear_greed():
     except:
         return 50
 
+def get_finviz_breadth():
+    print("Preiau date Market Breadth (Finviz)...")
+    try:
+        # 1. Stocks > SMA200 (S&P 500)
+        foverview = Overview()
+        foverview.set_filter(filters_dict={'Index': 'S&P 500', '200-Day Simple Moving Average': 'Price above SMA200'})
+        # Trick: screener_view returns DF. Length is the count of stocks satisfying filter.
+        # Note: This limits to 20 by default but fetching info usually implies count is handled or we rely on page 1 size if < 20.
+        # Ideally we want total count. finvizfinance extracts total count often.
+        # Let's assume len(df) is reliable for small subsets or use specific method if available. 
+        # Actually default limit might be 20. We need to be careful.
+        # But wait, we just want the COUNT. 
+        # Using a reliable scraping fallback for just the COUNT number is faster/better? 
+        # No, let's use the library.
+        df_sma = foverview.screener_view() 
+        sma200_count = len(df_sma) if df_sma is not None else 0
+        
+        # 2. New Highs
+        foverview = Overview()
+        foverview.set_filter(filters_dict={'Index': 'S&P 500', '52-Week High/Low': 'New High'})
+        try:
+            df_nh = foverview.screener_view()
+            nh_count = len(df_nh) if df_nh is not None else 0
+        except:
+            nh_count = 0
+        
+        # 3. New Lows
+        foverview = Overview()
+        foverview.set_filter(filters_dict={'Index': 'S&P 500', '52-Week High/Low': 'New Low'})
+        try:
+            df_nl = foverview.screener_view()
+            nl_count = len(df_nl) if df_nl is not None else 0
+        except:
+            nl_count = 0
+        
+        return {
+            'sma200_pct': round((sma200_count / 503) * 100, 1),
+            'highs_lows': nh_count - nl_count
+        }
+    except Exception as e:
+        print(f"Eroare Breadth: {e}")
+        return {'sma200_pct': 50.0, 'highs_lows': 0}
+
 def get_market_cortex_data():
     print("\nPreiau date Market Cortex (yfinance)...")
     
@@ -62,7 +106,7 @@ def get_market_cortex_data():
         'VIX1D': '^VIX1D', # Poate lipsi
         'VIX9D': '^VIX9D',
         'VXN': '^VXN',     # Nasdaq Vol
-        'LTV': '^VIX6M',   # Long Term Vol (6 Months)
+        'LTV': '^VIX6M',   # Long Term Vol
         'SKEW': '^SKEW',
         'MOVE': '^MOVE',   # ICE BofA MOVE Index
         'GVZ': '^GVZ',     # Gold Vol
@@ -144,6 +188,35 @@ def get_market_cortex_data():
             'text_color': "text-success" if fng > 50 else "text-danger" # Doar coloram textul
         }
         
+        # MARKET BREADTH (Finviz)
+        breadth = get_finviz_breadth()
+        
+        # SMA200 Logic
+        sma_val = breadth['sma200_pct']
+        sma_status = "BULLISH" if sma_val > 50 else "BEARISH"
+        sma_color = "#4caf50" if sma_val > 50 else "#f44336"
+        cortex_data['SMA200%'] = {
+            'value': f"{sma_val}%",
+            'change': 0, 
+            'sparkline': "",
+            'status': sma_status,
+            'status_color': sma_color,
+            'text_color': "text-success" if sma_val > 50 else "text-danger"
+        }
+        
+        # Highs-Lows Logic
+        hl_val = breadth['highs_lows']
+        hl_status = "NET HIGHS" if hl_val > 0 else "NET LOWS"
+        hl_color = "#4caf50" if hl_val > 0 else "#f44336"
+        cortex_data['Highs-Lows'] = {
+            'value': hl_val,
+            'change': 0,
+            'sparkline': "",
+            'status': hl_status,
+            'status_color': hl_color,
+            'text_color': "text-success" if hl_val > 0 else "text-danger"
+        }
+
     except Exception as e:
         print(f"Eroare critica fetching yfinance: {e}")
 
@@ -286,8 +359,7 @@ def generate_html(df, cortex_data, verdict_data):
     }
     
     # MOCK DATA FOR MISSING METRICS (Placeholder logic)
-    cortex_data['SMA200%'] = {'value': 'N/A', 'change': 0, 'status': 'No Data', 'sparkline': '', 'status_color': '#444'}
-    cortex_data['Highs-Lows'] = {'value': 'N/A', 'change': 0, 'status': 'No Data', 'sparkline': '', 'status_color': '#444'}
+    # cortex_data['SMA200%'] and cortex_data['Highs-Lows'] are now populated in get_market_cortex_data
     cortex_data['Put/Call Ratio'] = {'value': 'N/A', 'change': 0, 'status': 'Source Req', 'sparkline': '', 'status_color': '#444'}
     cortex_data['AAII Sentiment'] = {'value': 'N/A', 'change': 0, 'status': 'Source Req', 'sparkline': '', 'status_color': '#444'}
 
