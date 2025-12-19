@@ -332,44 +332,109 @@ def parse_percent(value):
 
 def analyze_ticker(ticker):
     try:
+        # 1. Finviz Data
         stock = finvizfinance(ticker)
         fund = stock.ticker_fundament()
+        
+        # 2. YFinance Data (pt Company Name, Analyst Count, si fallback)
+        try:
+            yf_ticker = yf.Ticker(ticker)
+            yf_info = yf_ticker.info
+            company_name = yf_info.get('longName', ticker)
+            analysts_count = yf_info.get('numberOfAnalystOpinions', 0)
+            sector = yf_info.get('sector', 'Unknown')
+        except:
+            company_name = ticker
+            analysts_count = 0
+            sector = 'Unknown'
+            
+        # 3. Parsing Values
         price = parse_float(fund.get('Price', '0'))
+        if price == 0: 
+            try: price = yf_info.get('regularMarketPrice', 0)
+            except: pass
+            
         target = parse_float(fund.get('Target Price', '0'))
         rsi = parse_float(fund.get('RSI (14)', '0'))
         atr = parse_float(fund.get('ATR', '0'))
         recom = parse_float(fund.get('Recom', '3.0'))
+        change_pct = parse_percent(fund.get('Change', '0'))
+        
         sma50_chg = parse_percent(fund.get('SMA50', '0'))
         sma200_chg = parse_percent(fund.get('SMA200', '0'))
         
-        sma50 = price / (1 + sma50_chg/100) if sma50_chg != -100 else 0
-        sma200 = price / (1 + sma200_chg/100) if sma200_chg != -100 else 0
+        sma50 = round(price / (1 + sma50_chg/100), 2) if sma50_chg != -100 else 0
+        sma200 = round(price / (1 + sma200_chg/100), 2) if sma200_chg != -100 else 0
         
+        # 4. Trends & Status
         trend = "Neutral"
         if sma50 > sma200: trend = "Strong Bullish" if price > sma50 else "Bullish Pullback"
         elif sma50 < sma200: trend = "Bearish" if price < sma50 else "Bearish Bounce"
+        
+        rsi_status = "Overbought" if rsi > 70 else "Oversold" if rsi < 30 else "Neutral"
             
+        # 5. Consensus
         market_consensus = "Hold"
         if recom <= 1.5: market_consensus = "Strong Buy"
         elif recom <= 2.5: market_consensus = "Buy"
         elif recom > 4.5: market_consensus = "Strong Sell"
         elif recom > 3.5: market_consensus = "Sell"
         
+        # 6. Calculations
         stop_loss = round(price - (2 * atr), 2) if atr > 0 else 0
         to_target = round(((target - price) / price) * 100, 2) if price > 0 and target > 0 else 0.0
+        
+        # 7. Scores
+        # Momentum Score (0-100)
+        mom_score = 50 # Base
+        if price > sma50: mom_score += 10
+        if price > sma200: mom_score += 10
+        if change_pct > 0: mom_score += 10
+        if change_pct > 2: mom_score += 5
+        if rsi > 50: mom_score += 10
+        if rsi > 70: mom_score -= 10 # Overbought risk
+        mom_score = max(0, min(100, mom_score))
+        
+        # Watchlist Score (0-100)
+        wl_score = 30 # Base
+        if to_target > 15: wl_score += 20
+        elif to_target > 5: wl_score += 10
+        if analysts_count > 10: wl_score += 10
+        if recom <= 2.0: wl_score += 20 # Strong Buy
+        elif recom <= 2.5: wl_score += 10 # Buy
+        if mom_score > 60: wl_score += 20
+        wl_score = max(0, min(100, wl_score))
+
+        # Industry / Theme
+        industry = fund.get('Industry', sector)
+        theme = sector # Use Sector as Theme fallback
 
         return {
-            'TICKER': ticker, 'PRICE': price, 'TARGET': target, 'TO TARGET %': to_target,
-            'CONSENSUS': market_consensus, 'INDUSTRY': fund.get('Industry', 'Unknown'),
-            'TREND': trend, 'RSI': rsi,
-            'STATUS': "Overbought" if rsi > 70 else "Oversold" if rsi < 30 else "Neutral",
-            'ATR': atr, 'SUGGESTED STOP': stop_loss
+            'Ticker': ticker,
+            'Company_Name': company_name,
+            'Price': price,
+            'Grafic': "sparkline_placeholder", # Generat la HTML
+            'Target': target,
+            'To Target %': to_target,
+            'Consensus': market_consensus,
+            'Analysts': analysts_count,
+            'Trend': trend,
+            'RSI': rsi,
+            'RSI Status': rsi_status,
+            'ATR': atr,
+            'Stop Loss': stop_loss,
+            'SMA 50': sma50,
+            'SMA 200': sma200,
+            'Change %': change_pct,
+            'Momentum_Score': mom_score,
+            'Watchlist_Score': wl_score,
+            'Industry': industry,
+            'Theme': theme
         }
     except Exception as e:
         print(f"Eroare {ticker}: {e}")
         return None
 
-# --- NEW DASHBOARD GENERATION ---
 # --- NEW DASHBOARD GENERATION ---
 def generate_html(df, cortex_data, verdict_data):
     # Definire Structura Categorii
@@ -475,21 +540,39 @@ def generate_html(df, cortex_data, verdict_data):
     if df is not None and not df.empty:
         for _, row in df.iterrows():
             trend_color = "text-warning"
-            if "Strong Bullish" in row['TREND']: trend_color = "text-success"
-            elif "Bearish" in row['TREND']: trend_color = "text-danger"
-            target_color = "text-success" if row['TO TARGET %'] > 0 else "text-danger"
+            if "Strong Bullish" in row['Trend']: trend_color = "text-success"
+            elif "Bearish" in row['Trend']: trend_color = "text-danger"
             
+            target_color = "text-success" if float(row['To Target %']) > 0 else "text-danger"
+            mom_color = "text-success" if float(row['Momentum_Score']) >= 70 else "text-warning"
+            wl_color = "text-success" if float(row['Watchlist_Score']) >= 70 else "text-muted"
+            
+            rsi_val = float(row['RSI'])
+            rsi_color = "text-danger" if rsi_val > 70 or rsi_val < 30 else "text-muted"
+
+            # Sparkline placeholder handled by JS usually, or simple text for now
             rows_html += f"""
             <tr>
-                <td class="fw-bold">{row['TICKER']}</td>
-                <td>${row['PRICE']}</td>
-                <td>${row['TARGET']}</td>
-                <td class="{target_color}">{row['TO TARGET %']}%</td>
-                <td>{row['CONSENSUS']}</td>
-                <td>{row['INDUSTRY']}</td>
-                <td class="{trend_color}">{row['TREND']}</td>
-                <td>{row['RSI']}</td>
-                <td class="text-danger">${row['SUGGESTED STOP']}</td>
+                <td class="fw-bold"><a href="https://finviz.com/quote.ashx?t={row['Ticker']}" target="_blank" class="text-white text-decoration-none">{row['Ticker']}</a></td>
+                <td class="small text-muted">{str(row['Company_Name'])[:20]}..</td>
+                <td>${row['Price']}</td>
+                <td><span class="sparkline" data-ticker="{row['Ticker']}"></span></td> 
+                <td>${row['Target']}</td>
+                <td class="{target_color}">{row['To Target %']}%</td>
+                <td>{row['Consensus']}</td>
+                <td>{row['Analysts']}</td>
+                <td class="{trend_color}">{row['Trend']}</td>
+                <td class="{rsi_color}">{row['RSI']}</td>
+                <td class="small">{row['RSI Status']}</td>
+                <td>{row['ATR']}</td>
+                <td class="text-danger">${row['Stop Loss']}</td>
+                <td>${row['SMA 50']}</td>
+                <td>${row['SMA 200']}</td>
+                <td class="{ 'text-success' if float(row['Change %']) > 0 else 'text-danger' }">{row['Change %']}%</td>
+                <td class="{mom_color} fw-bold">{row['Momentum_Score']}</td>
+                <td class="{wl_color} fw-bold">{row['Watchlist_Score']}</td>
+                <td class="small">{row['Industry']}</td>
+                <td class="small">{row['Theme']}</td>
             </tr>"""
 
     html = f"""
@@ -619,28 +702,14 @@ def generate_html(df, cortex_data, verdict_data):
                 {indices_html}
             </div>
 
-            <!-- 2. CORTEX PANEL -->
-            <div class="cortex-panel">
-                <h5 class="cortex-header">🧁 Antigravity Market Cortex (Multi-Factor Analysis)</h5>
-                
-                <div class="row">
-                    <!-- PROBABILITY BAR -->
-                    <div class="col-md-6 mb-3">
-                        <label class="text-muted small">Probabilitate Direcție (Agregată)</label>
-                        <div class="prob-bar-container">
-                            <div class="prob-bar-bull"></div>
-                            <div class="prob-bar-bear"></div>
-                            <span class="prob-text-bull">Bullish: {verdict_data['bull_prob']}%</span>
-                            <span class="prob-text-bear">Bearish: {verdict_data['bear_prob']}%</span>
-                        </div>
+            <!-- 2. SYSTEM VERDICT -->
+            <div class="card bg-dark border-secondary mb-4 p-3">
+                <div class="row align-items-center">
+                    <div class="col-md-3 border-end border-secondary">
+                        <h4 class="mb-0">Verdict Sistem: <span class="{verdict_data.get('signal_color', 'text-white')} fw-bold">{verdict_data['verdict']}</span></h4>
                     </div>
-
-                    <!-- VERDICT & METRICS -->
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-center mb-3">
-                            <h4 class="text-white">Verdict Sistem: <span class="{verdict_data['term_color']}">{verdict_data['verdict']}</span></h4>
-                        </div>
-                        <div class="row">
+                    <div class="col-md-9">
+                        <div class="row text-center">
                             <div class="col-6">
                                 <div class="kpi-box">
                                     <div class="small text-muted mb-2">Term Structure (3M/1M)</div>
@@ -684,14 +753,25 @@ def generate_html(df, cortex_data, verdict_data):
                             <thead>
                                 <tr>
                                     <th>Ticker</th>
+                                    <th>Company</th>
                                     <th>Price</th>
+                                    <th>Grafic</th>
                                     <th>Target</th>
                                     <th>To Target %</th>
                                     <th>Consensus</th>
-                                    <th>Industry</th>
+                                    <th>Analysts</th>
                                     <th>Trend</th>
                                     <th>RSI</th>
-                                    <th>Sug. Stop</th>
+                                    <th>RSI Status</th>
+                                    <th>ATR</th>
+                                    <th>Stop Loss</th>
+                                    <th>SMA 50</th>
+                                    <th>SMA 200</th>
+                                    <th>Change %</th>
+                                    <th>Mom. Score</th>
+                                    <th>WL Score</th>
+                                    <th>Industry</th>
+                                    <th>Theme</th>
                                 </tr>
                             </thead>
                             <tbody>{rows_html}</tbody>
@@ -712,7 +792,8 @@ def generate_html(df, cortex_data, verdict_data):
             $(document).ready(function() {{
                 $('#scanTable').DataTable({{
                     "pageLength": 50,
-                    "order": [[3, "desc"]]
+                    "order": [[17, "desc"]], // Sort by Watchlist Score
+                    "scrollX": true
                 }});
             }});
         </script>
@@ -735,12 +816,17 @@ def main():
             print(f"Analizez {t}...", end="\r")
             res = analyze_ticker(t)
             if res: results.append(res)
-            time.sleep(0.3)
-    
+            # time.sleep(0.3) # Faster if mostly yfinance cached, but keeps finviz rate limits safe
+            
     df = pd.DataFrame(results) if results else None
     if df is not None:
-        cols = ['TICKER', 'PRICE', 'TARGET', 'TO TARGET %', 'CONSENSUS', 'INDUSTRY', 'TREND', 'RSI', 'STATUS', 'ATR', 'SUGGESTED STOP']
-        df[[c for c in cols if c in df.columns]].to_csv(OUTPUT_CSV, index=False)
+        # Full columns list
+        cols = ['Ticker', 'Company_Name', 'Price', 'Target', 'To Target %', 'Consensus', 'Analysts', 
+                'Trend', 'RSI', 'RSI Status', 'ATR', 'Stop Loss', 'SMA 50', 'SMA 200', 
+                'Change %', 'Momentum_Score', 'Watchlist_Score', 'Industry', 'Theme']
+        # Filter existing only just in case
+        valid_cols = [c for c in cols if c in df.columns]
+        df[valid_cols].to_csv(OUTPUT_CSV, index=False)
 
     # 2. Market Cortex Data (Yahoo + Calcul)
     cortex_data = get_market_cortex_data()
@@ -750,8 +836,8 @@ def main():
     
     # 4. Generare HTML
     generate_html(df, cortex_data, verdict_data)
+    
     print("\nScanare completă! Verifică index.html.")
 
 if __name__ == "__main__":
     main()
-
