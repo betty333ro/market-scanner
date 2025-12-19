@@ -1,6 +1,9 @@
 name: Daily Market Scan
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     # Runs every 30 minutes from 08:00 to 23:30 Romanian time (06:00-21:30 UTC), Mon-Fri
     - cron: '30,0 6-21 * * 1-5'
