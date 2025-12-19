@@ -254,123 +254,89 @@ def analyze_ticker(ticker):
         return None
 
 # --- NEW DASHBOARD GENERATION ---
+# --- NEW DASHBOARD GENERATION ---
 def generate_html(df, cortex_data, verdict_data):
-    # 1. Header Indices Cards with Educational Tooltips
-    indices_order = ['VIX3M', 'VIX', 'VIX1D', 'VIX9D', 'VXN', 'LTV', 'SKEW', 'MOVE', 'CRYPTO FEAR', 'GVZ', 'OVX', 'SPX']
+    # Definire Structura Categorii
+    categories = {
+        "1. CONTEXT DE PIAȚĂ": ['VIX', 'VIX9D', 'VIX3M', 'VXN', 'SKEW'],
+        "2. RISC MACRO / STRUCTURAL": ['MOVE', 'LTV', 'GVZ'],
+        "3. RISK-ON / RISK-OFF CONFIRMATION": ['CRYPTO FEAR', 'OVX'],
+        "4. MARKET BREADTH (Sănătatea Pieței)": ['SPX', 'SMA200%', 'Highs-Lows'],
+        "5. CONFIRMĂRI DE TIMING": ['Put/Call Ratio', 'AAII Sentiment']
+    }
     
     # Educational explanations for each indicator
     explanations = {
-        'VIX3M': {
-            'title': 'VIX 3-Month',
-            'desc': 'Volatilitate așteptată pe 3 luni',
-            'thresholds': '< 15 = Calm | 15-20 = Normal | 20-30 = Frică | > 30 = Panică'
-        },
-        'VIX': {
-            'title': 'VIX (Fear Index)',
-            'desc': 'Volatilitate așteptată pe 30 zile',
-            'thresholds': '< 12 = Complacență | 12-20 = Normal | 20-30 = Frică | > 30 = Panică'
-        },
-        'VIX1D': {
-            'title': 'VIX 1-Day',
-            'desc': 'Volatilitate pe termen foarte scurt',
-            'thresholds': 'Valori mari = Risc imediat'
-        },
-        'VIX9D': {
-            'title': 'VIX 9-Day',
-            'desc': 'Volatilitate pe 9 zile',
-            'thresholds': 'Compară cu VIX pentru trend'
-        },
-        'VXN': {
-            'title': 'Nasdaq Volatility',
-            'desc': 'Volatilitate specifică tech stocks',
-            'thresholds': '< 20 = Calm | > 30 = Frică în tech'
-        },
-        'LTV': {
-            'title': 'Long-Term Volatility',
-            'desc': 'Volatilitate pe 6 luni',
-            'thresholds': 'Compară cu VIX pentru structură'
-        },
-        'SKEW': {
-            'title': 'SKEW Index',
-            'desc': 'Risc de Black Swan (crash)',
-            'thresholds': '< 130 = Risc scăzut | 130-145 = Normal | > 145 = Risc EXTREM'
-        },
-        'MOVE': {
-            'title': 'MOVE Index',
-            'desc': 'Volatilitate obligațiuni (Bond Vol)',
-            'thresholds': '< 80 = Calm | 80-120 = Normal | > 120 = Stres în bonds'
-        },
-        'CRYPTO FEAR': {
-            'title': 'Crypto Fear & Greed',
-            'desc': 'Sentiment piață crypto',
-            'thresholds': '< 25 = Extreme Fear | 25-45 = Fear | 55-75 = Greed | > 75 = Extreme Greed'
-        },
-        'GVZ': {
-            'title': 'Gold Volatility',
-            'desc': 'Volatilitate aur (safe haven)',
-            'thresholds': 'Creștere = Incertitudine globală'
-        },
-        'OVX': {
-            'title': 'Oil Volatility',
-            'desc': 'Volatilitate petrol',
-            'thresholds': 'Creștere = Risc geopolitic/economic'
-        },
-        'SPX': {
-            'title': 'S&P 500',
-            'desc': 'Indicele principal US',
-            'thresholds': 'Trend = Direcția pieței'
-        }
+        'VIX3M': {'title': 'VIX 3-Month', 'desc': 'Volatilitate așteptată pe 3 luni', 'thresholds': '< 15 = Calm | 15-20 = Normal | 20-30 = Frică | > 30 = Panică'},
+        'VIX': {'title': 'VIX (Fear Index)', 'desc': 'Volatilitate așteptată pe 30 zile', 'thresholds': '< 12 = Complacență | 12-20 = Normal | 20-30 = Frică | > 30 = Panică'},
+        'VIX1D': {'title': 'VIX 1-Day', 'desc': 'Volatilitate pe termen foarte scurt', 'thresholds': 'Valori mari = Risc imediat'},
+        'VIX9D': {'title': 'VIX 9-Day', 'desc': 'Volatilitate pe 9 zile', 'thresholds': 'Compară cu VIX pentru trend'},
+        'VXN': {'title': 'Nasdaq Volatility', 'desc': 'Volatilitate specifică tech stocks', 'thresholds': '< 20 = Calm | > 30 = Frică în tech'},
+        'LTV': {'title': 'Long-Term Volatility', 'desc': 'Volatilitate pe 6 luni', 'thresholds': 'Compară cu VIX pentru structură'},
+        'SKEW': {'title': 'SKEW Index', 'desc': 'Risc de Black Swan (crash)', 'thresholds': '< 130 = Risc scăzut | 130-145 = Normal | > 145 = Risc EXTREM'},
+        'MOVE': {'title': 'MOVE Index', 'desc': 'Volatilitate obligațiuni (Bond Vol)', 'thresholds': '< 80 = Calm | 80-120 = Normal | > 120 = Stres în bonds'},
+        'CRYPTO FEAR': {'title': 'Crypto Fear & Greed', 'desc': 'Sentiment piață crypto', 'thresholds': '< 25 = Extreme Fear | 25-45 = Fear | 55-75 = Greed | > 75 = Extreme Greed'},
+        'GVZ': {'title': 'Gold Volatility', 'desc': 'Volatilitate aur (safe haven)', 'thresholds': 'Creștere = Incertitudine globală'},
+        'OVX': {'title': 'Oil Volatility', 'desc': 'Volatilitate petrol', 'thresholds': 'Creștere = Risc geopolitic/economic'},
+        'SPX': {'title': 'S&P 500', 'desc': 'Indicele principal US', 'thresholds': 'Trend = Direcția pieței'},
+        'SMA200%': {'title': '% Stocks > SMA200', 'desc': 'Market Breadth', 'thresholds': '> 50% = Bullish | < 50% = Bearish'},
+        'Highs-Lows': {'title': 'New Highs - New Lows', 'desc': 'Net New Highs', 'thresholds': 'Pozitiv = Bullish | Negativ = Bearish'},
+        'Put/Call Ratio': {'title': 'Put/Call Ratio (Equity)', 'desc': 'Sentiment Optiuni', 'thresholds': '> 1.0 = Fear (Bullish Signal) | < 0.6 = Complacency'},
+        'AAII Sentiment': {'title': 'AAII Bull-Bear', 'desc': 'Investitori Individuali', 'thresholds': 'Contrarian Indicator'}
     }
     
+    # MOCK DATA FOR MISSING METRICS (Placeholder logic)
+    cortex_data['SMA200%'] = {'value': 'N/A', 'change': 0, 'status': 'No Data', 'sparkline': '', 'status_color': '#444'}
+    cortex_data['Highs-Lows'] = {'value': 'N/A', 'change': 0, 'status': 'No Data', 'sparkline': '', 'status_color': '#444'}
+    cortex_data['Put/Call Ratio'] = {'value': 'N/A', 'change': 0, 'status': 'Source Req', 'sparkline': '', 'status_color': '#444'}
+    cortex_data['AAII Sentiment'] = {'value': 'N/A', 'change': 0, 'status': 'Source Req', 'sparkline': '', 'status_color': '#444'}
+
+    # GENERARE HTML CATEGORII
     indices_html = ""
-    for name in indices_order:
-        data = cortex_data.get(name, {})
-        val = data.get('value', 0)
-        chg = data.get('change', 0)
-        spark = data.get('sparkline', '')
-        status = data.get('status', '')
+    for cat_name, tickers in categories.items():
+        indices_html += f'<div class="category-section mb-4"><h5 class="text-secondary border-bottom border-dark pb-2 mb-3">{cat_name}</h5><div class="d-flex flex-wrap gap-3">'
         
-        # Get explanation
-        exp = explanations.get(name, {'title': name, 'desc': '', 'thresholds': ''})
-        
-        # Extract simple threshold range for display (e.g., "< 15 NORMAL 20-30")
-        threshold_display = ""
-        if name in ['VIX', 'VIX3M']:
-            threshold_display = "15 NORMAL 20"
-        elif name == 'VXN':
-            threshold_display = "20 NORMAL 30"
-        elif name == 'SKEW':
-            threshold_display = "130 NORMAL 145"
-        elif name == 'MOVE':
-            threshold_display = "80 NORMAL 120"
-        elif name == 'CRYPTO FEAR':
-            threshold_display = "25 NEUTRAL 75"
-        elif name in ['VIX1D', 'VIX9D', 'LTV', 'GVZ', 'OVX']:
-            threshold_display = "VOLATILITY INDEX"
-        elif name == 'SPX':
-            threshold_display = "MARKET INDEX"
-        
-        # Formatare speciala change
-        chg_sign = "+" if chg > 0 else ""
-        chg_str = f"{chg_sign}{chg}"
-        
-        # Create tooltip content
-        tooltip_content = f"{exp['desc']}\\n\\n{exp['thresholds']}"
-        
-        indices_html += f"""
-        <div class="index-card" title="{tooltip_content}">
-            <div class="index-title">{name} <span class="info-icon">ⓘ</span></div>
-            <div class="index-threshold">{threshold_display}</div>
-            <div class="index-status" style="color: {data.get('status_color', '#888')}">{status}</div>
-            <div class="sparkline-container">{spark}</div>
-            <div class="index-value {data.get('text_color', 'text-white')}">{val}</div>
-            <div class="index-change {data.get('text_color', 'text-white')}">{chg_str}</div>
-            <div class="index-explanation">
-                <small class="text-muted">{exp['desc']}</small>
-                <small class="text-info d-block mt-1">{exp['thresholds']}</small>
+        for name in tickers:
+            data = cortex_data.get(name, {})
+            val = data.get('value', 'N/A')
+            chg = data.get('change', 0)
+            spark = data.get('sparkline', '')
+            status = data.get('status', 'N/A')
+            
+            # Get explanation
+            exp = explanations.get(name, {'title': name, 'desc': '', 'thresholds': ''})
+            
+            # Extract simple threshold range
+            threshold_display = ""
+            if name in ['VIX', 'VIX3M']: threshold_display = "15 NORMAL 20"
+            elif name == 'VXN': threshold_display = "20 NORMAL 30"
+            elif name == 'SKEW': threshold_display = "130 NORMAL 145"
+            elif name == 'MOVE': threshold_display = "80 NORMAL 120"
+            elif name == 'CRYPTO FEAR': threshold_display = "25 NEUTRAL 75"
+            elif name == 'Put/Call Ratio': threshold_display = "0.7 NORMAL 1.0"
+            
+            # Formatare change
+            chg_sign = "+" if isinstance(chg, (int, float)) and chg > 0 else ""
+            chg_str = f"{chg_sign}{chg}" if isinstance(chg, (int, float)) else "-"
+            
+            # Create tooltip content
+            tooltip_content = f"{exp['desc']}\\n\\n{exp['thresholds']}"
+            
+            indices_html += f"""
+            <div class="index-card" title="{tooltip_content}">
+                <div class="index-title">{name} <span class="info-icon">ⓘ</span></div>
+                <div class="index-threshold">{threshold_display}</div>
+                <div class="index-status" style="color: {data.get('status_color', '#888')}">{status}</div>
+                <div class="sparkline-container">{spark}</div>
+                <div class="index-value {data.get('text_color', 'text-white')}">{val}</div>
+                <div class="index-change {data.get('text_color', 'text-white')}">{chg_str}</div>
+                <div class="index-explanation">
+                    <small class="text-muted">{exp['desc']}</small>
+                    <small class="text-info d-block mt-1">{exp['thresholds']}</small>
+                </div>
             </div>
-        </div>
-        """
+            """
+        indices_html += '</div></div>'
 
     # 2. Table Rows
     rows_html = ""
@@ -513,8 +479,8 @@ def generate_html(df, cortex_data, verdict_data):
                 <small class="text-muted">Updated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}</small>
             </div>
 
-            <!-- 1. INDICES ROW -->
-            <div class="indices-container">
+            <!-- 1. INDICES SECTIONS (CATEGORIZED) -->
+            <div class="mb-4">
                 {indices_html}
             </div>
 
