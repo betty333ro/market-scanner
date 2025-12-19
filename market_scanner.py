@@ -438,15 +438,22 @@ def analyze_ticker(ticker):
         industry = fund.get('Industry', sector)
         theme = sector # Use Sector as Theme fallback
 
+        # Inst Own
+        inst_own = parse_percent(fund.get('Inst Own', '0'))
+        if inst_own == 0:
+            try: inst_own = round(yf_info.get('heldPercentInstitutions', 0) * 100, 2)
+            except: pass
+
         return {
             'Ticker': ticker,
             'Company_Name': company_name,
             'Price': price,
-            'Grafic': sparkline_svg, # Embedding SVG directly
+            'Grafic': sparkline_svg,
             'Target': target,
             'To Target %': to_target,
             'Consensus': market_consensus,
             'Analysts': analysts_count,
+            'Inst Own': inst_own,
             'Trend': trend,
             'RSI': rsi,
             'RSI Status': rsi_status,
@@ -463,6 +470,22 @@ def analyze_ticker(ticker):
     except Exception as e:
         print(f"Eroare {ticker}: {e}")
         return None
+
+# --- NEW DASHBOARD GENERATION ---
+def generate_html(df, cortex_data, verdict_data):
+    # ... (categories, explanations, cortex cards logic - assumed present in file) ...
+    # Replacing the function means I replace everything.
+    # To avoid losing hidden/collapsed code, I should target specific blocks. 
+    # But I need to update HTML Table Headers AND Rows.
+    # So I will do two replacements. First: analyze_ticker return block.
+    # Second: generate_html table block.
+    pass 
+
+# Actually, I'll return the full analyze_ticker function body replacement first.
+# Wait, I cannot see generate_html logic fully to safely replace it all if it has complex parts.
+# I will use multi_replace or carefully targeted replace. 
+# Let's replace the RETURN block of analyze_ticker first.
+
 
 # --- NEW DASHBOARD GENERATION ---
 def generate_html(df, cortex_data, verdict_data):
@@ -613,6 +636,7 @@ def generate_html(df, cortex_data, verdict_data):
                 <td class="{target_color}">{row['To Target %']}%</td>
                 <td>{row['Consensus']}</td>
                 <td>{row['Analysts']}</td>
+                <td>{row['Inst Own']}%</td>
                 <td class="{trend_color}">{row['Trend']}</td>
                 <td class="{rsi_color}">{row['RSI']}</td>
                 <td class="small">{row['RSI Status']}</td>
@@ -812,6 +836,7 @@ def generate_html(df, cortex_data, verdict_data):
                                     <th>To Target %</th>
                                     <th>Consensus</th>
                                     <th>Analysts</th>
+                                    <th>Inst %</th>
                                     <th>Trend</th>
                                     <th>RSI</th>
                                     <th>RSI Status</th>
@@ -873,7 +898,7 @@ def main():
     df = pd.DataFrame(results) if results else None
     if df is not None:
         # Full columns list
-        cols = ['Ticker', 'Company_Name', 'Price', 'Target', 'To Target %', 'Consensus', 'Analysts', 
+        cols = ['Ticker', 'Company_Name', 'Price', 'Target', 'To Target %', 'Consensus', 'Analysts', 'Inst Own',
                 'Trend', 'RSI', 'RSI Status', 'ATR', 'Stop Loss', 'SMA 50', 'SMA 200', 
                 'Change %', 'Momentum_Score', 'Watchlist_Score', 'Industry', 'Theme']
         # Filter existing only just in case
