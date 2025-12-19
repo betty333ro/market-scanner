@@ -291,10 +291,10 @@ def generate_html(df, cortex_data, verdict_data):
     cortex_data['Put/Call Ratio'] = {'value': 'N/A', 'change': 0, 'status': 'Source Req', 'sparkline': '', 'status_color': '#444'}
     cortex_data['AAII Sentiment'] = {'value': 'N/A', 'change': 0, 'status': 'Source Req', 'sparkline': '', 'status_color': '#444'}
 
-    # GENERARE HTML CATEGORII
-    indices_html = ""
+    # GENERATE HTML FRAGMENTS FOR EACH CATEGORY
+    cat_frames = {}
     for cat_name, tickers in categories.items():
-        indices_html += f'<div class="category-section mb-4"><h5 class="text-secondary border-bottom border-dark pb-2 mb-3">{cat_name}</h5><div class="d-flex flex-wrap gap-3">'
+        html_chunk = f'<div class="card bg-dark border-secondary h-100"><div class="card-header border-secondary py-2"><h6 class="mb-0 text-white-50">{cat_name}</h6></div><div class="card-body p-2"><div class="d-flex flex-wrap gap-2 justify-content-center">'
         
         for name in tickers:
             data = cortex_data.get(name, {})
@@ -322,7 +322,7 @@ def generate_html(df, cortex_data, verdict_data):
             # Create tooltip content
             tooltip_content = f"{exp['desc']}\\n\\n{exp['thresholds']}"
             
-            indices_html += f"""
+            html_chunk += f"""
             <div class="index-card" title="{tooltip_content}">
                 <div class="index-title">{name} <span class="info-icon">ⓘ</span></div>
                 <div class="index-threshold">{threshold_display}</div>
@@ -336,7 +336,24 @@ def generate_html(df, cortex_data, verdict_data):
                 </div>
             </div>
             """
-        indices_html += '</div></div>'
+        html_chunk += '</div></div></div>'
+        cat_frames[cat_name] = html_chunk
+
+    # BUILD FINAL LAYOUT: ROW 1 (Cat 1+2) & ROW 2 (Cat 3+4+5)
+    row1_html = f"""
+    <div class="row mb-4">
+        <div class="col-xl-6 col-lg-6 mb-3">{cat_frames["1. CONTEXT DE PIAȚĂ"]}</div>
+        <div class="col-xl-6 col-lg-6 mb-3">{cat_frames["2. RISC MACRO / STRUCTURAL"]}</div>
+    </div>"""
+
+    row2_html = f"""
+    <div class="row mb-4">
+        <div class="col-xl-4 col-lg-4 mb-3">{cat_frames["3. RISK-ON / RISK-OFF CONFIRMATION"]}</div>
+        <div class="col-xl-4 col-lg-4 mb-3">{cat_frames["4. MARKET BREADTH (Sănătatea Pieței)"]}</div>
+        <div class="col-xl-4 col-lg-4 mb-3">{cat_frames["5. CONFIRMĂRI DE TIMING"]}</div>
+    </div>"""
+    
+    indices_html = row1_html + row2_html
 
     # 2. Table Rows
     rows_html = ""
