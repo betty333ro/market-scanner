@@ -358,9 +358,13 @@ def analyze_ticker(ticker):
                 
                 # ATR Calculation if missing (Simple Approx: High-Low mean)
                 # True ATR is complex, we'll use High-Low mean as proxy if Finviz fails
-                if fund.get('ATR') == '-':
+                atr_val = fund.get('ATR')
+                if not atr_val or atr_val == '-' or atr_val == '0':
                     high_low = (hist['High'] - hist['Low']).mean()
                     fund['ATR'] = str(round(high_low, 2))
+                    # Also fallback Price if 0
+                    if fund.get('Price', '0') == '0':
+                         fund['Price'] = str(round(closes[-1], 2))
                     
         except:
             company_name = ticker
