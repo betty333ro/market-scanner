@@ -597,12 +597,15 @@ def generate_html(df, cortex_data, verdict_data):
     <body class="p-3">
         <div class="container-fluid">
             <!-- HEADER -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="text-white"><span class="text-primary">📊</span> Indicatori de Piață</h4>
-                <small class="text-muted">Updated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}</small>
-            </div>
-
-            <!-- 1. INDICES SECTIONS (CATEGORIZED) -->
+            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="https://simpleicons.org/icons/googleanalytics.svg" width="32" height="32" style="filter: invert(1);">
+                    <h2 class="mb-0 fw-light">Indicatori de Piață</h2>
+                </div>
+                <div class="text-end">
+                    <small class="text-muted">Updated: {(datetime.datetime.utcnow() + datetime.timedelta(hours=2)).strftime('%Y-%m-%d %H:%M')} (RO)</small>
+                </div>
+            </div><!-- 1. INDICES SECTIONS (CATEGORIZED) -->
             <div class="mb-4">
                 {indices_html}
             </div>
