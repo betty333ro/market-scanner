@@ -366,7 +366,7 @@ def generate_html(df, cortex_data, verdict_data):
     # GENERATE HTML FRAGMENTS FOR EACH CATEGORY
     cat_frames = {}
     for cat_name, tickers in categories.items():
-        html_chunk = f'<div class="card bg-dark border-secondary h-100"><div class="card-header border-secondary py-2"><h6 class="mb-0 text-white-50">{cat_name}</h6></div><div class="card-body p-2"><div class="d-flex flex-wrap gap-2 justify-content-center">'
+        html_chunk = f'<div class="card bg-dark border-secondary h-100"><div class="card-header border-secondary py-2"><h6 class="mb-0 text-white-50">{cat_name}</h6></div><div class="card-body p-2"><div class="d-flex flex-nowrap gap-2 overflow-auto" style="scrollbar-width: thin;">'
         
         for name in tickers:
             data = cortex_data.get(name, {})
