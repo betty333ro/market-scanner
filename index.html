@@ -118,7 +118,7 @@
                     <h2 class="mb-0 fw-light">Indicatori de Piață</h2>
                 </div>
                 <div class="text-end">
-                    <small class="text-muted">Updated: 2025-12-28 07:52 (RO)</small>
+                    <small class="text-muted">Updated: 2025-12-28 08:09 (RO)</small>
                 </div>
             </div><!-- 1. INDICES SECTIONS (CATEGORIZED) -->
             <div class="mb-4">
@@ -2879,16 +2879,55 @@
                 
                 // Expose filter function globally
                 window.filterIndustry = function(industry) {
-                    // Industry is Column Index 19
-                    // Use regex exact match logic ^val$ if needed, but simple search is usually fine for chips
-                    // We clear all filters first? Or just industry? prefer just industry.
+                    // Industry is Column Index 20 (Visual Index in HTML)
+                    var colIdx = 20;
                     if (industry === '') {
-                        table.column(19).search('').draw();
+                        table.column(colIdx).search('').draw();
                     } else {
-                        // Escape regex chars if needed? Industry names usually safe.
-                        table.column(19).search('^' + industry + '$', true, false).draw();
+                        // Precise match for industry name
+                        table.column(colIdx).search('^' + industry + '$', true, false).draw();
                     }
                 };
+                
+                // --- CUSTOM NUMERIC SEARCH (Max for Price, Min for %) ---
+                $.fn.dataTable.ext.search.push(
+                    function(settings, data, dataIndex) {
+                        var valid = true;
+                        
+                        // Iterate over header filters
+                        $('.filters input').each(function(i) {
+                            var val = $(this).val();
+                            if (!val) return; // No filter
+                            
+                            var colIdx = i;
+                            var cellVal = data[colIdx].replace(/[$,%]/g, ''); // Remove currency symbols
+                            var numVal = parseFloat(cellVal);
+                            var filterNum = parseFloat(val);
+                            
+                            if (isNaN(numVal) || isNaN(filterNum)) return; // Skip non-numeric comparisons
+                            
+                            // MAX Logic (Value <= Input): Price(2), SugBuy(4), Target(5), StopLoss(14)
+                            if ([2, 4, 5, 14].includes(colIdx)) {
+                                if (numVal > filterNum) valid = false;
+                            }
+                            // MIN Logic (Value >= Input): ToTarget(6), Inst(9), Change(17), Mom(18), WL(19)
+                            else if ([6, 9, 17, 18, 19].includes(colIdx)) {
+                                if (numVal < filterNum) valid = false;
+                            }
+                            // Else: Default text search handled by DataTable default, but since we draw(),
+                            // we need to be careful not to conflict. 
+                            // Actually, standard search runs separate. This extension runs AND logic.
+                            // If default search is active on this column, it applies too.
+                        });
+                        
+                        return valid;
+                    }
+                );
+                
+                // Re-draw on input change to trigger custom search
+                $('.filters input').on('keyup change', function() {
+                    table.draw();
+                });
             });
         </script>
     </body>
