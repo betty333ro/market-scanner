@@ -690,6 +690,13 @@ def generate_html(df, cortex_data, verdict_data):
                 <td class="small">{row['Theme']}</td>
             </tr>"""
 
+    # --- Industry Chips Generation ---
+    industry_counts = df['Industry'].value_counts()
+    industry_chips_html = ""
+    for ind, count in industry_counts.items():
+        if ind != 'Unknown':
+            industry_chips_html += f"""<button class="btn btn-sm btn-outline-success me-2 mb-2" onclick="filterIndustry('{ind}')">{ind} ({count})</button> """
+
     html = f"""
     <!DOCTYPE html>
     <html lang="en" data-bs-theme="dark">
@@ -863,6 +870,13 @@ def generate_html(df, cortex_data, verdict_data):
 
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="watchlist">
+                    <!-- INDUSTRY FILTER CHIPS -->
+                    <div class="mb-3">
+                        <small class="text-muted d-block mb-2">Filtrează după Industrie:</small>
+                        <button class="btn btn-sm btn-outline-light me-2 mb-2" onclick="filterIndustry('')">Toate ({len(df)})</button>
+                        {industry_chips_html}
+                    </div>
+
                     <div class="card bg-dark border-secondary p-3">
                         <table id="scanTable" class="table table-dark table-hover w-100 table-sm">
                             <thead>
@@ -907,11 +921,69 @@ def generate_html(df, cortex_data, verdict_data):
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
         <script>
             $(document).ready(function() {{
-                $('#scanTable').DataTable({{
+                // Setup - add a text input to each footer cell
+                $('#scanTable thead tr')
+                    .clone(true)
+                    .addClass('filters')
+                    .appendTo('#scanTable thead');
+            
+                var table = $('#scanTable').DataTable({{
                     "pageLength": 50,
-                    "order": [[17, "desc"]], // Sort by Watchlist Score
-                    "scrollX": true
+                    "order": [[18, "desc"]], // Sort by Watchlist Score (Index 18?) No, check indexes.
+                    // Ticker=0, Company=1, Price=2, SugBuy=3, Target=4, ToTarget=5, Cons=6, Anal=7, Inst=8, Trend=9, RSI=10, RSISt=11, ATR=12, SL=13, SMA50=14, SMA200=15, Chg=16, Mom=17, WL=18, Ind=19, Theme=20
+                    "order": [[18, "desc"]], 
+                    "scrollX": true,
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    initComplete: function () {{
+                        var api = this.api();
+            
+                        // For each column
+                        api.columns().eq(0).each(function (colIdx) {{
+                            // Set the header cell to contain the input element
+                            var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
+                            var title = $(cell).text();
+                            $(cell).html('<input type="text" placeholder="' + title + '" style="width:100%; font-size:0.7em; background:#333; color:white; border:none;" />');
+            
+                            // On every keypress in this input
+                            $('input', $('.filters th').eq($(api.column(colIdx).header()).index()))
+                                .off('keyup change')
+                                .on('change', function (e) {{
+                                    // Get the search value
+                                    $(this).attr('title', $(this).val());
+                                    var regexr = '({{search}})'; 
+            
+                                    api
+                                        .column(colIdx)
+                                        .search(
+                                            this.value != ''
+                                                ? regexr.replace('{{search}}', '(((' + this.value + ')))')
+                                                : '',
+                                            this.value != '',
+                                            this.value == ''
+                                        )
+                                        .draw();
+                                }})
+                                .on('keyup', function (e) {{
+                                    e.stopPropagation();
+                                    $(this).trigger('change');
+                                }});
+                        }});
+                    }}
                 }});
+                
+                // Expose filter function globally
+                window.filterIndustry = function(industry) {{
+                    // Industry is Column Index 19
+                    // Use regex exact match logic ^val$ if needed, but simple search is usually fine for chips
+                    // We clear all filters first? Or just industry? prefer just industry.
+                    if (industry === '') {{
+                        table.column(19).search('').draw();
+                    }} else {{
+                        // Escape regex chars if needed? Industry names usually safe.
+                        table.column(19).search('^' + industry + '$', true, false).draw();
+                    }}
+                }};
             }});
         </script>
     </body>
