@@ -444,6 +444,43 @@ def analyze_ticker(ticker):
             try: inst_own = round(yf_info.get('heldPercentInstitutions', 0) * 100, 2)
             except: pass
 
+        # --- LOGICA TRADER EXPERT (70 ani exp) ---
+        # Calcul "Suggested Buy" (Buy Zone)
+        suggested_buy = 0
+        buy_reason = ""
+        
+        # 1. Definire Nivele Suport
+        # Suport 1 (Aggressive): SMA 50 sau Banda Inferioara (Price - 1.5*ATR)
+        # Suport 2 (Conservative): SMA 200 sau Deep Value
+        
+        if trend == "Strong Bullish":
+            # In uptrend puternic, cumparam la pullback pe SMA 50
+            # Dar verificam sa nu fie deja sub SMA 50 (caz in care suportul e mai jos)
+            if price > sma50:
+                buy_target = max(sma50, price - (1.5 * atr))
+                suggested_buy = buy_target
+            else:
+                # Deja sub SMA 50? Atunci targetam SMA 200 sau suport ATR
+                 suggested_buy = max(sma200, price - (1.0 * atr))
+                 
+        elif trend == "Bullish Pullback":
+            # Deja in corectie. Cautam SMA 50 daca e sub noi, sau SMA 200
+            suggested_buy = sma50 if price > sma50 else max(sma200, price - atr)
+            
+        elif trend == "Bearish" or trend == "Bearish Bounce":
+            # Trend descendent. Nu prindem cutitul decat la Deep Value.
+            # Targetam SMA 200 (daca e sub) sau un nivel f scazut (-3 ATR)
+            suggested_buy = min(sma200, price - (2.5 * atr)) if sma200 > 0 else (price - 3*atr)
+        
+        else: # Neutral
+             suggested_buy = price - (2.0 * atr)
+
+        # Safety Check: Buy Price cannot be higher than current price (it's a limit order suggestion)
+        # Exception: Breakout? No, we are value traders here. We buy Low.
+        if suggested_buy > price: suggested_buy = price * 0.99 
+        
+        suggested_buy = round(suggested_buy, 2)
+
         return {
             'Ticker': ticker,
             'Company_Name': company_name,
@@ -454,6 +491,7 @@ def analyze_ticker(ticker):
             'Consensus': market_consensus,
             'Analysts': analysts_count,
             'Inst Own': inst_own,
+            'Sug. Buy': suggested_buy, # NEW COLUMN
             'Trend': trend,
             'RSI': rsi,
             'RSI Status': rsi_status,
@@ -632,6 +670,7 @@ def generate_html(df, cortex_data, verdict_data):
                 <td class="small text-muted">{str(row['Company_Name'])[:20]}..</td>
                 <td>${row['Price']}</td>
                 <td>{row['Grafic']}</td> 
+                <td class="text-warning fw-bold">${row['Sug. Buy']}</td>
                 <td>${row['Target']}</td>
                 <td class="{target_color}">{row['To Target %']}%</td>
                 <td>{row['Consensus']}</td>
@@ -832,6 +871,7 @@ def generate_html(df, cortex_data, verdict_data):
                                     <th>Company</th>
                                     <th>Price</th>
                                     <th>Grafic</th>
+                                    <th>Sug. Buy</th>
                                     <th>Target</th>
                                     <th>To Target %</th>
                                     <th>Consensus</th>
@@ -898,7 +938,7 @@ def main():
     df = pd.DataFrame(results) if results else None
     if df is not None:
         # Full columns list
-        cols = ['Ticker', 'Company_Name', 'Price', 'Target', 'To Target %', 'Consensus', 'Analysts', 'Inst Own',
+        cols = ['Ticker', 'Company_Name', 'Price', 'Sug. Buy', 'Target', 'To Target %', 'Consensus', 'Analysts', 'Inst Own',
                 'Trend', 'RSI', 'RSI Status', 'ATR', 'Stop Loss', 'SMA 50', 'SMA 200', 
                 'Change %', 'Momentum_Score', 'Watchlist_Score', 'Industry', 'Theme']
         # Filter existing only just in case
