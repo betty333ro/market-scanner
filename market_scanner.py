@@ -862,6 +862,28 @@ def generate_html(df, cortex_data, verdict_data):
                 </div>
             </div>
 
+            <!-- DECISION GUIDE -->
+            <div class="card bg-dark border-secondary mb-4 p-2">
+                <div class="d-flex justify-content-around text-center small text-muted">
+                    <div>
+                        <span class="fw-bold text-white">VIX Guide:</span> 
+                        <span class="text-success">&lt;20 (Bull)</span> | 
+                        <span class="text-warning">20-30 (Caution)</span> | 
+                        <span class="text-danger">&gt;30 (Panic/Bear)</span>
+                    </div>
+                    <div>
+                        <span class="fw-bold text-white">SKEW Guide:</span> 
+                        <span class="text-success">&lt;135 (Normal)</span> | 
+                        <span class="text-danger">&gt;145 (High Risk/Black Swan)</span>
+                    </div>
+                    <div>
+                        <span class="fw-bold text-white">Term Structure:</span> 
+                        <span class="text-success">&gt;1.1 (Healthy)</span> | 
+                        <span class="text-danger">&lt;1.0 (Crash Risk)</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- 3. TABS (WATCHLIST) -->
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                 <li class="nav-item"><button class="nav-link active" data-bs-target="#watchlist" data-bs-toggle="tab">Watchlist & Scan</button></li>

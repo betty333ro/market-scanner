@@ -5,8 +5,8 @@ on:
     branches:
       - main
   schedule:
-    # Runs every 30 minutes from 08:00 to 23:30 Romanian time (06:00-21:30 UTC), Mon-Fri
-    - cron: '30,0 6-21 * * 1-5'
+    # Runs every 30 minutes, Mon-Fri (Global Market Coverage)
+    - cron: '*/30 * * * 1-5'
   workflow_dispatch:
 
 jobs:
