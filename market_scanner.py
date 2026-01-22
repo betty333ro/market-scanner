@@ -556,7 +556,7 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                     <td class="fw-bold"><a href="https://finviz.com/quote.ashx?t={row['Ticker']}" target="_blank" class="text-white text-decoration-none">{row['Ticker']}</a></td>
                     <td class="small text-muted">{str(row['Company_Name'])[:15]}..</td>
                     <td>${row['Price']}</td>
-                    <td>{row['Grafic']}</td> 
+                    <td><div style="width:100px; overflow:hidden;">{row['Grafic']}</div></td> 
                     <td class="text-warning fw-bold">${row['Sug. Buy']}</td>
                     <td>${row['Target']}</td>
                     <td class="{target_color}">{row['To Target %']}%</td>
@@ -768,7 +768,33 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                     <div class="card bg-dark border-secondary p-3">
                         <table id="scanTable" class="table table-dark table-hover w-100 table-sm">
                             <thead>
-                                <tr><th>Ticker</th><th>Company</th><th>Price</th><th>Grafic</th><th>Sug. Buy</th><th>Target</th><th>To Target %</th><th>Consensus</th><th>Analysts</th><th>Inst %</th><th>Trend</th><th>RSI</th><th>RSI Status</th><th>ATR</th><th>Stop Loss</th><th>SMA 50</th><th>SMA 200</th><th>Change %</th><th>Mom. Score</th><th>WL Score</th><th>Industry</th><th>Theme</th><th>Decizie</th><th>Volume</th><th>R:R</th></tr>
+<tr>
+                                    <th>Ticker</th>
+                                    <th>Company</th>
+                                    <th>Price</th>
+                                    <th style="width:100px;">Grafic</th>
+                                    <th title="Price limit for safe entry based on technical support levels.">Sug. Buy ⓘ</th>
+                                    <th title="Analyst price target consensus.">Target</th>
+                                    <th title="Potential upside to analyst target.">To Target %</th>
+                                    <th title="Average analyst rating (Strong Buy to Sell).">Consensus ⓘ</th>
+                                    <th>Analysts</th>
+                                    <th>Inst %</th>
+                                    <th title="Current technical trend based on SMA50/SMA200 interaction.">Trend ⓘ</th>
+                                    <th title="Relative Strength Index. >70 Overbought, <30 Oversold.">RSI ⓘ</th>
+                                    <th>RSI Status</th>
+                                    <th title="Average True Range. Volatility metric used for stop losses.">ATR</th>
+                                    <th title="Suggested stop loss level (2x ATR below price).">Stop Loss ⓘ</th>
+                                    <th>SMA 50</th>
+                                    <th>SMA 200</th>
+                                    <th title="Daily percentage change. High +% = Momentum.">Change % ⓘ</th>
+                                    <th title="Composite score (0-100) based on Price vs SMAs, RSI, and recent perf.">Mom. Score ⓘ</th>
+                                    <th>WL Score</th>
+                                    <th>Industry</th>
+                                    <th>Theme</th>
+                                    <th title="System logic: BUY if Price < Sug Buy. WATCH if within 5%.">Decizie ⓘ</th>
+                                    <th title="Daily Trading Volume.">Volume</th>
+                                    <th title="Risk/Reward Ratio. Potential reward vs risk to Stop Loss. >2.0 is good.">R:R ⓘ</th>
+                                </tr>
                             </thead>
                             <tbody>{rows_main}</tbody>
                         </table>
@@ -785,7 +811,33 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                     <div class="card bg-dark border-secondary p-3">
                         <table id="customTable" class="table table-dark table-hover w-100 table-sm">
                             <thead>
-                                <tr><th>Ticker</th><th>Company</th><th>Price</th><th>Grafic</th><th>Sug. Buy</th><th>Target</th><th>To Target %</th><th>Consensus</th><th>Analysts</th><th>Inst %</th><th>Trend</th><th>RSI</th><th>RSI Status</th><th>ATR</th><th>Stop Loss</th><th>SMA 50</th><th>SMA 200</th><th>Change %</th><th>Mom. Score</th><th>WL Score</th><th>Industry</th><th>Theme</th><th>Decizie</th><th>Volume</th><th>R:R</th></tr>
+<tr>
+                                    <th>Ticker</th>
+                                    <th>Company</th>
+                                    <th>Price</th>
+                                    <th style="width:100px;">Grafic</th>
+                                    <th title="Price limit for safe entry based on technical support levels.">Sug. Buy ⓘ</th>
+                                    <th title="Analyst price target consensus.">Target</th>
+                                    <th title="Potential upside to analyst target.">To Target %</th>
+                                    <th title="Average analyst rating (Strong Buy to Sell).">Consensus ⓘ</th>
+                                    <th>Analysts</th>
+                                    <th>Inst %</th>
+                                    <th title="Current technical trend based on SMA50/SMA200 interaction.">Trend ⓘ</th>
+                                    <th title="Relative Strength Index. >70 Overbought, <30 Oversold.">RSI ⓘ</th>
+                                    <th>RSI Status</th>
+                                    <th title="Average True Range. Volatility metric used for stop losses.">ATR</th>
+                                    <th title="Suggested stop loss level (2x ATR below price).">Stop Loss ⓘ</th>
+                                    <th>SMA 50</th>
+                                    <th>SMA 200</th>
+                                    <th title="Daily percentage change. High +% = Momentum.">Change % ⓘ</th>
+                                    <th title="Composite score (0-100) based on Price vs SMAs, RSI, and recent perf.">Mom. Score ⓘ</th>
+                                    <th>WL Score</th>
+                                    <th>Industry</th>
+                                    <th>Theme</th>
+                                    <th title="System logic: BUY if Price < Sug Buy. WATCH if within 5%.">Decizie ⓘ</th>
+                                    <th title="Daily Trading Volume.">Volume</th>
+                                    <th title="Risk/Reward Ratio. Potential reward vs risk to Stop Loss. >2.0 is good.">R:R ⓘ</th>
+                                </tr>
                             </thead>
                             <tbody>{rows_custom}</tbody>
                         </table>
