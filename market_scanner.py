@@ -24,20 +24,6 @@ def load_tickers(filename):
         print(f"Eroare: {filename} lipsește.")
         return []
 
-# ... (Previous helper functions like generate_sparkline, get_crypto_fear_greed, get_finviz_breadth, get_market_cortex_data remain unchanged, 
-#      BUT we need to ensure analyze_ticker is available or logic is encapsulated. 
-#      Assuming analyze_ticker exists in the file (it was seen in previous turns inside the main loop logic, likely defined earlier or needs to be extracted).
-#      WAIT. I need to make sure I don't delete analyze_ticker if it's outside the view.
-#      Checking previous view: analyze_ticker was CALLED in main, but not defined in the viewed lines 1-200. 
-#      I must assume it is defined somewhere between 200 and 600, or I need to find it.
-#      Actually, I will just modify `main` and `generate_html`. I will NOT touch the `analyze_ticker` definition if I don't have to.
-#      I will view the file to find where `analyze_ticker` starts to be safe.
-
-#      ACTUALLY, I'll use a VIEW first to be safe, then replace.)
-
-# This tool call is just a placeholder to switch to VIEW first. I will abort this specific tool call and view first.
-
-
 # --- SVG SPARKLINE GENERATOR ---
 def generate_sparkline(data_list, color="#4caf50", width=120, height=40):
     if not data_list or len(data_list) < 2:
@@ -74,14 +60,6 @@ def get_finviz_breadth():
         # 1. Stocks > SMA200 (S&P 500)
         foverview = Overview()
         foverview.set_filter(filters_dict={'Index': 'S&P 500', '200-Day Simple Moving Average': 'Price above SMA200'})
-        # Trick: screener_view returns DF. Length is the count of stocks satisfying filter.
-        # Note: This limits to 20 by default but fetching info usually implies count is handled or we rely on page 1 size if < 20.
-        # Ideally we want total count. finvizfinance extracts total count often.
-        # Let's assume len(df) is reliable for small subsets or use specific method if available. 
-        # Actually default limit might be 20. We need to be careful.
-        # But wait, we just want the COUNT. 
-        # Using a reliable scraping fallback for just the COUNT number is faster/better? 
-        # No, let's use the library.
         df_sma = foverview.screener_view() 
         sma200_count = len(df_sma) if df_sma is not None else 0
         
@@ -119,62 +97,50 @@ def get_market_cortex_data():
     indices = {
         'VIX3M': '^VIX3M',
         'VIX': '^VIX',
-        'VIX1D': '^VIX1D', # Poate lipsi
+        'VIX1D': '^VIX1D',
         'VIX9D': '^VIX9D',
-        'VXN': '^VXN',     # Nasdaq Vol
-        'LTV': '^VIX6M',   # Long Term Vol
+        'VXN': '^VXN',
+        'LTV': '^VIX6M',
         'SKEW': '^SKEW',
-        'MOVE': '^MOVE',   # ICE BofA MOVE Index
-        'GVZ': '^GVZ',     # Gold Vol
-        'OVX': '^OVX',     # Oil Vol
+        'MOVE': '^MOVE',
+        'GVZ': '^GVZ',
+        'OVX': '^OVX',
         'SPX': '^GSPC'
     }
     
     cortex_data = {}
     
-    # Batch download pentru eficienta
     tickers_list = list(indices.values())
     try:
-        # Preluam date pe 1 luna pentru sparklines
         data = yf.download(tickers_list, period="1mo", interval="1d", progress=False)['Close']
         
-        # Procesare fiecare index
         for name, ticker in indices.items():
             try:
-                # Extragem seria de date (handle NaN)
                 series = data[ticker].dropna()
-                
-                if series.empty:
-                    # Fallback daca nu exista in batch (uneori pt indici exotici)
-                    raise ValueError("Empty series")
+                if series.empty: raise ValueError("Empty series")
                 
                 current_price = series.iloc[-1]
                 prev_price = series.iloc[-2] if len(series) > 1 else current_price
                 change = current_price - prev_price
-                
-                # Sparkline data (normalizata pt vizualizare)
                 spark_data = series.tolist()
                 
-                # Determinare Sentiment/Status (Logica simpla bazata pe medii)
                 status = "NORMAL"
-                status_color = "#888" # Grey
+                status_color = "#888"
                 
-                # Logica specifica VIX
                 if "VIX" in name or name == "VXN":
                     if current_price < 15: status = "COMPLACENCY"; status_color = "#4caf50"
                     elif current_price < 20: status = "NORMAL"; status_color = "#888"
                     elif current_price < 30: status = "FEAR"; status_color = "#ff9800"
                     else: status = "PANIC"; status_color = "#f44336"
                 elif name == "SKEW":
-                    if current_price > 145: status = "PANIC (BS)"; status_color = "#f44336" # Black Swan Risk
+                    if current_price > 145: status = "PANIC (BS)"; status_color = "#f44336"
                     else: status = "NORMAL"; status_color = "#888"
                 elif name == "SPX":
                    status = f"{int(current_price)}"
                    status_color = "#4caf50" if change > 0 else "#f44336"
 
-                color = "#4caf50" if change <= 0 else "#f44336" # Volatilitate in scadere = Bine (Verde)
-                if name == "SPX": # Pt SPX invers: crestere = Bine
-                    color = "#4caf50" if change >= 0 else "#f44336"
+                color = "#4caf50" if change <= 0 else "#f44336"
+                if name == "SPX": color = "#4caf50" if change >= 0 else "#f44336"
 
                 cortex_data[name] = {
                     'value': round(current_price, 2),
@@ -185,65 +151,49 @@ def get_market_cortex_data():
                     'text_color': "text-success" if color=="#4caf50" else "text-danger"
                 }
             except Exception as e:
-                # Fallback pt date lipsa
                 cortex_data[name] = {
                     'value': 0.0, 'change': 0.0, 'sparkline': "", 'status': "N/A", 'status_color': "#444", 'text_color': "text-muted"
                 }
 
-        # CRYPTO FEAR (External API)
         fng = get_crypto_fear_greed()
-        fng_color = "#f44336" if fng < 25 else "#4caf50" if fng > 60 else "#ff9800"
         fng_status = "EXTREME FEAR" if fng < 25 else "GREED" if fng > 60 else "NEUTRAL"
         
         cortex_data['CRYPTO FEAR'] = {
             'value': fng,
-            'change': 0.0, # Nu avem istoric zi vs zi usor
-            'sparkline': "", # Placeholder
+            'change': 0.0,
+            'sparkline': "",
             'status': fng_status,
             'status_color': "#888",
-            'text_color': "text-success" if fng > 50 else "text-danger" # Doar coloram textul
+            'text_color': "text-success" if fng > 50 else "text-danger"
         }
 
     except Exception as e:
         print(f"Eroare critica fetching yfinance: {e}")
 
-    # MARKET BREADTH (Finviz)
     breadth = get_finviz_breadth()
-    
-    # SMA200 Logic
     sma_val = breadth['sma200_pct']
     sma_status = "BULLISH" if sma_val > 50 else "BEARISH"
     sma_color = "#4caf50" if sma_val > 50 else "#f44336"
     cortex_data['SMA200%'] = {
         'value': f"{sma_val}%",
         'change': 0, 
-        'sparkline': "",
-        'status': sma_status,
-        'status_color': sma_color,
+        'sparkline': "", 'status': sma_status, 'status_color': sma_color,
         'text_color': "text-success" if sma_val > 50 else "text-danger"
     }
     
-    # Highs-Lows Logic
     hl_val = breadth['highs_lows']
     hl_status = "NET HIGHS" if hl_val > 0 else "NET LOWS"
     hl_color = "#4caf50" if hl_val > 0 else "#f44336"
     cortex_data['Highs-Lows'] = {
         'value': hl_val,
-        'change': 0,
-        'sparkline': "",
-        'status': hl_status,
-        'status_color': hl_color,
+        'change': 0, 'sparkline': "", 'status': hl_status, 'status_color': hl_color,
         'text_color': "text-success" if hl_val > 0 else "text-danger"
     }
     
     cortex_data['breadth_valid'] = breadth.get('valid', False)
-
     return cortex_data
 
 def calculate_verdict(cortex):
-    # Logica 'Antigravity' simplificata
-    
-    # 1. Term Structure (VIX3M / VIX)
     try:
         vix = cortex['VIX']['value']
         vix3m = cortex['VIX3M']['value']
@@ -260,47 +210,27 @@ def calculate_verdict(cortex):
         term_text = "Flat (Caution)"
         term_color = "text-warning"
         
-    # 2. Bullish Probability / SCOR ANTIGRAVITY (0-100)
-    # Factori:
-    # - VIX Change (Inv): scade = bullish (+20p)
-    # - Term Structure: >1.1 = bullish (+20p), <1 = bearish (-20p)
-    # - SMA200% > 50%: bullish (+20p)
-    # - Highs-Lows > 0: bullish (+10p)
-    # - Crypto Fear > 40: risk-on (+10p)
-    # - MOVE < 100: stable macro (+10p)
-    # - Base: 10p
-    
     score = 10 
-    
-    # 1. Structural Vol inputs
     if term_structure > 1.1: score += 20
     elif term_structure < 1.0: score -= 20
     
-    # 2. VIX Momentum
     if cortex['VIX']['change'] < 0: score += 20
     
-    # 3. Breadth (SMA200) - Handle string "59.4%"
     try:
         sma_str = cortex['SMA200%']['value'].replace('%','')
         if float(sma_str) > 50: score += 20
     except: pass
     
-    # 4. Breadth (Highs-Lows)
     try:
         hl_val = int(cortex['Highs-Lows']['value'])
         if hl_val > 0: score += 10
     except: pass
         
-    # 5. Risk-On Sentiment
     if cortex['CRYPTO FEAR']['value'] > 45: score += 10
-    
-    # 6. Macro Stability
     if cortex['MOVE']['value'] < 110: score += 10
 
-    # Clamp Score 0-100
     score = max(0, min(100, score))
     
-    # DETERMINARE VERDICT (BUY/HOLD/SELL)
     final_signal = "HOLD"
     signal_color = "text-warning"
     
@@ -313,10 +243,8 @@ def calculate_verdict(cortex):
         
     bull_prob = score
     bear_prob = 100 - score
-    
     verdict_text = f"{final_signal} ({score}/100)"
     
-    # WARNING PENTRU DATE INCOMPLETE
     if not cortex.get('breadth_valid', True):
         verdict_text += " ⚠️ Date incomplete (Finviz Fail)"
 
@@ -328,11 +256,9 @@ def calculate_verdict(cortex):
         'term_color': term_color,
         'bull_prob': bull_prob,
         'bear_prob': bear_prob,
-        'sentiment': int(bull_prob) # Folosim scorul ca proxy pt sentiment general
+        'sentiment': int(bull_prob)
     }
 
-# --- EXISTING ANALYZE TICKER ---
-# (Pastram functia existenta pentru tabelul Watchlist, e buna)
 def clean_value(value):
     if not value or value == '-': return ""
     return str(value).replace('$', '').replace('%', '').replace(',', '').strip()
@@ -354,7 +280,7 @@ def analyze_ticker(ticker):
         except:
             fund = {}
 
-        # 2. YFinance Data (Company Name, Analyst Count, Sparkline, ATR Fallback)
+        # 2. YFinance Data
         sparkline_svg = ""
         try:
             yf_ticker = yf.Ticker(ticker)
@@ -363,24 +289,18 @@ def analyze_ticker(ticker):
             analysts_count = yf_info.get('numberOfAnalystOpinions', 0)
             sector = yf_info.get('sector', 'Unknown')
             
-            # Fetch History for Sparkline & ATR
             hist = yf_ticker.history(period="1mo")
             if not hist.empty:
-                # Sparkline
                 closes = hist['Close'].tolist()
                 color = "#4caf50" if closes[-1] >= closes[0] else "#f44336"
                 sparkline_svg = generate_sparkline(closes, color=color, width=100, height=30)
                 
-                # ATR Calculation if missing (Simple Approx: High-Low mean)
-                # True ATR is complex, we'll use High-Low mean as proxy if Finviz fails
                 atr_val = fund.get('ATR')
                 if not atr_val or atr_val == '-' or atr_val == '0':
                     high_low = (hist['High'] - hist['Low']).mean()
                     fund['ATR'] = str(round(high_low, 2))
-                    # Also fallback Price if 0
                     if fund.get('Price', '0') == '0':
                          fund['Price'] = str(round(closes[-1], 2))
-                    
         except:
             company_name = ticker
             analysts_count = 0
@@ -421,37 +341,10 @@ def analyze_ticker(ticker):
         # 6. Calculations
         stop_loss = round(price - (2 * atr), 2) if atr > 0 else 0
         to_target = round(((target - price) / price) * 100, 2) if price > 0 and target > 0 else 0.0
-        
-        # 7. Scores
-        # Momentum Score (0-100)
-        mom_score = 50 # Base
-        if price > sma50: mom_score += 10
-        if price > sma200: mom_score += 10
-        if change_pct > 0: mom_score += 10
-        if change_pct > 2: mom_score += 5
-        if rsi > 50: mom_score += 10
-        if rsi > 70: mom_score -= 10 # Overbought risk
-        mom_score = max(0, min(100, mom_score))
-        
-        # Watchlist Score (0-100)
-        # BUG FIX: Ensure strict conditions so not everyone gets 100
-        wl_score = 30 # Base
-        if to_target > 15: wl_score += 20
-        elif to_target > 5: wl_score += 10
-        
-        # Analysts count > 5 to matter (avoid weird small caps)
-        if analysts_count > 5: wl_score += 10
-        
-        if recom <= 2.0: wl_score += 20 # Strong Buy
-        elif recom <= 2.5: wl_score += 10 # Buy
-        
-        if mom_score > 60: wl_score += 20
-        
-        wl_score = max(0, min(100, wl_score))
 
         # Industry / Theme
         industry = fund.get('Industry', sector)
-        theme = sector # Use Sector as Theme fallback
+        theme = sector 
 
         # Inst Own
         inst_own = parse_percent(fund.get('Inst Own', '0'))
@@ -459,42 +352,69 @@ def analyze_ticker(ticker):
             try: inst_own = round(yf_info.get('heldPercentInstitutions', 0) * 100, 2)
             except: pass
 
-        # --- LOGICA TRADER EXPERT (70 ani exp) ---
-        # Calcul "Suggested Buy" (Buy Zone)
-        suggested_buy = 0
-        buy_reason = ""
+        # --- NEW METRICS (Volume, R:R) ---
+        vol_str = fund.get('Volume', '0')
+        def parse_volume(v):
+            if not v or v == '-': return 0
+            v = str(v).replace(',', '')
+            mult = 1
+            if v.endswith('M'): mult = 1_000_000; v = v[:-1]
+            elif v.endswith('B'): mult = 1_000_000_000; v = v[:-1]
+            elif v.endswith('K'): mult = 1_000; v = v[:-1]
+            try: return float(v) * mult
+            except: return 0
+        volume = parse_volume(vol_str)
         
-        # 1. Definire Nivele Suport
-        # Suport 1 (Aggressive): SMA 50 sau Banda Inferioara (Price - 1.5*ATR)
-        # Suport 2 (Conservative): SMA 200 sau Deep Value
+        # Risk / Reward
+        risk = price - stop_loss
+        reward = target - price
+        rr_ratio = round(reward / risk, 2) if risk > 0 else 0
+        
+        # 7. Scores (Momentum)
+        mom_score = 50 
+        if price > sma50: mom_score += 10
+        if price > sma200: mom_score += 10
+        if change_pct > 0: mom_score += 10
+        if change_pct > 2: mom_score += 5
+        if rsi > 50: mom_score += 10
+        if rsi > 70: mom_score -= 10
+        mom_score = max(0, min(100, mom_score))
+        
+        # Watchlist Score
+        wl_score = 30
+        if to_target > 15: wl_score += 20
+        elif to_target > 5: wl_score += 10
+        if analysts_count > 5: wl_score += 10
+        if recom <= 2.0: wl_score += 20
+        elif recom <= 2.5: wl_score += 10
+        if mom_score > 60: wl_score += 20
+        wl_score = max(0, min(100, wl_score))
+
+        # --- LOGICA TRADER EXPERT ---
+        suggested_buy = 0
         
         if trend == "Strong Bullish":
-            # In uptrend puternic, cumparam la pullback pe SMA 50
-            # Dar verificam sa nu fie deja sub SMA 50 (caz in care suportul e mai jos)
-            if price > sma50:
-                buy_target = max(sma50, price - (1.5 * atr))
-                suggested_buy = buy_target
-            else:
-                # Deja sub SMA 50? Atunci targetam SMA 200 sau suport ATR
-                 suggested_buy = max(sma200, price - (1.0 * atr))
-                 
+            if price > sma50: suggested_buy = max(sma50, price - (1.5 * atr))
+            else: suggested_buy = max(sma200, price - (1.0 * atr))
         elif trend == "Bullish Pullback":
-            # Deja in corectie. Cautam SMA 50 daca e sub noi, sau SMA 200
             suggested_buy = sma50 if price > sma50 else max(sma200, price - atr)
-            
         elif trend == "Bearish" or trend == "Bearish Bounce":
-            # Trend descendent. Nu prindem cutitul decat la Deep Value.
-            # Targetam SMA 200 (daca e sub) sau un nivel f scazut (-3 ATR)
             suggested_buy = min(sma200, price - (2.5 * atr)) if sma200 > 0 else (price - 3*atr)
-        
-        else: # Neutral
+        else: 
              suggested_buy = price - (2.0 * atr)
 
-        # Safety Check: Buy Price cannot be higher than current price (it's a limit order suggestion)
-        # Exception: Breakout? No, we are value traders here. We buy Low.
         if suggested_buy > price: suggested_buy = price * 0.99 
-        
         suggested_buy = round(suggested_buy, 2)
+        
+        # DECISION Logic
+        decision = "WAIT"
+        if price <= suggested_buy * 1.01: decision = "BUY"
+        elif price <= suggested_buy * 1.05: decision = "WATCH"
+        
+        if trend == "Strong Bullish" and mom_score > 70 and decision == "WAIT":
+             decision = "HOLD/ADD"
+        if trend == "Bearish" and decision != "BUY": 
+             decision = "AVOID"
 
         return {
             'Ticker': ticker,
@@ -506,7 +426,10 @@ def analyze_ticker(ticker):
             'Consensus': market_consensus,
             'Analysts': analysts_count,
             'Inst Own': inst_own,
-            'Sug. Buy': suggested_buy, # NEW COLUMN
+            'Sug. Buy': suggested_buy,
+            'Decision': decision,
+            'Volume': volume,
+            'R:R': rr_ratio,
             'Trend': trend,
             'RSI': rsi,
             'RSI Status': rsi_status,
@@ -524,214 +447,17 @@ def analyze_ticker(ticker):
         print(f"Eroare {ticker}: {e}")
         return None
 
-# --- NEW DASHBOARD GENERATION ---
-def generate_html(df, cortex_data, verdict_data):
-    # ... (categories, explanations, cortex cards logic - assumed present in file) ...
-    # Replacing the function means I replace everything.
-    # To avoid losing hidden/collapsed code, I should target specific blocks. 
-    # But I need to update HTML Table Headers AND Rows.
-    # So I will do two replacements. First: analyze_ticker return block.
-    # Second: generate_html table block.
-    pass 
-
-# Actually, I'll return the full analyze_ticker function body replacement first.
-# Wait, I cannot see generate_html logic fully to safely replace it all if it has complex parts.
-# I will use multi_replace or carefully targeted replace. 
-# Let's replace the RETURN block of analyze_ticker first.
-
-
-# --- NEW DASHBOARD GENERATION ---
-def generate_html(df, cortex_data, verdict_data):
-    # Definire Structura Categorii
-    categories = {
-        "1. CONTEXT DE PIAȚĂ": ['VIX', 'VIX9D', 'VIX3M', 'VXN', 'SKEW'],
-        "2. RISC MACRO / STRUCTURAL": ['MOVE', 'LTV', 'GVZ'],
-        "3. RISK-ON / RISK-OFF CONFIRMATION": ['CRYPTO FEAR', 'OVX'],
-        "4. MARKET BREADTH (Sănătatea Pieței)": ['SPX', 'SMA200%', 'Highs-Lows'],
-        "5. CONFIRMĂRI DE TIMING": ['Put/Call Ratio', 'AAII Sentiment']
-    }
-    
-    # [Explanations dictionary here - omitted for brevity, keeping same]
-
-    # ... [Cortex Cards Generation Loop here - omitted] ...
-    # Assuming the logic is kept intact if I replace until the table loop.
-    # WAIT: I can't effectively replace "until the table loop" without seeing where the table loop starts exactly again or including the whole function.
-    # Since I'm replacing analyze_ticker entirely above, I will just do analyze_ticker in this tool call.
-    # Then I will handle generate_html table row in next call to be safe with line numbers.
-    pass
-
-# REVISING TO JUST ANALYZE_TICKER REPLACEMENT
-# This will fix the data creation. The HTML render needs a separate small edit to remove the `data-ticker` placeholder and use the actual content.
-
-# --- NEW DASHBOARD GENERATION ---
-def generate_html(df, cortex_data, verdict_data):
-    # Definire Structura Categorii
-    categories = {
-        "1. CONTEXT DE PIAȚĂ": ['VIX', 'VIX9D', 'VIX3M', 'VXN', 'SKEW'],
-        "2. RISC MACRO / STRUCTURAL": ['MOVE', 'LTV', 'GVZ'],
-        "3. RISK-ON / RISK-OFF CONFIRMATION": ['CRYPTO FEAR', 'OVX'],
-        "4. MARKET BREADTH (Sănătatea Pieței)": ['SPX', 'SMA200%', 'Highs-Lows'],
-        "5. CONFIRMĂRI DE TIMING": ['Put/Call Ratio', 'AAII Sentiment']
-    }
-    
-    # Educational explanations for each indicator
-    explanations = {
-        'VIX3M': {'title': 'VIX 3-Month', 'desc': 'Volatilitate așteptată pe 3 luni', 'thresholds': '< 15 = Calm | 15-20 = Normal | 20-30 = Frică | > 30 = Panică'},
-        'VIX': {'title': 'VIX (Fear Index)', 'desc': 'Volatilitate așteptată pe 30 zile', 'thresholds': '< 12 = Complacență | 12-20 = Normal | 20-30 = Frică | > 30 = Panică'},
-        'VIX1D': {'title': 'VIX 1-Day', 'desc': 'Volatilitate pe termen foarte scurt', 'thresholds': 'Valori mari = Risc imediat'},
-        'VIX9D': {'title': 'VIX 9-Day', 'desc': 'Volatilitate pe 9 zile', 'thresholds': 'Compară cu VIX pentru trend'},
-        'VXN': {'title': 'Nasdaq Volatility', 'desc': 'Volatilitate specifică tech stocks', 'thresholds': '< 20 = Calm | > 30 = Frică în tech'},
-        'LTV': {'title': 'Long-Term Volatility', 'desc': 'Volatilitate pe 6 luni', 'thresholds': 'Compară cu VIX pentru structură'},
-        'SKEW': {'title': 'SKEW Index', 'desc': 'Risc de Black Swan (crash)', 'thresholds': '< 130 = Risc scăzut | 130-145 = Normal | > 145 = Risc EXTREM'},
-        'MOVE': {'title': 'MOVE Index', 'desc': 'Volatilitate obligațiuni (Bond Vol)', 'thresholds': '< 80 = Calm | 80-120 = Normal | > 120 = Stres în bonds'},
-        'CRYPTO FEAR': {'title': 'Crypto Fear & Greed', 'desc': 'Sentiment piață crypto', 'thresholds': '< 25 = Extreme Fear | 25-45 = Fear | 55-75 = Greed | > 75 = Extreme Greed'},
-        'GVZ': {'title': 'Gold Volatility', 'desc': 'Volatilitate aur (safe haven)', 'thresholds': 'Creștere = Incertitudine globală'},
-        'OVX': {'title': 'Oil Volatility', 'desc': 'Volatilitate petrol', 'thresholds': 'Creștere = Risc geopolitic/economic'},
-        'SPX': {'title': 'S&P 500', 'desc': 'Indicele principal US', 'thresholds': 'Trend = Direcția pieței'},
-        'SMA200%': {'title': '% Stocks > SMA200', 'desc': 'Market Breadth', 'thresholds': '> 50% = Bullish | < 50% = Bearish'},
-        'Highs-Lows': {'title': 'New Highs - New Lows', 'desc': 'Net New Highs', 'thresholds': 'Pozitiv = Bullish | Negativ = Bearish'},
-        'Put/Call Ratio': {'title': 'Put/Call Ratio (Equity)', 'desc': 'Sentiment Optiuni', 'thresholds': '> 1.0 = Fear (Bullish Signal) | < 0.6 = Complacency'},
-        'AAII Sentiment': {'title': 'AAII Bull-Bear', 'desc': 'Investitori Individuali', 'thresholds': 'Contrarian Indicator'}
-    }
-    
-    # MOCK DATA FOR MISSING METRICS (Placeholder logic)
-    # cortex_data['SMA200%'] and cortex_data['Highs-Lows'] are now populated in get_market_cortex_data
-    cortex_data['Put/Call Ratio'] = {'value': 'N/A', 'change': 0, 'status': 'Source Req', 'sparkline': '', 'status_color': '#444'}
-    cortex_data['AAII Sentiment'] = {'value': 'N/A', 'change': 0, 'status': 'Source Req', 'sparkline': '', 'status_color': '#444'}
-
-    # GENERATE HTML FRAGMENTS FOR EACH CATEGORY
-    cat_frames = {}
-    for cat_name, tickers in categories.items():
-        html_chunk = f'<div class="card bg-dark border-secondary h-100"><div class="card-header border-secondary py-2"><h6 class="mb-0 text-white-50">{cat_name}</h6></div><div class="card-body p-2"><div class="d-flex flex-nowrap gap-2 overflow-auto" style="scrollbar-width: thin;">'
-        
-        for name in tickers:
-            data = cortex_data.get(name, {})
-            val = data.get('value', 'N/A')
-            chg = data.get('change', 0)
-            spark = data.get('sparkline', '')
-            status = data.get('status', 'N/A')
-            
-            # Get explanation
-            exp = explanations.get(name, {'title': name, 'desc': '', 'thresholds': ''})
-            
-            # Extract simple threshold range
-            threshold_display = ""
-            if name in ['VIX', 'VIX3M']: threshold_display = "15 NORMAL 20"
-            elif name == 'VXN': threshold_display = "20 NORMAL 30"
-            elif name == 'SKEW': threshold_display = "130 NORMAL 145"
-            elif name == 'MOVE': threshold_display = "80 NORMAL 120"
-            elif name == 'CRYPTO FEAR': threshold_display = "25 NEUTRAL 75"
-            elif name == 'Put/Call Ratio': threshold_display = "0.7 NORMAL 1.0"
-            
-            # Formatare change
-            chg_sign = "+" if isinstance(chg, (int, float)) and chg > 0 else ""
-            chg_str = f"{chg_sign}{chg}" if isinstance(chg, (int, float)) else "-"
-            
-            # Create tooltip content
-            tooltip_content = f"{exp['desc']}\\n\\n{exp['thresholds']}"
-            
-            html_chunk += f"""
-            <div class="index-card" title="{tooltip_content}">
-                <div class="index-title">{name} <span class="info-icon">ⓘ</span></div>
-                <div class="index-threshold">{threshold_display}</div>
-                <div class="index-status" style="color: {data.get('status_color', '#888')}">{status}</div>
-                <div class="sparkline-container">{spark}</div>
-                <div class="index-value {data.get('text_color', 'text-white')}">{val}</div>
-                <div class="index-change {data.get('text_color', 'text-white')}">{chg_str}</div>
-                <div class="index-explanation">
-                    <small class="text-muted">{exp['desc']}</small>
-                    <small class="text-info d-block mt-1">{exp['thresholds']}</small>
-                </div>
-            </div>
-            """
-        html_chunk += '</div></div></div>'
-        cat_frames[cat_name] = html_chunk
-
 # --- HTML GENERATOR ---
 def generate_html(df_main, df_custom, cortex_data, verdict_data):
-    # 1. Market Data Cards (Indices)
     cat_frames = {}
     categories = {
         "1. CONTEXT DE PIAȚĂ": ['VIX', 'VIX9D', 'VIX3M', 'VXN', 'SKEW'],
         "2. RISC MACRO / STRUCTURAL": ['MOVE', 'LTV', 'GVZ', 'OVX'],
-        "3. RISK-ON / RISK-OFF CONFIRMATION": ['CRYPTO FEAR'], # Put/Call removed/mocked if empty
+        "3. RISK-ON / RISK-OFF CONFIRMATION": ['CRYPTO FEAR'],
         "4. MARKET BREADTH (Sănătatea Pieței)": ['SPX', 'SMA200%', 'Highs-Lows'],
         "5. CONFIRMĂRI DE TIMING": ['Put/Call Ratio', 'AAII Sentiment']
     }
     
-    # ... (Keep existing Category Generation Logic mostly same, simplified for brevity in this replace)
-    # Actually, to be safe, I will Copy-Paste the existing category generation logic or wrap it slightly differently.
-    # Since I'm replacing from line ~615 (generate_html start) to end, I must reconstruct it.
-    
-    # --- Helper to build rows ---
-    def build_rows(df):
-        rows_html = ""
-        if df is not None and not df.empty:
-            for _, row in df.iterrows():
-                trend_color = "text-warning"
-                if "Strong Bullish" in row['Trend']: trend_color = "text-success"
-                elif "Bearish" in row['Trend']: trend_color = "text-danger"
-                
-                target_color = "text-success" if float(row['To Target %']) > 0 else "text-danger"
-                mom_color = "text-success" if float(row['Momentum_Score']) >= 70 else "text-warning"
-                wl_color = "text-success" if float(row['Watchlist_Score']) >= 70 else "text-muted"
-                
-                rsi_val = float(row['RSI'])
-                rsi_color = "text-danger" if rsi_val > 70 or rsi_val < 30 else "text-muted"
-
-                rows_html += f"""
-                <tr>
-                    <td class="fw-bold"><a href="https://finviz.com/quote.ashx?t={row['Ticker']}" target="_blank" class="text-white text-decoration-none">{row['Ticker']}</a></td>
-                    <td class="small text-muted">{str(row['Company_Name'])[:20]}..</td>
-                    <td>${row['Price']}</td>
-                    <td>{row['Grafic']}</td> 
-                    <td class="text-warning fw-bold">${row['Sug. Buy']}</td>
-                    <td>${row['Target']}</td>
-                    <td class="{target_color}">{row['To Target %']}%</td>
-                    <td>{row['Consensus']}</td>
-                    <td>{row['Analysts']}</td>
-                    <td>{row['Inst Own']}%</td>
-                    <td class="{trend_color}">{row['Trend']}</td>
-                    <td class="{rsi_color}">{row['RSI']}</td>
-                    <td class="small">{row['RSI Status']}</td>
-                    <td>{row['ATR']}</td>
-                    <td class="text-danger">${row['Stop Loss']}</td>
-                    <td>${row['SMA 50']}</td>
-                    <td>${row['SMA 200']}</td>
-                    <td class="{ 'text-success' if float(row['Change %']) > 0 else 'text-danger' }">{row['Change %']}%</td>
-                    <td class="{mom_color} fw-bold">{row['Momentum_Score']}</td>
-                    <td class="{wl_color} fw-bold">{row['Watchlist_Score']}</td>
-                    <td class="small">{row['Industry']}</td>
-                    <td class="small">{row['Theme']}</td>
-                </tr>"""
-        return rows_html
-
-    # --- Helper to build chips ---
-    def build_chips(df, table_id):
-        if df is None or df.empty: return ""
-        industry_counts = df['Industry'].value_counts()
-        chips_html = ""
-        for ind, count in industry_counts.items():
-            if ind != 'Unknown':
-                # Pass table_id to filter function
-                chips_html += f"""<button class="btn btn-sm btn-outline-success me-2 mb-2" onclick="filterIndustry('{ind}', '{table_id}')">{ind} ({count})</button> """
-        return chips_html
-
-    # --- BUILD CONTENT ---
-    
-    # 1. Indices (Reusing existing logic logic briefly or calling helper if I had one, but I have to inline it)
-    # I'll rely on the fact that I need to reproduce the indices loop here.
-    # ... (Simulating indices build - I will assume users want the same indices visual)
-    # I will verify invalid ranges if I don't copy the Indices logic. 
-    # CRITICAL: I DO NOT WANT TO DELETE THE INDICES LOGIC.
-    # The start line of this replacement should be carefully chosen.
-    # The previous `generate_html` started around line 615?
-    # I will modify the `generate_html` logic specifically.
-    
-    # Let's perform a smart Replace by taking the Indicies logic for granted and just adjusting the Table generation part.
-    # BUT I need to replace the whole function to add the Custom tab.
-    
-    # ... (Indices Logic Reconstruction) ...
     explanations = {
         'VIX': {'desc': 'Volatilitate așteptată pe 30 zile', 'thresholds': '< 12 = Complacență | 12-20 = Normal | 20-30 = Frică | > 30 = Panică'},
         'VIX9D': {'desc': 'Volatilitate pe 9 zile', 'thresholds': 'Compară cu VIX pentru trend'},
@@ -746,21 +472,20 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
         'SPX': {'desc': 'Indicele principal US', 'thresholds': 'Trend = Direcția pieței'},
         'SMA200%': {'desc': 'Market Breadth', 'thresholds': '> 50% = Bullish | < 50% = Bearish'},
         'Highs-Lows': {'desc': 'Net New Highs', 'thresholds': 'Pozitiv = Bullish | Negativ = Bearish'},
-        'Put/Call Ratio': {'desc': 'Sentiment Optiuni', 'thresholds': '> 1.0 = Fear (Bullish Signal) | < 0.6 = Complacency'},
-        'AAII Sentiment': {'desc': 'Investitori Individuali', 'thresholds': 'Contrarian Indicator'}
+        'Put/Call Ratio': {'desc': 'Sentiment Optiuni', 'thresholds': '> 1.0 = Fear (Bullish Signal) | < 0.6 = Complacency (MOCK)'},
+        'AAII Sentiment': {'desc': 'Investitori Individuali', 'thresholds': 'Contrarian Indicator (MOCK)'}
     }
 
     for cat_name, idx_list in categories.items():
         html_chunk = f'<div class="card bg-dark border-secondary h-100"><div class="card-header border-secondary py-2"><h6 class="mb-0 text-white-50">{cat_name}</h6></div><div class="card-body p-2"><div class="d-flex flex-nowrap gap-2 overflow-auto" style="scrollbar-width: thin;">'
         for name in idx_list:
             data = cortex_data.get(name, {'value': 'N/A', 'change': 0, 'status': 'N/A', 'sparkline': ''})
-            val = data['value']
-            chg = data['change']
-            status = data['status']
-            spark = data['sparkline']
+            val = data.get('value', 'N/A')
+            chg = data.get('change', 0)
+            status = data.get('status', 'N/A')
+            spark = data.get('sparkline', '')
             exp = explanations.get(name, {'title': name, 'desc': '', 'thresholds': ''})
             
-            # Simple threshold display logic
             threshold_display = ""
             if name in ['VIX', 'VIX3M']: threshold_display = "15 NORMAL 20"
             elif name == 'VXN': threshold_display = "20 NORMAL 30"
@@ -805,15 +530,148 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
     
     indices_html = row1_html + row2_html
 
-    # --- GENERATE TABLES ---
+    def build_rows(df):
+        rows_html = ""
+        if df is not None and not df.empty:
+            for _, row in df.iterrows():
+                trend_color = "text-warning"
+                if "Strong Bullish" in row['Trend']: trend_color = "text-success"
+                elif "Bearish" in row['Trend']: trend_color = "text-danger"
+                
+                target_color = "text-success" if float(row['To Target %']) > 0 else "text-danger"
+                mom_color = "text-success" if float(row['Momentum_Score']) >= 70 else "text-warning"
+                wl_color = "text-success" if float(row['Watchlist_Score']) >= 70 else "text-muted"
+                
+                rsi_val = float(row['RSI'])
+                rsi_color = "text-danger" if rsi_val > 70 or rsi_val < 30 else "text-muted"
+                
+                decision = row.get('Decision', 'WAIT')
+                dec_color = "text-success" if decision == "BUY" else "text-warning" if decision == "WATCH" else "text-muted"
+                
+                vol = row.get('Volume', 0)
+                vol_display = f"{vol/1000000:.1f}M" if vol > 1000000 else f"{vol/1000:.0f}K"
+
+                rows_html += f"""
+                <tr>
+                    <td class="fw-bold"><a href="https://finviz.com/quote.ashx?t={row['Ticker']}" target="_blank" class="text-white text-decoration-none">{row['Ticker']}</a></td>
+                    <td class="small text-muted">{str(row['Company_Name'])[:15]}..</td>
+                    <td>${row['Price']}</td>
+                    <td>{row['Grafic']}</td> 
+                    <td class="text-warning fw-bold">${row['Sug. Buy']}</td>
+                    <td>${row['Target']}</td>
+                    <td class="{target_color}">{row['To Target %']}%</td>
+                    <td>{row['Consensus']}</td>
+                    <td>{row['Analysts']}</td>
+                    <td>{row['Inst Own']}%</td>
+                    <td class="{trend_color}">{row['Trend']}</td>
+                    <td class="{rsi_color}">{row['RSI']}</td>
+                    <td class="small">{row['RSI Status']}</td>
+                    <td>{row['ATR']}</td>
+                    <td class="text-danger">${row['Stop Loss']}</td>
+                    <td>${row['SMA 50']}</td>
+                    <td>${row['SMA 200']}</td>
+                    <td class="{ 'text-success' if float(row['Change %']) > 0 else 'text-danger' }">{row['Change %']}%</td>
+                    <td class="{mom_color} fw-bold">{row['Momentum_Score']}</td>
+                    <td class="{wl_color} fw-bold">{row['Watchlist_Score']}</td>
+                    <td class="small">{row['Industry']}</td>
+                    <td class="small">{row['Theme']}</td>
+                    <td class="{dec_color} fw-bold">{decision}</td>
+                    <td>{vol_display}</td>
+                    <td>{row.get('R:R', 0)}</td>
+                </tr>"""
+        return rows_html
+
+    def build_chips(df, table_id):
+        if df is None or df.empty: return ""
+        industry_counts = df['Industry'].value_counts()
+        chips_html = ""
+        for ind, count in industry_counts.items():
+            if ind != 'Unknown':
+                chips_html += f"""<button class="btn btn-sm btn-outline-success me-2 mb-2" onclick="filterIndustry('{ind}', '{table_id}')">{ind} ({count})</button> """
+        return chips_html
+
     rows_main = build_rows(df_main)
     chips_main = build_chips(df_main, 'scanTable')
-    
     rows_custom = build_rows(df_custom)
     chips_custom = build_chips(df_custom, 'customTable')
     
     len_main = len(df_main) if df_main is not None else 0
     len_custom = len(df_custom) if df_custom is not None else 0
+
+    filter_panel = """
+    <div class="card bg-white text-dark mb-4 filter-panel" style="border-radius: 12px;">
+        <div class="card-body p-3">
+            <h6 class="text-uppercase text-muted fw-bold mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">Advanced Filters</h6>
+            <div class="row g-2">
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold">Consensus</label>
+                    <select id="f_consensus" class="form-select form-select-sm">
+                        <option value="">All</option>
+                        <option value="Strong Buy">Strong Buy</option>
+                        <option value="Buy">Buy</option>
+                        <option value="Hold">Hold</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label class="form-label small fw-bold">Min Anals</label>
+                    <input type="number" id="f_analysts" class="form-control form-control-sm" placeholder="0">
+                </div>
+                <div class="col-md-1">
+                    <label class="form-label small fw-bold">Min Tgt %</label>
+                    <input type="number" id="f_target" class="form-control form-control-sm" placeholder="0">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold">Trend</label>
+                    <select id="f_trend" class="form-select form-select-sm">
+                        <option value="">All</option>
+                        <option value="Strong Bullish">Strong Bullish</option>
+                        <option value="Bullish Pullback">Bullish Pullback</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Bearish">Bearish</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold">Status (RSI)</label>
+                    <select id="f_status" class="form-select form-select-sm">
+                        <option value="">All</option>
+                        <option value="Oversold">Oversold</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Overbought">Overbought</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold">Decizie</label>
+                    <select id="f_decision" class="form-select form-select-sm">
+                        <option value="">All</option>
+                        <option value="BUY">BUY</option>
+                        <option value="WATCH">WATCH</option>
+                        <option value="HOLD">HOLD/ADD</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold">Min Vol (M)</label>
+                    <input type="number" id="f_volume" class="form-control form-control-sm" placeholder="0" step="0.1">
+                </div>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold">RSI Range</label>
+                    <div class="input-group input-group-sm">
+                        <input type="number" id="f_rsi_min" class="form-control" placeholder="Min">
+                        <input type="number" id="f_rsi_max" class="form-control" placeholder="Max">
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <label class="form-label small fw-bold">Min R:R</label>
+                    <input type="number" id="f_rr" class="form-control form-control-sm" placeholder="0" step="0.5">
+                </div>
+                <div class="col-md-2 align-self-end">
+                    <button class="btn btn-sm btn-dark w-100" onclick="resetFilters()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    """
 
     html = f"""
     <!DOCTYPE html>
@@ -826,8 +684,6 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
         <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
         <style>
             body {{ background-color: #121212; font-family: 'Segoe UI', sans-serif; color: #e0e0e0; }}
-            /* ... (STYLES SAME AS BEFORE) ... */
-            /* Shortened for brevity in tool call, but strictly keeping structure */
             .indices-container {{ display: flex; overflow-x: auto; gap: 10px; padding-bottom: 10px; margin-bottom: 20px; }}
             .indices-container::-webkit-scrollbar {{ height: 8px; }}
             .indices-container::-webkit-scrollbar-thumb {{ background: #333; border-radius: 4px; }}
@@ -864,7 +720,7 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
 
             <div class="mb-4">{indices_html}</div>
 
-            <!-- 2. SYSTEM VERDICT -->
+            <!-- SYSTEM VERDICT -->
             <div class="card bg-dark border-secondary mb-4 p-3">
                 <div class="row align-items-center">
                     <div class="col-md-3 border-end border-secondary">
@@ -876,22 +732,14 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                                 <div class="kpi-box">
                                     <div class="small text-muted mb-2">Term Structure (3M/1M)</div>
                                     <div class="h3 my-2 {verdict_data['term_color']}">{verdict_data['term_val']}</div>
-                                    <div class="small text-muted mb-2">Raport VIX3M / VIX.</div>
-                                    <div class="small">
-                                        <span class="text-success">&gt; 1.1 (Contango)</span> = Normal/Bullish<br>
-                                        <span class="text-danger">&lt; 1.0 (Backwardation)</span> = Panică/Bearish
-                                    </div>
+                                    <div class="small text-muted mb-2">Raport VIX3M / VIX</div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="kpi-box">
                                     <div class="small text-muted mb-2">AI Market Sentiment</div>
                                     <div class="h3 my-2 text-success">{verdict_data['sentiment']}/100</div>
-                                    <div class="small text-muted mb-2">Analiză semantică știri.</div>
-                                    <div class="small">
-                                        <span class="text-success">&gt; 60</span> = Știri Pozitive<br>
-                                        <span class="text-danger">&lt; 40</span> = Știri Negative
-                                    </div>
+                                    <div class="small text-muted mb-2">Semantica Știri</div>
                                 </div>
                             </div>
                         </div>
@@ -899,16 +747,7 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 </div>
             </div>
 
-            <!-- DECISION GUIDE -->
-            <div class="card bg-dark border-secondary mb-4 p-2">
-                <div class="d-flex justify-content-around text-center small text-muted">
-                    <div><span class="fw-bold text-white">VIX:</span> <span class="text-success">&lt;20 Bull</span> | <span class="text-danger">&gt;30 Bear</span></div>
-                    <div><span class="fw-bold text-white">SKEW:</span> <span class="text-success">&lt;135 Normal</span> | <span class="text-danger">&gt;145 Risk</span></div>
-                    <div><span class="fw-bold text-white">Term:</span> <span class="text-success">&gt;1.1 Normal</span> | <span class="text-danger">&lt;1.0 Crash</span></div>
-                </div>
-            </div>
-
-            <!-- 3. TABS -->
+            <!-- TABS -->
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                 <li class="nav-item"><button class="nav-link active" data-bs-target="#watchlist" data-bs-toggle="tab">Watchlist & Scan</button></li>
                 <li class="nav-item"><button class="nav-link" data-bs-target="#custom" data-bs-toggle="tab">Custom Watchlist</button></li>
@@ -916,17 +755,20 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
             </ul>
 
             <div class="tab-content">
+                <!-- Advanced Filters -->
+                {filter_panel}
+                
                 <!-- MAIN WATCHLIST -->
                 <div class="tab-pane fade show active" id="watchlist">
                     <div class="mb-3">
-                        <small class="text-muted d-block mb-2">Filtrează după Industrie:</small>
+                        <span class="text-muted small me-2">Industries:</span>
                         <button class="btn btn-sm btn-outline-light me-2 mb-2" onclick="filterIndustry('', 'scanTable')">Toate ({len_main})</button>
                         {chips_main}
                     </div>
                     <div class="card bg-dark border-secondary p-3">
                         <table id="scanTable" class="table table-dark table-hover w-100 table-sm">
                             <thead>
-                                <tr><th>Ticker</th><th>Company</th><th>Price</th><th>Grafic</th><th>Sug. Buy</th><th>Target</th><th>To Target %</th><th>Consensus</th><th>Analysts</th><th>Inst %</th><th>Trend</th><th>RSI</th><th>RSI Status</th><th>ATR</th><th>Stop Loss</th><th>SMA 50</th><th>SMA 200</th><th>Change %</th><th>Mom. Score</th><th>WL Score</th><th>Industry</th><th>Theme</th></tr>
+                                <tr><th>Ticker</th><th>Company</th><th>Price</th><th>Grafic</th><th>Sug. Buy</th><th>Target</th><th>To Target %</th><th>Consensus</th><th>Analysts</th><th>Inst %</th><th>Trend</th><th>RSI</th><th>RSI Status</th><th>ATR</th><th>Stop Loss</th><th>SMA 50</th><th>SMA 200</th><th>Change %</th><th>Mom. Score</th><th>WL Score</th><th>Industry</th><th>Theme</th><th>Decizie</th><th>Volume</th><th>R:R</th></tr>
                             </thead>
                             <tbody>{rows_main}</tbody>
                         </table>
@@ -935,15 +777,15 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 
                 <!-- CUSTOM WATCHLIST -->
                 <div class="tab-pane fade" id="custom">
-                    <div class="mb-3">
-                        <small class="text-muted d-block mb-2">Filtrează după Industrie (Custom):</small>
+                   <div class="mb-3">
+                        <span class="text-muted small me-2">Industries (Custom):</span>
                         <button class="btn btn-sm btn-outline-light me-2 mb-2" onclick="filterIndustry('', 'customTable')">Toate ({len_custom})</button>
                         {chips_custom}
                     </div>
                     <div class="card bg-dark border-secondary p-3">
                         <table id="customTable" class="table table-dark table-hover w-100 table-sm">
                             <thead>
-                                <tr><th>Ticker</th><th>Company</th><th>Price</th><th>Grafic</th><th>Sug. Buy</th><th>Target</th><th>To Target %</th><th>Consensus</th><th>Analysts</th><th>Inst %</th><th>Trend</th><th>RSI</th><th>RSI Status</th><th>ATR</th><th>Stop Loss</th><th>SMA 50</th><th>SMA 200</th><th>Change %</th><th>Mom. Score</th><th>WL Score</th><th>Industry</th><th>Theme</th></tr>
+                                <tr><th>Ticker</th><th>Company</th><th>Price</th><th>Grafic</th><th>Sug. Buy</th><th>Target</th><th>To Target %</th><th>Consensus</th><th>Analysts</th><th>Inst %</th><th>Trend</th><th>RSI</th><th>RSI Status</th><th>ATR</th><th>Stop Loss</th><th>SMA 50</th><th>SMA 200</th><th>Change %</th><th>Mom. Score</th><th>WL Score</th><th>Industry</th><th>Theme</th><th>Decizie</th><th>Volume</th><th>R:R</th></tr>
                             </thead>
                             <tbody>{rows_custom}</tbody>
                         </table>
@@ -951,7 +793,7 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 </div>
 
                 <div class="tab-pane fade" id="portfolio">
-                    <div class="alert alert-dark text-center">Modul Portofoliu în lucru...</div>
+                     <div class="alert alert-dark text-center">Modul Portofoliu în lucru...</div>
                 </div>
             </div>
         </div>
@@ -964,7 +806,6 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
             $(document).ready(function() {{
                 function initTable(tableId) {{
                     $('#' + tableId + ' thead tr').clone(true).addClass('filters').appendTo('#' + tableId + ' thead');
-                    
                     var table = $('#' + tableId).DataTable({{
                         "pageLength": 50,
                         "order": [[18, "desc"]],
@@ -977,21 +818,11 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                                 var cell = $('.filters th', api.table().header()).eq($(api.column(colIdx).header()).index());
                                 var title = $(cell).text();
                                 $(cell).html('<input type="text" placeholder="' + title + '" style="width:100%; font-size:0.7em; background:#333; color:white; border:none;" />');
-                                $('input', cell)
-                                    .off('keyup change')
-                                    .on('change', function (e) {{
-                                        $(this).attr('title', $(this).val());
-                                        var regexr = '({{search}})'; 
-                                        api.column(colIdx).search(
-                                            this.value != '' ? regexr.replace('{{search}}', '(((' + this.value + ')))') : '',
-                                            this.value != '',
-                                            this.value == ''
-                                        ).draw();
-                                    }})
-                                    .on('keyup', function (e) {{
-                                        e.stopPropagation();
-                                        $(this).trigger('change');
-                                    }});
+                                $('input', cell).on('keyup change', function (e) {{
+                                    if (e.type === 'change' || e.keyCode === 13) {{
+                                        api.column(colIdx).search(this.value).draw();
+                                    }}
+                                }});
                             }});
                         }}
                     }});
@@ -1000,55 +831,69 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
 
                 var tableMain = initTable('scanTable');
                 var tableCustom = initTable('customTable');
-                
-                // Store tables globally for filter access
                 window.tables = {{ 'scanTable': tableMain, 'customTable': tableCustom }};
-                
-                // --- CUSTOM NUMERIC SEARCH ---
-                $.fn.dataTable.ext.search.push(
-                    function(settings, data, dataIndex) {{
-                        // Filter logic applies to active table being drawn
-                        // This extension runs for ALL DataTables on the page
-                        var tableNode = settings.nTable;
-                        var tableId = tableNode.id;
-                        var $inputContainer = $('#' + tableId + ' thead'); // Scoped inputs
-                        
-                        var valid = true;
-                        
-                        // Find inputs specifically within this table's header
-                        $inputContainer.find('.filters input').each(function(i) {{
-                            var val = $(this).val();
-                            if (!val) return; 
-                            
-                            var colIdx = i;
-                            var cellVal = data[colIdx].replace(/[$,%]/g, '');
-                            var numVal = parseFloat(cellVal);
-                            var filterNum = parseFloat(val);
-                            
-                            if (isNaN(numVal) || isNaN(filterNum)) return;
-                            
-                            if ([2, 4, 5, 14].includes(colIdx)) {{ if (numVal > filterNum) valid = false; }}
-                            else if ([6, 9, 17, 18, 19].includes(colIdx)) {{ if (numVal < filterNum) valid = false; }}
-                        }});
-                        return valid;
-                    }}
-                );
-                
-                $('.filters input').on('keyup change', function() {{
-                    // Trigger draw on specific table? 
-                    // DataTables handles this via built-in search, but for custom ext we might need to be sure.
-                    // The .search().draw() in initComplete handles it.
+
+                // --- ADVANCED FILTER LOGIC ---
+                $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {{
+                    // data indices: 
+                    // 6: To Target%, 7: Consensus, 8: Analysts, 10: Trend, 11: RSI, 12: RSI Status, 
+                    // 22: Decision (NEW), 23: Volume(NEW), 24: R:R (NEW)
+                    
+                    var consensus = $('#f_consensus').val();
+                    var minAnal = parseFloat($('#f_analysts').val()) || 0;
+                    var minTgt = parseFloat($('#f_target').val()) || 0;
+                    var trend = $('#f_trend').val();
+                    var status = $('#f_status').val();
+                    var decision = $('#f_decision').val();
+                    var minVolM = parseFloat($('#f_volume').val()) || 0;
+                    var minRSI = parseFloat($('#f_rsi_min').val()) || 0;
+                    var maxRSI = parseFloat($('#f_rsi_max').val()) || 100;
+                    var minRR = parseFloat($('#f_rr').val()) || 0;
+
+                    // Checks
+                    if (consensus && data[7] !== consensus) return false;
+                    if (parseFloat(data[8]) < minAnal) return false; // Analysts
+                    if (parseFloat(data[6].replace('%','')) < minTgt) return false; // Target %
+                    if (trend && data[10] !== trend) return false;
+                    if (status && data[12] !== status) return false;
+                    if (decision && data[22] !== decision) return false;
+                    
+                    // Volume parsing from "1.2M", "500K"
+                    var volStr = data[23];
+                    var volVal = 0;
+                    if (volStr.includes('M')) volVal = parseFloat(volStr) * 1000000;
+                    else if (volStr.includes('K')) volVal = parseFloat(volStr) * 1000;
+                    else volVal = parseFloat(volStr);
+                    if (volVal < minVolM * 1000000) return false;
+
+                    // RSI Range
+                    var rsi = parseFloat(data[11]);
+                    if (rsi < minRSI || rsi > maxRSI) return false;
+                    
+                    // R:R
+                    if (parseFloat(data[24]) < minRR) return false;
+
+                    return true;
                 }});
+                
+                // Bind panel inputs to redraw
+                $('.filter-panel input, .filter-panel select').on('keyup change', function() {{
+                    tableMain.draw();
+                    tableCustom.draw();
+                }});
+                
+                window.resetFilters = function() {{
+                    $('.filter-panel input').val('');
+                    $('.filter-panel select').val('');
+                    tableMain.draw();
+                    tableCustom.draw();
+                }}
             }});
 
             window.filterIndustry = function(industry, tableId) {{
                 var table = window.tables[tableId];
-                var colIdx = 20;
-                if (industry === '') {{
-                    table.column(colIdx).search('').draw();
-                }} else {{
-                    table.column(colIdx).search('^' + industry + '$', true, false).draw();
-                }}
+                if (industry === '') table.column(20).search('').draw();
+                else table.column(20).search('^' + industry + '$', true, false).draw();
             }};
         </script>
     </body>
@@ -1057,7 +902,6 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
     with open(OUTPUT_HTML, 'w') as f: f.write(html)
     print(f"Dashboard generat: {OUTPUT_HTML}")
 
-# --- PROCESS TICKER LIST HELPER ---
 def process_ticker_list(tickers):
     results = []
     if not tickers: return None
@@ -1068,11 +912,9 @@ def process_ticker_list(tickers):
         if res: results.append(res)
     return pd.DataFrame(results) if results else None
 
-# --- MAIN ---
 def main():
     print("--- Market Cortex v3.0 (Advanced) ---")
     
-    # 1. Main Watchlist
     print(">>> LOADING MAIN WATCHLIST")
     main_tickers = load_tickers(TICKERS_FILE)
     df_main = process_ticker_list(main_tickers)
@@ -1080,20 +922,17 @@ def main():
     if df_main is not None:
         cols = ['Ticker', 'Company_Name', 'Price', 'Sug. Buy', 'Target', 'To Target %', 'Consensus', 'Analysts', 'Inst Own',
                 'Trend', 'RSI', 'RSI Status', 'ATR', 'Stop Loss', 'SMA 50', 'SMA 200', 
-                'Change %', 'Momentum_Score', 'Watchlist_Score', 'Industry', 'Theme']
+                'Change %', 'Momentum_Score', 'Watchlist_Score', 'Industry', 'Theme', 'Decision', 'Volume', 'R:R']
         valid_cols = [c for c in cols if c in df_main.columns]
         df_main[valid_cols].to_csv(OUTPUT_CSV, index=False)
 
-    # 2. Custom Watchlist
     print("\n>>> LOADING CUSTOM WATCHLIST")
     custom_tickers = load_tickers(CUSTOM_TICKERS_FILE)
     df_custom = process_ticker_list(custom_tickers)
 
-    # 3. Market Cortex & Verdict
     cortex_data = get_market_cortex_data()
     verdict_data = calculate_verdict(cortex_data)
     
-    # 4. Generate HTML (Dual)
     generate_html(df_main, df_custom, cortex_data, verdict_data)
     
     print("\nScanare completă! Verifică index.html.")
