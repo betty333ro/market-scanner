@@ -885,6 +885,17 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 var tableCustom = initTable('customTable');
                 window.tables = {{ 'scanTable': tableMain, 'customTable': tableCustom }};
 
+                // Init Bootstrap Tooltips
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'))
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {{
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                }})
+
+                // Fix DataTables column width when switching tabs
+                $('button[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {{
+                    $.fn.dataTable.tables({{ visible: true, api: true }}).columns.adjust();
+                }});
+
                 // --- ADVANCED FILTER LOGIC ---
                 $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {{
                     // data indices: 
