@@ -601,87 +601,92 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
             if ind and str(ind) != 'nan':
                 ind_opts += f'<option value="{ind}">{ind} ({count})</option>'
 
-    filter_panel = f"""
-    <div class="card bg-white text-dark mb-4 filter-panel" style="border-radius: 12px;">
-        <div class="card-body p-3">
-            <h6 class="text-uppercase text-muted fw-bold mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">Advanced Filters</h6>
-            <div class="row g-2">
-                <div class="col-md-2">
-                    <label class="form-label small fw-bold">Consensus</label>
-                    <select id="f_consensus" class="form-select form-select-sm">
-                        <option value="">All</option>
-                        <option value="Strong Buy">Strong Buy</option>
-                        <option value="Buy">Buy</option>
-                        <option value="Hold">Hold</option>
-                    </select>
-                </div>
-                <div class="col-md-1">
-                    <label class="form-label small fw-bold">Min Anals</label>
-                    <input type="number" id="f_analysts" class="form-control form-control-sm" placeholder="0">
-                </div>
-                <div class="col-md-1">
-                    <label class="form-label small fw-bold">Min Tgt %</label>
-                    <input type="number" id="f_target" class="form-control form-control-sm" placeholder="0">
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label small fw-bold">Trend</label>
-                    <select id="f_trend" class="form-select form-select-sm">
-                        <option value="">All</option>
-                        <option value="Strong Bullish">Strong Bullish</option>
-                        <option value="Bullish Pullback">Bullish Pullback</option>
-                        <option value="Neutral">Neutral</option>
-                        <option value="Bearish">Bearish</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label small fw-bold">Status (RSI)</label>
-                    <select id="f_status" class="form-select form-select-sm">
-                        <option value="">All</option>
-                        <option value="Oversold">Oversold</option>
-                        <option value="Neutral">Neutral</option>
-                        <option value="Overbought">Overbought</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label small fw-bold">Decizie</label>
-                    <select id="f_decision" class="form-select form-select-sm">
-                        <option value="">All</option>
-                        <option value="BUY">BUY</option>
-                        <option value="WATCH">WATCH</option>
-                        <option value="HOLD">HOLD/ADD</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label small fw-bold">Min Vol (M)</label>
-                    <input type="number" id="f_volume" class="form-control form-control-sm" placeholder="0" step="0.1">
-                </div>
-            </div>
-            <div class="row g-2 mt-1">
-                <div class="col-md-3">
-                     <label class="form-label small fw-bold">Industry</label>
-                     <select id="f_industry" class="form-select form-select-sm">
-                        <option value="">All Industries</option>
-                        {ind_opts}
-                     </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label small fw-bold">RSI Range</label>
-                    <div class="input-group input-group-sm">
-                        <input type="number" id="f_rsi_min" class="form-control" placeholder="Min">
-                        <input type="number" id="f_rsi_max" class="form-control" placeholder="Max">
+    # Helper to generate filter panel with unique IDs
+    def create_filter_panel(suffix, context_ind_opts):
+        return f"""
+        <div class="card bg-white text-dark mb-4 filter-panel" style="border-radius: 12px;">
+            <div class="card-body p-3">
+                <h6 class="text-uppercase text-muted fw-bold mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">Advanced Filters</h6>
+                <div class="row g-2">
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold">Consensus</label>
+                        <select id="f_consensus{suffix}" class="form-select form-select-sm">
+                            <option value="">All</option>
+                            <option value="Strong Buy">Strong Buy</option>
+                            <option value="Buy">Buy</option>
+                            <option value="Hold">Hold</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <label class="form-label small fw-bold">Min Anals</label>
+                        <input type="number" id="f_analysts{suffix}" class="form-control form-control-sm" placeholder="0">
+                    </div>
+                    <div class="col-md-1">
+                        <label class="form-label small fw-bold">Min Tgt %</label>
+                        <input type="number" id="f_target{suffix}" class="form-control form-control-sm" placeholder="0">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold">Trend</label>
+                        <select id="f_trend{suffix}" class="form-select form-select-sm">
+                            <option value="">All</option>
+                            <option value="Strong Bullish">Strong Bullish</option>
+                            <option value="Bullish Pullback">Bullish Pullback</option>
+                            <option value="Neutral">Neutral</option>
+                            <option value="Bearish">Bearish</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold">Status (RSI)</label>
+                        <select id="f_status{suffix}" class="form-select form-select-sm">
+                            <option value="">All</option>
+                            <option value="Oversold">Oversold</option>
+                            <option value="Neutral">Neutral</option>
+                            <option value="Overbought">Overbought</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold">Decizie</label>
+                        <select id="f_decision{suffix}" class="form-select form-select-sm">
+                            <option value="">All</option>
+                            <option value="BUY">BUY</option>
+                            <option value="WATCH">WATCH</option>
+                            <option value="HOLD">HOLD/ADD</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold">Min Vol (M)</label>
+                        <input type="number" id="f_volume{suffix}" class="form-control form-control-sm" placeholder="0" step="0.1">
                     </div>
                 </div>
-                <div class="col-md-1">
-                    <label class="form-label small fw-bold">Min R:R</label>
-                    <input type="number" id="f_rr" class="form-control form-control-sm" placeholder="0" step="0.5">
-                </div>
-                <div class="col-md-2 align-self-end">
-                    <button class="btn btn-sm btn-dark w-100" onclick="resetFilters()">Reset</button>
+                <div class="row g-2 mt-1">
+                    <div class="col-md-3">
+                         <label class="form-label small fw-bold">Industry</label>
+                         <select id="f_industry{suffix}" class="form-select form-select-sm">
+                            <option value="">All Industries</option>
+                            {context_ind_opts}
+                         </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold">RSI Range</label>
+                        <div class="input-group input-group-sm">
+                            <input type="number" id="f_rsi_min{suffix}" class="form-control" placeholder="Min">
+                            <input type="number" id="f_rsi_max{suffix}" class="form-control" placeholder="Max">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <label class="form-label small fw-bold">Min R:R</label>
+                        <input type="number" id="f_rr{suffix}" class="form-control form-control-sm" placeholder="0" step="0.5">
+                    </div>
+                    <div class="col-md-2 align-self-end">
+                        <button class="btn btn-sm btn-dark w-100" onclick="resetFilters('{suffix}')">Reset</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    """
+        """
+
+    filter_panel_main = create_filter_panel("_main", ind_opts)
+    filter_panel_custom = create_filter_panel("_custom", ind_opts)
 
     html = f"""
     <!DOCTYPE html>
@@ -734,20 +739,22 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
         <div class="container-fluid">
             <!-- HEADER -->
             <!-- HEADER WITH TABS -->
-            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
-                <div class="d-flex align-items-center">
-                    <img src="https://simpleicons.org/icons/googleanalytics.svg" width="32" height="32" style="filter: invert(1);" class="me-3">
-                    <h2 class="mb-0 fw-light me-4">Market Cortex</h2>
-                    
-                    <!-- NAVIGATION TABS MOVED HERE -->
-                    <ul class="nav nav-pills" id="myTab" role="tablist">
-                        <li class="nav-item"><button class="nav-link active" data-bs-target="#overview" data-bs-toggle="tab">Market Overview</button></li>
-                        <li class="nav-item"><button class="nav-link" data-bs-target="#watchlist" data-bs-toggle="tab">Watchlist & Scan</button></li>
-                        <li class="nav-item"><button class="nav-link" data-bs-target="#custom" data-bs-toggle="tab">Custom Watchlist</button></li>
-                        <li class="nav-item"><button class="nav-link" data-bs-target="#portfolio" data-bs-toggle="tab">Portofoliu</button></li>
-                    </ul>
+            <!-- HEADER -->
+            <div class="text-center mb-4 pb-3 border-bottom border-secondary">
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <img src="https://simpleicons.org/icons/googleanalytics.svg" width="40" height="40" style="filter: invert(1);" class="me-3">
+                    <h1 class="mb-0 fw-bold" style="font-family: 'Segoe UI', sans-serif; letter-spacing: 2px;">MARKET CORTEX</h1>
                 </div>
-                <div class="text-end">
+                
+                <!-- CENTERED NAVIGATION TABS -->
+                <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
+                    <li class="nav-item"><button class="nav-link active" data-bs-target="#overview" data-bs-toggle="tab">Market Overview</button></li>
+                    <li class="nav-item"><button class="nav-link" data-bs-target="#watchlist" data-bs-toggle="tab">Watchlist & Scan</button></li>
+                    <li class="nav-item"><button class="nav-link" data-bs-target="#custom" data-bs-toggle="tab">Custom Watchlist</button></li>
+                    <li class="nav-item"><button class="nav-link" data-bs-target="#portfolio" data-bs-toggle="tab">Portofoliu</button></li>
+                </ul>
+                
+                <div class="position-absolute top-0 end-0 p-3">
                     <small class="text-muted">Updated: {(datetime.datetime.utcnow() + datetime.timedelta(hours=2)).strftime('%Y-%m-%d %H:%M')} (RO)</small>
                 </div>
             </div>
@@ -789,8 +796,8 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
 
                 <!-- MAIN WATCHLIST (Formerly Home) -->
                 <div class="tab-pane fade" id="watchlist">
-                    <!-- Advanced Filters -->
-                    {filter_panel}
+                    <!-- Advanced Filters (Main) -->
+                    {filter_panel_main}
                     <div class="card bg-dark border-secondary p-3">
                         <table id="scanTable" class="table table-dark table-hover w-100 table-sm">
                             <thead>
@@ -829,7 +836,10 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 
                 <!-- CUSTOM WATCHLIST -->
                 <div class="tab-pane fade" id="custom">
-                    <div class="card bg-dark border-secondary p-3">
+                    <!-- Advanced Filters (Custom) -->
+                    {filter_panel_custom}
+                    
+                    <div class="card bg-dark border-secondary p-3 mb-4">
                         <table id="customTable" class="table table-dark table-hover w-100 table-sm">
                             <thead>
 <tr>
@@ -862,6 +872,26 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                             </thead>
                             <tbody>{rows_custom}</tbody>
                         </table>
+                    </div>
+                    
+                    <!-- UPCOMING EVENTS CALENDAR -->
+                    <div class="card bg-dark border-secondary p-3">
+                        <h5 class="mb-3 text-white border-bottom border-secondary pb-2">📅 Evenimente Majore Următoare</h5>
+                        <div class="table-responsive">
+                            <table class="table table-dark table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Ticker</th>
+                                        <th>Eveniment</th>
+                                        <th>Data Estimată</th>
+                                        <th>Detalii (Est.)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="4" class="text-muted text-center">Niciun eveniment major detectat pentru următoarele 7 zile.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -921,23 +951,29 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                     $.fn.dataTable.tables({{ visible: true, api: true }}).columns.adjust();
                 }});
 
-                // --- ADVANCED FILTER LOGIC ---
+                // --- ADVANCED FILTER LOGIC (Dynamic) ---
                 $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {{
+                    var tableId = settings.sTableId;
+                    var suffix = (tableId === 'scanTable') ? '_main' : '_custom';
+                    
+                    // Allow filtering only if inputs exist (avoid errors on other tables)
+                    if ($('#f_consensus' + suffix).length === 0) return true;
+
                     // data indices: 
                     // 6: To Target%, 7: Consensus, 8: Analysts, 10: Trend, 11: RSI, 12: RSI Status, 
                     // 22: Decision (NEW), 23: Volume(NEW), 24: R:R (NEW)
                     
-                    var consensus = $('#f_consensus').val();
-                    var minAnal = parseFloat($('#f_analysts').val()) || 0;
-                    var minTgt = parseFloat($('#f_target').val()) || 0;
-                    var trend = $('#f_trend').val();
-                    var status = $('#f_status').val();
-                    var decision = $('#f_decision').val();
-                    var minVolM = parseFloat($('#f_volume').val()) || 0;
-                    var minRSI = parseFloat($('#f_rsi_min').val()) || 0;
-                    var maxRSI = parseFloat($('#f_rsi_max').val()) || 100;
-                    var minRR = parseFloat($('#f_rr').val()) || 0;
-                    var industry = $('#f_industry').val();
+                    var consensus = $('#f_consensus' + suffix).val();
+                    var minAnal = parseFloat($('#f_analysts' + suffix).val()) || 0;
+                    var minTgt = parseFloat($('#f_target' + suffix).val()) || 0;
+                    var trend = $('#f_trend' + suffix).val();
+                    var status = $('#f_status' + suffix).val();
+                    var decision = $('#f_decision' + suffix).val();
+                    var minVolM = parseFloat($('#f_volume' + suffix).val()) || 0;
+                    var minRSI = parseFloat($('#f_rsi_min' + suffix).val()) || 0;
+                    var maxRSI = parseFloat($('#f_rsi_max' + suffix).val()) || 100;
+                    var minRR = parseFloat($('#f_rr' + suffix).val()) || 0;
+                    var industry = $('#f_industry' + suffix).val();
 
                     // Checks
                     if (consensus && data[7] !== consensus) return false;
@@ -972,9 +1008,19 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                     tableCustom.draw();
                 }});
                 
-                window.resetFilters = function() {{
-                    $('.filter-panel input').val('');
-                    $('.filter-panel select').val('');
+                window.resetFilters = function(suffix) {{
+                    $('#f_consensus' + suffix).val('');
+                    $('#f_analysts' + suffix).val('');
+                    $('#f_target' + suffix).val('');
+                    $('#f_trend' + suffix).val('');
+                    $('#f_status' + suffix).val('');
+                    $('#f_decision' + suffix).val('');
+                    $('#f_volume' + suffix).val('');
+                    $('#f_industry' + suffix).val('');
+                    $('#f_rsi_min' + suffix).val('');
+                    $('#f_rsi_max' + suffix).val('');
+                    $('#f_rr' + suffix).val('');
+                    
                     tableMain.draw();
                     tableCustom.draw();
                 }}
