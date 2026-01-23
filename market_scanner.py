@@ -751,28 +751,31 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 </div>
             </div>
 
-            <div class="mb-4">{indices_html}</div>
+            <!-- MARKET CORTEX SECTION (To be toggled) -->
+            <div id="market-cortex-container">
+                <div class="mb-4">{indices_html}</div>
 
-            <!-- SYSTEM VERDICT -->
-            <div class="card bg-dark border-secondary mb-4 p-3">
-                <div class="row align-items-center">
-                    <div class="col-md-3 border-end border-secondary">
-                        <h4 class="mb-0">Verdict Sistem: <span class="{verdict_data.get('signal_color', 'text-white')} fw-bold">{verdict_data['verdict']}</span></h4>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="row text-center">
-                            <div class="col-6">
-                                <div class="kpi-box">
-                                    <div class="small text-muted mb-2">Term Structure (3M/1M)</div>
-                                    <div class="h3 my-2 {verdict_data['term_color']}">{verdict_data['term_val']}</div>
-                                    <div class="small text-muted mb-2">Raport VIX3M / VIX</div>
+                <!-- SYSTEM VERDICT -->
+                <div class="card bg-dark border-secondary mb-4 p-3">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 border-end border-secondary">
+                            <h4 class="mb-0">Verdict Sistem: <span class="{verdict_data.get('signal_color', 'text-white')} fw-bold">{verdict_data['verdict']}</span></h4>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <div class="kpi-box">
+                                        <div class="small text-muted mb-2">Term Structure (3M/1M)</div>
+                                        <div class="h3 my-2 {verdict_data['term_color']}">{verdict_data['term_val']}</div>
+                                        <div class="small text-muted mb-2">Raport VIX3M / VIX</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="kpi-box">
-                                    <div class="small text-muted mb-2">AI Market Sentiment</div>
-                                    <div class="h3 my-2 text-success">{verdict_data['sentiment']}/100</div>
-                                    <div class="small text-muted mb-2">Semantica Știri</div>
+                                <div class="col-6">
+                                    <div class="kpi-box">
+                                        <div class="small text-muted mb-2">AI Market Sentiment</div>
+                                        <div class="h3 my-2 text-success">{verdict_data['sentiment']}/100</div>
+                                        <div class="small text-muted mb-2">Semantica Știri</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -916,6 +919,13 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 // Fix DataTables column width when switching tabs
                 $('button[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {{
                     $.fn.dataTable.tables({{ visible: true, api: true }}).columns.adjust();
+                    
+                    // Toggle Market Cortex visibility
+                    if (e.target.getAttribute('data-bs-target') === '#watchlist') {{
+                        $('#market-cortex-container').slideDown();
+                    }} else {{
+                        $('#market-cortex-container').slideUp();
+                    }}
                 }});
 
                 // --- ADVANCED FILTER LOGIC ---

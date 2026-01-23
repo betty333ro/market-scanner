@@ -62,20 +62,22 @@
                     </ul>
                 </div>
                 <div class="text-end">
-                    <small class="text-muted">Updated: 2026-01-23 16:15 (RO)</small>
+                    <small class="text-muted">Updated: 2026-01-23 16:25 (RO)</small>
                 </div>
             </div>
 
-            <div class="mb-4">
+            <!-- MARKET CORTEX SECTION (To be toggled) -->
+            <div id="market-cortex-container">
+                <div class="mb-4">
     <div class="row mb-4">
         <div class="col-xl-6 col-lg-6 mb-3"><div class="card bg-dark border-secondary h-100"><div class="card-header border-secondary py-2"><h6 class="mb-0 text-white-50">1. CONTEXT DE PIAȚĂ</h6></div><div class="card-body p-2"><div class="d-flex flex-nowrap gap-2 overflow-auto" style="scrollbar-width: thin;">
             <div class="index-card" title="Volatilitate așteptată pe 30 zile\n\n< 12 = Complacență | 12-20 = Normal | 20-30 = Frică | > 30 = Panică">
                 <div class="index-title">VIX <span class="info-icon">ⓘ</span></div>
                 <div class="index-threshold">15 NORMAL 20</div>
                 <div class="index-status" style="color: #888">NORMAL</div>
-                <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,36.79758463967749 6.0,40.0 12.0,39.21450080550907 18.0,35.5891265567617 24.0,34.803627362270774 30.0,31.057404424040488 36.0,33.716012206455225 42.0,31.3595203853651 48.0,32.265862506956275 54.0,28.459215223984536 60.0,28.036256335559678 66.0,33.83686089593814 72.0,30.0302136129664 78.0,24.83384097523717 84.0,20.181270153033037 90.0,25.679758752086883 96.0,25.55891582498664 102.0,0.0 108.0,19.274928031441867 114.0,26.888216835002673 120.0,24.41088208681231" fill="none" stroke="#f44336" stroke-width="2" /></svg></div>
-                <div class="index-value text-danger">16.05</div>
-                <div class="index-change text-danger">+0.41</div>
+                <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,36.79758463967749 6.0,40.0 12.0,39.21450080550907 18.0,35.5891265567617 24.0,34.803627362270774 30.0,31.057404424040488 36.0,33.716012206455225 42.0,31.3595203853651 48.0,32.265862506956275 54.0,28.459215223984536 60.0,28.036256335559678 66.0,33.83686089593814 72.0,30.0302136129664 78.0,24.83384097523717 84.0,20.181270153033037 90.0,25.679758752086883 96.0,25.55891582498664 102.0,0.0 108.0,19.274928031441867 114.0,26.888216835002673 120.0,24.47129490678842" fill="none" stroke="#f44336" stroke-width="2" /></svg></div>
+                <div class="index-value text-danger">16.04</div>
+                <div class="index-change text-danger">+0.4</div>
                 <div class="index-explanation">
                     <small class="text-muted">Volatilitate așteptată pe 30 zile</small>
                     <small class="text-info d-block mt-1">< 12 = Complacență | 12-20 = Normal | 20-30 = Frică | > 30 = Panică</small>
@@ -257,26 +259,27 @@
             </div></div></div></div></div>
     </div></div>
 
-            <!-- SYSTEM VERDICT -->
-            <div class="card bg-dark border-secondary mb-4 p-3">
-                <div class="row align-items-center">
-                    <div class="col-md-3 border-end border-secondary">
-                        <h4 class="mb-0">Verdict Sistem: <span class="text-white fw-bold">HOLD (70/100)</span></h4>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="row text-center">
-                            <div class="col-6">
-                                <div class="kpi-box">
-                                    <div class="small text-muted mb-2">Term Structure (3M/1M)</div>
-                                    <div class="h3 my-2 text-success">1.17</div>
-                                    <div class="small text-muted mb-2">Raport VIX3M / VIX</div>
+                <!-- SYSTEM VERDICT -->
+                <div class="card bg-dark border-secondary mb-4 p-3">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 border-end border-secondary">
+                            <h4 class="mb-0">Verdict Sistem: <span class="text-white fw-bold">HOLD (70/100)</span></h4>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <div class="kpi-box">
+                                        <div class="small text-muted mb-2">Term Structure (3M/1M)</div>
+                                        <div class="h3 my-2 text-success">1.17</div>
+                                        <div class="small text-muted mb-2">Raport VIX3M / VIX</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="kpi-box">
-                                    <div class="small text-muted mb-2">AI Market Sentiment</div>
-                                    <div class="h3 my-2 text-success">70/100</div>
-                                    <div class="small text-muted mb-2">Semantica Știri</div>
+                                <div class="col-6">
+                                    <div class="kpi-box">
+                                        <div class="small text-muted mb-2">AI Market Sentiment</div>
+                                        <div class="h3 my-2 text-success">70/100</div>
+                                        <div class="small text-muted mb-2">Semantica Știri</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -4496,6 +4499,13 @@
                 // Fix DataTables column width when switching tabs
                 $('button[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
                     $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+                    
+                    // Toggle Market Cortex visibility
+                    if (e.target.getAttribute('data-bs-target') === '#watchlist') {
+                        $('#market-cortex-container').slideDown();
+                    } else {
+                        $('#market-cortex-container').slideUp();
+                    }
                 });
 
                 // --- ADVANCED FILTER LOGIC ---
