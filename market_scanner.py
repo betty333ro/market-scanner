@@ -581,24 +581,27 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 </tr>"""
         return rows_html
 
-    def build_chips(df, table_id):
-        if df is None or df.empty: return ""
-        industry_counts = df['Industry'].value_counts()
-        chips_html = ""
-        for ind, count in industry_counts.items():
-            if ind != 'Unknown':
-                chips_html += f"""<button class="btn btn-sm btn-outline-success me-2 mb-2" onclick="filterIndustry('{ind}', '{table_id}')">{ind} ({count})</button> """
-        return chips_html
 
     rows_main = build_rows(df_main)
-    chips_main = build_chips(df_main, 'scanTable')
     rows_custom = build_rows(df_custom)
-    chips_custom = build_chips(df_custom, 'customTable')
     
     len_main = len(df_main) if df_main is not None else 0
     len_custom = len(df_custom) if df_custom is not None else 0
 
-    filter_panel = """
+    # Combine industries for the filter list
+    all_inds = pd.Series(dtype=object)
+    if df_main is not None and not df_main.empty:
+        all_inds = pd.concat([all_inds, df_main['Industry']])
+    if df_custom is not None and not df_custom.empty:
+        all_inds = pd.concat([all_inds, df_custom['Industry']])
+    
+    ind_opts = ""
+    if not all_inds.empty:
+        for ind, count in all_inds.value_counts().items():
+            if ind and str(ind) != 'nan':
+                ind_opts += f'<option value="{ind}">{ind} ({count})</option>'
+
+    filter_panel = f"""
     <div class="card bg-white text-dark mb-4 filter-panel" style="border-radius: 12px;">
         <div class="card-body p-3">
             <h6 class="text-uppercase text-muted fw-bold mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">Advanced Filters</h6>
@@ -654,6 +657,13 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 </div>
             </div>
             <div class="row g-2 mt-1">
+                <div class="col-md-3">
+                     <label class="form-label small fw-bold">Industry</label>
+                     <select id="f_industry" class="form-select form-select-sm">
+                        <option value="">All Industries</option>
+                        {ind_opts}
+                     </select>
+                </div>
                 <div class="col-md-2">
                     <label class="form-label small fw-bold">RSI Range</label>
                     <div class="input-group input-group-sm">
@@ -682,6 +692,7 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
         <title>Antigravity Market Cortex</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+        <link href="https://cdn.datatables.net/fixedcolumns/4.2.2/css/fixedColumns.bootstrap5.min.css" rel="stylesheet">
         <style>
             body {{ background-color: #121212; font-family: 'Segoe UI', sans-serif; color: #e0e0e0; }}
             .indices-container {{ display: flex; overflow-x: auto; gap: 10px; padding-bottom: 10px; margin-bottom: 20px; }}
@@ -760,11 +771,6 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 
                 <!-- MAIN WATCHLIST -->
                 <div class="tab-pane fade show active" id="watchlist">
-                    <div class="mb-3">
-                        <span class="text-muted small me-2">Industries:</span>
-                        <button class="btn btn-sm btn-outline-light me-2 mb-2" onclick="filterIndustry('', 'scanTable')">Toate ({len_main})</button>
-                        {chips_main}
-                    </div>
                     <div class="card bg-dark border-secondary p-3">
                         <table id="scanTable" class="table table-dark table-hover w-100 table-sm">
                             <thead>
@@ -803,11 +809,6 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 
                 <!-- CUSTOM WATCHLIST -->
                 <div class="tab-pane fade" id="custom">
-                   <div class="mb-3">
-                        <span class="text-muted small me-2">Industries (Custom):</span>
-                        <button class="btn btn-sm btn-outline-light me-2 mb-2" onclick="filterIndustry('', 'customTable')">Toate ({len_custom})</button>
-                        {chips_custom}
-                    </div>
                     <div class="card bg-dark border-secondary p-3">
                         <table id="customTable" class="table table-dark table-hover w-100 table-sm">
                             <thead>
@@ -854,6 +855,7 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/fixedcolumns/4.2.2/js/dataTables.fixedColumns.min.js"></script>
         <script>
             $(document).ready(function() {{
                 function initTable(tableId) {{
@@ -864,6 +866,9 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                         "scrollX": true,
                         orderCellsTop: true,
                         fixedHeader: true,
+                        fixedColumns: {
+                            left: 2
+                        },
                         initComplete: function () {{
                             var api = this.api();
                             api.columns().eq(0).each(function (colIdx) {{
@@ -912,6 +917,7 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                     var minRSI = parseFloat($('#f_rsi_min').val()) || 0;
                     var maxRSI = parseFloat($('#f_rsi_max').val()) || 100;
                     var minRR = parseFloat($('#f_rr').val()) || 0;
+                    var industry = $('#f_industry').val();
 
                     // Checks
                     if (consensus && data[7] !== consensus) return false;
@@ -920,6 +926,7 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                     if (trend && data[10] !== trend) return false;
                     if (status && data[12] !== status) return false;
                     if (decision && data[22] !== decision) return false;
+                    if (industry && data[20] !== industry) return false;
                     
                     // Volume parsing from "1.2M", "500K"
                     var volStr = data[23];
