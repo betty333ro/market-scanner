@@ -588,6 +588,79 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
     len_main = len(df_main) if df_main is not None else 0
     len_custom = len(df_custom) if df_custom is not None else 0
 
+    
+    # --- CALENDAR EVENTS LOGIC ---
+    def fetch_upcoming_events(tickers_list):
+        print(f"\nScanning events for {len(tickers_list)} tickers (next 30 days)...")
+        events_html = ""
+        count = 0
+        
+        # Simple definition of "Major Event": Earnings
+        today = datetime.datetime.now().date()
+        limit_date = today + datetime.timedelta(days=30)
+        
+        found_events = []
+
+        for t in tickers_list:
+            try:
+                # Optimized: We might not want to call yf.Ticker(t).calendar for every single one if it's slow.
+                # However, for 40 tickers it might be passable. 
+                # Alternative: Use "earn_date" if we already extracted it in main logic? 
+                # Currently main logic doesn't extract earnings date explicitly in the table, 
+                # but we can do a quick check here.
+                
+                # Let's use a quick approach if possible or just standard yfinance
+                tk = yf.Ticker(t)
+                
+                # Earnings Date
+                cal = tk.calendar
+                if cal is not None and not cal.empty:
+                    # cal is usually a Dict or DF. In new yfinance it might be a dictionary with 'Earnings Date' etc.
+                    # Or a DataFrame with dates as columns? Structure varies by version.
+                    # Safe approach: Check 'Earnings Date'
+                    
+                    # New yfinance structure often returns a dictionary for .calendar
+                    # e.g. {'Earnings Date': [datetime.date(2025, 2, 12)], 'Earnings Average': 0.5, ...}
+                    
+                    earn_dates = cal.get('Earnings Date', [])
+                    if earn_dates:
+                        # usually a list of dates/datetimes
+                        e_date = earn_dates[0]
+                        if isinstance(e_date, datetime.date) or isinstance(e_date, datetime.datetime):
+                            d = e_date if isinstance(e_date, datetime.date) else e_date.date()
+                            
+                            if today <= d <= limit_date:
+                                est_eps = cal.get('Earnings Average', 'N/A')
+                                found_events.append({
+                                    'ticker': t,
+                                    'event': 'Earnings Report',
+                                    'date': d,
+                                    'info': f"Est. EPS: {est_eps}"
+                                })
+            except Exception as e:
+                pass # Fail silently for calendar to speed up
+
+        # Sort by date
+        found_events.sort(key=lambda x: x['date'])
+
+        if not found_events:
+            return '<tr><td colspan="4" class="text-muted text-center">Niciun eveniment major detectat pentru următoarele 30 zile.</td></tr>'
+
+        for ev in found_events:
+            events_html += f"""
+            <tr>
+                <td class="fw-bold text-white"><a href="https://finance.yahoo.com/quote/{ev['ticker']}" target="_blank" class="text-reset text-decoration-none">{ev['ticker']}</a></td>
+                <td><span class="badge bg-primary">{ev['event']}</span></td>
+                <td class="text-warning">{ev['date'].strftime('%Y-%m-%d')}</td>
+                <td class="small">{ev['info']}</td>
+            </tr>
+            """
+        return events_html
+
+    # Fetch events only for Custom list symbols
+    custom_tickers_list = df_custom['Ticker'].tolist() if df_custom is not None and not df_custom.empty else []
+    events_rows = fetch_upcoming_events(custom_tickers_list) if custom_tickers_list else '<tr><td colspan="4" class="text-muted text-center">Lista custom este goală.</td></tr>'
+
     # Combine industries for the filter list
     all_inds = pd.Series(dtype=object)
     if df_main is not None and not df_main.empty:
@@ -888,7 +961,7 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td colspan="4" class="text-muted text-center">Niciun eveniment major detectat pentru următoarele 7 zile.</td></tr>
+                                    {events_rows}
                                 </tbody>
                             </table>
                         </div>
