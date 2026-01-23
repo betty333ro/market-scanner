@@ -29,18 +29,40 @@
             .nav-tabs .nav-link.active { background-color: #222; color: #4caf50; border-color: #444; border-bottom-color: #222; }
             .nav-tabs { border-bottom-color: #444; }
             .nav-link { color: #888; }
+            
+            /* DataTables Fixed Columns Overrides - FORCE DARK BACKGROUND */
+            table.dataTable tbody tr > .dtfc-fixed-left, 
+            table.dataTable tbody tr > .dtfc-fixed-right,
+            table.dataTable thead tr > .dtfc-fixed-left, 
+            table.dataTable thead tr > .dtfc-fixed-right {
+                background-color: #1e1e1e !important;
+                color: #e0e0e0 !important;
+                z-index: 1; 
+            }
+            /* Navbar Tabs Styling */
+            .nav-pills .nav-link { color: #aaa; border-radius: 20px; padding: 5px 15px; font-size: 0.9rem; margin-right: 5px; }
+            .nav-pills .nav-link.active { background-color: #4caf50; color: #fff; font-weight: bold; }
+            .nav-pills .nav-link:hover { color: #fff; background-color: #333; }
         </style>
     </head>
     <body class="p-3">
         <div class="container-fluid">
             <!-- HEADER -->
+            <!-- HEADER WITH TABS -->
             <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
-                <div class="d-flex align-items-center gap-3">
-                    <img src="https://simpleicons.org/icons/googleanalytics.svg" width="32" height="32" style="filter: invert(1);">
-                    <h2 class="mb-0 fw-light">Indicatori de Piață</h2>
+                <div class="d-flex align-items-center">
+                    <img src="https://simpleicons.org/icons/googleanalytics.svg" width="32" height="32" style="filter: invert(1);" class="me-3">
+                    <h2 class="mb-0 fw-light me-4">Market Cortex</h2>
+                    
+                    <!-- NAVIGATION TABS MOVED HERE -->
+                    <ul class="nav nav-pills" id="myTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active" data-bs-target="#watchlist" data-bs-toggle="tab">Watchlist & Scan</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-target="#custom" data-bs-toggle="tab">Custom Watchlist</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-target="#portfolio" data-bs-toggle="tab">Portofoliu</button></li>
+                    </ul>
                 </div>
                 <div class="text-end">
-                    <small class="text-muted">Updated: 2026-01-23 14:43 (RO)</small>
+                    <small class="text-muted">Updated: 2026-01-23 16:15 (RO)</small>
                 </div>
             </div>
 
@@ -51,9 +73,9 @@
                 <div class="index-title">VIX <span class="info-icon">ⓘ</span></div>
                 <div class="index-threshold">15 NORMAL 20</div>
                 <div class="index-status" style="color: #888">NORMAL</div>
-                <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,36.79758463967749 6.0,40.0 12.0,39.21450080550907 18.0,35.5891265567617 24.0,34.803627362270774 30.0,31.057404424040488 36.0,33.716012206455225 42.0,31.3595203853651 48.0,32.265862506956275 54.0,28.459215223984536 60.0,28.036256335559678 66.0,33.83686089593814 72.0,30.0302136129664 78.0,24.83384097523717 84.0,20.181270153033037 90.0,25.679758752086883 96.0,25.55891582498664 102.0,0.0 108.0,19.274928031441867 114.0,26.888216835002673 120.0,24.712992285754254" fill="none" stroke="#f44336" stroke-width="2" /></svg></div>
-                <div class="index-value text-danger">16.0</div>
-                <div class="index-change text-danger">+0.36</div>
+                <div class="sparkline-container"><svg width="120" height="40" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,36.79758463967749 6.0,40.0 12.0,39.21450080550907 18.0,35.5891265567617 24.0,34.803627362270774 30.0,31.057404424040488 36.0,33.716012206455225 42.0,31.3595203853651 48.0,32.265862506956275 54.0,28.459215223984536 60.0,28.036256335559678 66.0,33.83686089593814 72.0,30.0302136129664 78.0,24.83384097523717 84.0,20.181270153033037 90.0,25.679758752086883 96.0,25.55891582498664 102.0,0.0 108.0,19.274928031441867 114.0,26.888216835002673 120.0,24.41088208681231" fill="none" stroke="#f44336" stroke-width="2" /></svg></div>
+                <div class="index-value text-danger">16.05</div>
+                <div class="index-change text-danger">+0.41</div>
                 <div class="index-explanation">
                     <small class="text-muted">Volatilitate așteptată pe 30 zile</small>
                     <small class="text-info d-block mt-1">< 12 = Complacență | 12-20 = Normal | 20-30 = Frică | > 30 = Panică</small>
@@ -262,12 +284,7 @@
                 </div>
             </div>
 
-            <!-- TABS -->
-            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-                <li class="nav-item"><button class="nav-link active" data-bs-target="#watchlist" data-bs-toggle="tab">Watchlist & Scan</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-target="#custom" data-bs-toggle="tab">Custom Watchlist</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-target="#portfolio" data-bs-toggle="tab">Portofoliu</button></li>
-            </ul>
+            <!-- TABS MOVED TO HEADER -->
 
             <div class="tab-content">
                 <!-- Advanced Filters -->
@@ -1578,9 +1595,9 @@
                 <tr>
                     <td class="fw-bold"><a href="https://finviz.com/quote.ashx?t=LQQ.PA" target="_blank" class="text-white text-decoration-none">LQQ.PA</a></td>
                     <td class="small text-muted">Amundi Nasdaq-1..</td>
-                    <td>$1481.2</td>
-                    <td><div style="width:100px; overflow:hidden;"><svg width="100" height="30" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,16.956513594770016 5.0,14.11767460592494 10.0,16.49617398308498 15.0,14.654721876200021 20.0,20.025569219530013 25.0,30.0 30.0,16.266004177242458 35.0,14.347844411767461 40.0,4.066489336792515 45.0,15.115108317957459 50.0,3.6828573836975167 55.0,1.7646976182225167 60.0,0.0 65.0,18.797965701654974 70.0,1.1508958592849972 75.0,7.979563356404949 80.0,27.391330816997442 85.0,28.31205687043992 90.0,27.468038475587484 95.0,17.723777500960015 100.0,19.104889996159933" fill="none" stroke="#f44336" stroke-width="2" /></svg></div></td> 
-                    <td class="text-warning fw-bold">$1426.02</td>
+                    <td>$1477.0</td>
+                    <td><div style="width:100px; overflow:hidden;"><svg width="100" height="30" xmlns="http://www.w3.org/2000/svg"><polyline points="0.0,16.956513594770016 5.0,14.11767460592494 10.0,16.49617398308498 15.0,14.654721876200021 20.0,20.025569219530013 25.0,30.0 30.0,16.266004177242458 35.0,14.347844411767461 40.0,4.066489336792515 45.0,15.115108317957459 50.0,3.6828573836975167 55.0,1.7646976182225167 60.0,0.0 65.0,18.797965701654974 70.0,1.1508958592849972 75.0,7.979563356404949 80.0,27.391330816997442 85.0,28.31205687043992 90.0,27.468038475587484 95.0,17.723777500960015 100.0,20.71612546712997" fill="none" stroke="#f44336" stroke-width="2" /></svg></div></td> 
+                    <td class="text-warning fw-bold">$1421.82</td>
                     <td>$0.0</td>
                     <td class="text-danger">0.0%</td>
                     <td>Hold</td>
@@ -1590,9 +1607,9 @@
                     <td class="text-danger">0.0</td>
                     <td class="small">Oversold</td>
                     <td>27.59</td>
-                    <td class="text-danger">$1426.02</td>
-                    <td>$1481.2</td>
-                    <td>$1481.2</td>
+                    <td class="text-danger">$1421.82</td>
+                    <td>$1477.0</td>
+                    <td>$1477.0</td>
                     <td class="text-danger">0.0%</td>
                     <td class="text-warning fw-bold">50</td>
                     <td class="text-muted fw-bold">30</td>
@@ -1600,7 +1617,7 @@
                     <td class="small">Unknown</td>
                     <td class="text-warning fw-bold">WATCH</td>
                     <td>0K</td>
-                    <td>-26.84</td>
+                    <td>-26.77</td>
                 </tr>
                 <tr>
                     <td class="fw-bold"><a href="https://finviz.com/quote.ashx?t=MARA" target="_blank" class="text-white text-decoration-none">MARA</a></td>

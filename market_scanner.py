@@ -714,15 +714,37 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
             .nav-tabs .nav-link.active {{ background-color: #222; color: #4caf50; border-color: #444; border-bottom-color: #222; }}
             .nav-tabs {{ border-bottom-color: #444; }}
             .nav-link {{ color: #888; }}
+            
+            /* DataTables Fixed Columns Overrides - FORCE DARK BACKGROUND */
+            table.dataTable tbody tr > .dtfc-fixed-left, 
+            table.dataTable tbody tr > .dtfc-fixed-right,
+            table.dataTable thead tr > .dtfc-fixed-left, 
+            table.dataTable thead tr > .dtfc-fixed-right {{
+                background-color: #1e1e1e !important;
+                color: #e0e0e0 !important;
+                z-index: 1; 
+            }}
+            /* Navbar Tabs Styling */
+            .nav-pills .nav-link {{ color: #aaa; border-radius: 20px; padding: 5px 15px; font-size: 0.9rem; margin-right: 5px; }}
+            .nav-pills .nav-link.active {{ background-color: #4caf50; color: #fff; font-weight: bold; }}
+            .nav-pills .nav-link:hover {{ color: #fff; background-color: #333; }}
         </style>
     </head>
     <body class="p-3">
         <div class="container-fluid">
             <!-- HEADER -->
+            <!-- HEADER WITH TABS -->
             <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
-                <div class="d-flex align-items-center gap-3">
-                    <img src="https://simpleicons.org/icons/googleanalytics.svg" width="32" height="32" style="filter: invert(1);">
-                    <h2 class="mb-0 fw-light">Indicatori de Piață</h2>
+                <div class="d-flex align-items-center">
+                    <img src="https://simpleicons.org/icons/googleanalytics.svg" width="32" height="32" style="filter: invert(1);" class="me-3">
+                    <h2 class="mb-0 fw-light me-4">Market Cortex</h2>
+                    
+                    <!-- NAVIGATION TABS MOVED HERE -->
+                    <ul class="nav nav-pills" id="myTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active" data-bs-target="#watchlist" data-bs-toggle="tab">Watchlist & Scan</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-target="#custom" data-bs-toggle="tab">Custom Watchlist</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-target="#portfolio" data-bs-toggle="tab">Portofoliu</button></li>
+                    </ul>
                 </div>
                 <div class="text-end">
                     <small class="text-muted">Updated: {(datetime.datetime.utcnow() + datetime.timedelta(hours=2)).strftime('%Y-%m-%d %H:%M')} (RO)</small>
@@ -758,12 +780,7 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 </div>
             </div>
 
-            <!-- TABS -->
-            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-                <li class="nav-item"><button class="nav-link active" data-bs-target="#watchlist" data-bs-toggle="tab">Watchlist & Scan</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-target="#custom" data-bs-toggle="tab">Custom Watchlist</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-target="#portfolio" data-bs-toggle="tab">Portofoliu</button></li>
-            </ul>
+            <!-- TABS MOVED TO HEADER -->
 
             <div class="tab-content">
                 <!-- Advanced Filters -->
