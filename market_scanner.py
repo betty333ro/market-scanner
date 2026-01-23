@@ -866,9 +866,9 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                         "scrollX": true,
                         orderCellsTop: true,
                         fixedHeader: true,
-                        fixedColumns: {
+                        fixedColumns: {{
                             left: 2
-                        },
+                        }},
                         initComplete: function () {{
                             var api = this.api();
                             api.columns().eq(0).each(function (colIdx) {{
