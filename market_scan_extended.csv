@@ -4,7 +4,7 @@ ACHR,Archer Aviation Inc.,8.61,7.33,12.5,45.18,Buy,9,44.4,Bearish Bounce,51.35,N
 ADPT,Adaptive Biotechnologies Corporation,18.55,17.25,20.14,8.57,Strong Buy,7,92.67,Strong Bullish,60.06,Neutral,0.87,16.81,16.71,13.04,-2.68,80,90,Biotechnology,Healthcare,HOLD/ADD,1342836.0,0.91
 AEHR,"Aehr Test Systems, Inc.",28.04,24.93,24.33,-13.23,Buy,3,66.7,Strong Bullish,58.73,Neutral,2.07,23.9,23.5,19.41,-9.29,80,60,Semiconductor Equipment & Materials,Technology,HOLD/ADD,1227938.0,-0.9
 ALAB,"Astera Labs, Inc.",169.66,160.63,205.67,21.22,Buy,20,65.82,Strong Bullish,50.16,Neutral,12.09,145.48,160.63,142.09,-3.79,80,100,Semiconductors,Technology,HOLD/ADD,6106393.0,1.49
-AMD,"Advanced Micro Devices, Inc.",259.68,247.31,288.21,10.99,Buy,46,66.34,Strong Bullish,75.5,Overbought,8.25,243.18,220.99,171.84,2.35,85,90,Semiconductors,Technology,HOLD/ADD,47525928.0,1.73
+AMD,"Advanced Micro Devices, Inc.",259.68,247.31,288.63,11.15,Buy,46,66.34,Strong Bullish,75.5,Overbought,8.25,243.18,220.99,171.84,2.35,85,90,Semiconductors,Technology,HOLD/ADD,47525928.0,1.75
 AMPX,"Amprius Technologies, Inc.",11.17,10.32,17.17,53.72,Strong Buy,6,49.26,Strong Bullish,58.52,Neutral,0.72,9.73,10.32,7.74,-6.53,80,100,Electrical Equipment & Parts,Industrials,HOLD/ADD,7158631.0,4.17
 AMZN,"Amazon.com, Inc.",239.16,232.35,297.56,24.42,Strong Buy,60,65.78,Strong Bullish,54.93,Neutral,4.99,229.18,232.35,220.3,2.06,95,100,Internet Retail,Consumer Cyclical,WATCH,33778480.0,5.85
 APLD,Applied Digital Corporation,37.69,33.27,48.25,28.02,Strong Buy,11,61.5,Strong Bullish,63.79,Neutral,2.95,31.79,28.55,18.67,8.49,95,100,Information Technology Services,Technology,HOLD/ADD,48149228.0,1.79
@@ -25,7 +25,7 @@ CRM,"Salesforce, Inc.",228.05,211.93,330.06,44.73,Buy,53,83.67,Bearish,34.26,Neu
 CRNC,Cerence Inc.,11.36,11.03,11.33,-0.26,Hold,4,68.6,Strong Bullish,48.0,Neutral,0.59,10.18,11.03,10.22,-1.13,70,50,Software - Application,Technology,WATCH,425218.0,-0.03
 CRWD,"CrowdStrike Holdings, Inc.",452.49,447.97,555.6,22.79,Buy,47,71.86,Bullish Pullback,39.91,Neutral,13.4,425.69,490.56,468.66,-0.28,50,80,Software - Infrastructure,Technology,WATCH,1770799.0,3.85
 CSTE,Caesarstone Ltd.,2.5,1.76,4.0,60.0,Strong Buy,0,28.56,Bearish Bounce,73.23,Overbought,0.2,2.1,1.65,1.76,12.11,85,90,Building Products & Equipment,Industrials,WAIT,174977.0,3.75
-CTRA,Coterra Energy Inc.,27.42,26.27,32.33,17.91,Buy,25,94.85,Strong Bullish,65.56,Neutral,0.77,25.88,26.12,24.9,0.51,90,100,Oil & Gas E&P,Energy,WATCH,6451813.0,3.19
+CTRA,Coterra Energy Inc.,27.42,26.27,32.37,18.05,Buy,25,94.85,Strong Bullish,65.56,Neutral,0.77,25.88,26.12,24.9,0.51,90,100,Oil & Gas E&P,Energy,WATCH,6451813.0,3.21
 DLR,"Digital Realty Trust, Inc.",159.16,151.01,195.29,22.7,Buy,28,100.47,Bearish Bounce,52.55,Neutral,3.26,152.64,157.57,166.26,0.28,80,100,REIT - Specialty,Real Estate,WAIT,1397868.0,5.54
 DNN,Denison Mines Corp.,3.9,3.66,3.73,-4.36,Strong Buy,2,60.1,Strong Bullish,81.83,Overbought,0.16,3.58,2.86,2.28,-0.51,70,70,Uranium,Energy,WAIT,41024092.0,-0.53
 DRS,"Leonardo DRS, Inc.",40.99,38.16,48.1,17.35,Strong Buy,10,25.54,Bearish Bounce,66.7,Neutral,1.13,38.73,35.81,40.4,-0.7,80,100,Aerospace & Defense,Industrials,WAIT,619680.0,3.15
@@ -43,7 +43,7 @@ LAES,SEALSQ Corp,4.92,4.39,7.5,52.44,Strong Buy,2,12.41,Strong Bullish,59.29,Neu
 LLY,Eli Lilly and Company,1064.29,1052.61,1182.44,11.1,Buy,28,73.21,Strong Bullish,51.45,Neutral,29.28,1005.73,1052.61,845.68,-2.12,80,90,Drug Manufacturers - General,Healthcare,WATCH,2592850.0,2.02
 LMT,Lockheed Martin Corporation,590.82,568.77,573.21,-2.98,Hold,19,74.25,Strong Bullish,76.26,Overbought,14.7,561.42,492.68,473.72,-0.52,70,60,Aerospace & Defense,Industrials,WATCH,1271698.0,-0.6
 LNG,"Cheniere Energy, Inc.",207.35,195.9,265.8,28.19,Strong Buy,22,92.25,Bearish Bounce,63.54,Neutral,4.58,198.19,200.65,223.78,0.27,80,100,Oil & Gas Midstream,Energy,WAIT,1302355.0,6.38
-LQQ.PA,Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc,1465.8,1406.92,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,29.44,1406.92,1465.8,1465.8,0.0,50,30,Unknown,Unknown,WATCH,0.0,-24.89
+LQQ.PA,Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc,1471.2,1412.32,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,29.44,1412.32,1471.2,1471.2,0.0,50,30,Unknown,Unknown,WATCH,0.0,-24.99
 MARA,"MARA Holdings, Inc.",10.5,8.9,21.09,100.86,Buy,11,76.09,Bearish,47.68,Neutral,0.64,9.22,11.0,15.05,2.04,65,100,Capital Markets,Financial Services,AVOID,46881184.0,8.27
 MELI,"MercadoLibre, Inc.",2137.29,1984.64,2841.08,32.93,Strong Buy,26,82.05,Bearish Bounce,55.82,Neutral,61.06,2015.17,2054.1,2275.65,-0.76,70,100,Internet Retail,Consumer Cyclical,WAIT,467184.0,5.76
 META,"Meta Platforms, Inc.",658.76,624.06,831.89,26.28,Strong Buy,59,67.32,Bearish Bounce,56.28,Neutral,13.88,631.0,639.63,677.67,1.72,80,100,Internet Content & Information,Communication Services,WAIT,22797724.0,6.24
