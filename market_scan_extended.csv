@@ -1,108 +1,108 @@
 Ticker,Company_Name,Price,Sug. Buy,Target,To Target %,Consensus,Analysts,Inst Own,Trend,RSI,RSI Status,ATR,Stop Loss,SMA 50,SMA 200,Change %,Momentum_Score,Watchlist_Score,Industry,Theme,Decision,Volume,R:R
-AAPL,Apple Inc.,270.01,268.35,296.56,9.83,Buy,40,65.34,Strong Bullish,62.45,Neutral,5.48,259.05,268.35,237.0,4.06,95,90,Consumer Electronics,Technology,BUY,73913424.0,2.42
-ACHR,Archer Aviation Inc.,7.05,5.7,12.5,77.3,Buy,9,44.94,Bearish,34.12,Neutral,0.54,5.97,8.11,9.58,-1.95,50,80,Aerospace & Defense,Industrials,AVOID,36462376.0,5.05
-ADPT,Adaptive Biotechnologies Corporation,18.39,17.26,20.14,9.52,Strong Buy,7,93.7,Strong Bullish,55.97,Neutral,0.94,16.51,17.26,13.37,-0.59,80,90,Biotechnology,Healthcare,HOLD/ADD,2249106.0,0.93
-AEHR,"Aehr Test Systems, Inc.",26.06,24.17,24.33,-6.64,Buy,3,67.16,Strong Bullish,50.3,Neutral,2.5,21.06,24.17,19.97,1.64,90,60,Semiconductor Equipment & Materials,Technology,HOLD/ADD,841528.0,-0.35
-ALAB,"Astera Labs, Inc.",152.44,145.14,205.67,34.92,Buy,19,66.38,Bullish Pullback,41.5,Neutral,12.89,126.66,162.05,145.14,1.21,70,100,Semiconductors,Technology,WAIT,3132570.0,2.06
-AMD,"Advanced Micro Devices, Inc.",246.27,230.87,291.78,18.48,Buy,46,66.73,Strong Bullish,58.77,Neutral,10.27,225.73,221.57,176.56,4.03,95,100,Semiconductors,Technology,HOLD/ADD,36308104.0,2.22
-AMPX,"Amprius Technologies, Inc.",13.15,11.74,17.57,33.61,Strong Buy,7,50.27,Strong Bullish,64.45,Neutral,0.94,11.27,10.4,8.04,5.71,95,100,Electrical Equipment & Parts,Industrials,HOLD/ADD,9920959.0,2.35
-AMZN,"Amazon.com, Inc.",242.96,234.4,298.32,22.79,Strong Buy,61,65.6,Strong Bullish,57.09,Neutral,5.71,231.54,232.94,222.1,1.53,90,100,Internet Retail,Consumer Cyclical,WATCH,37546104.0,4.85
-APLD,Applied Digital Corporation,34.8,30.09,49.83,43.19,Strong Buy,11,64.54,Strong Bullish,51.71,Neutral,3.63,27.54,30.09,19.65,2.72,95,100,Information Technology Services,Technology,HOLD/ADD,23149372.0,2.07
-ARM,Arm Holdings plc,106.93,95.36,163.77,53.16,Buy,35,6.78,Bearish,38.72,Neutral,4.63,97.67,120.44,137.83,1.49,60,80,Semiconductors,Technology,AVOID,5001144.0,6.14
-ARX,Accelerant Holdings,12.76,11.04,21.06,65.05,Strong Buy,9,23.04,Bearish,29.37,Oversold,0.69,11.38,15.07,17.57,-6.59,50,80,Insurance Brokers,Financial Services,AVOID,954534.0,6.01
-ASTS,"AST SpaceMobile, Inc.",104.55,87.91,98.16,-6.11,Hold,8,35.01,Strong Bullish,52.96,Neutral,11.09,82.37,82.77,56.86,-5.99,80,60,Communication Equipment,Technology,HOLD/ADD,12921827.0,-0.29
-AVGO,Broadcom Inc.,331.11,319.12,460.47,39.07,Strong Buy,45,77.71,Bullish Pullback,43.91,Neutral,11.99,307.13,354.32,306.13,-0.06,60,80,Semiconductors,Technology,WATCH,17278166.0,5.39
-BA,The Boeing Company,233.02,223.62,271.62,16.57,Buy,24,71.55,Strong Bullish,48.69,Neutral,6.27,220.48,217.78,213.25,-0.3,70,100,Aerospace & Defense,Industrials,WATCH,6105284.0,3.08
-BLK,"BlackRock, Inc.",1119.66,1083.68,1322.82,18.14,Buy,16,73.69,Strong Bullish,53.23,Neutral,25.51,1068.64,1083.68,1069.3,0.06,90,100,Asset Management,Financial Services,WATCH,498978.0,3.98
-BWXT,"BWX Technologies, Inc.",206.04,193.94,226.1,9.74,Buy,9,94.51,Strong Bullish,55.02,Neutral,8.07,189.9,187.87,163.76,0.3,90,90,Aerospace & Defense,Industrials,HOLD/ADD,735655.0,1.24
-CCJ,Cameco Corporation,120.21,111.91,112.87,-6.11,Strong Buy,8,79.93,Strong Bullish,58.61,Neutral,5.53,109.15,100.34,80.08,-2.58,80,80,Uranium,Energy,HOLD/ADD,5398567.0,-0.66
-CEG,Constellation Energy Corporation,270.88,268.17,403.33,48.9,Buy,17,83.07,Bullish Pullback,27.14,Oversold,12.77,245.34,339.62,323.63,-3.49,50,80,Utilities - Independent Power Producers,Utilities,WATCH,4044473.0,5.19
-CHDN,Churchill Downs Incorporated,95.52,94.56,140.8,47.4,Strong Buy,12,78.3,Bullish Pullback,23.11,Oversold,3.39,88.74,109.38,101.75,-2.89,50,80,Gambling,Consumer Cyclical,WATCH,630290.0,6.68
-CLSK,"CleanSpark, Inc.",11.04,10.93,23.36,111.59,Strong Buy,13,77.51,Bullish Pullback,40.62,Neutral,1.0,9.04,12.46,12.07,-6.76,50,80,Capital Markets,Financial Services,WATCH,29115504.0,6.16
-COIN,"Coinbase Global, Inc.",187.86,165.26,339.08,80.5,Buy,31,53.63,Bearish,23.18,Oversold,9.04,169.78,243.94,291.03,-3.53,50,80,Financial Data & Stock Exchanges,Financial Services,AVOID,12288663.0,8.36
-CRC,California Resources Corporation,52.86,50.2,63.47,20.07,Strong Buy,13,91.59,Strong Bullish,69.39,Neutral,1.77,49.32,47.05,46.93,-1.2,80,100,Oil & Gas E&P,Energy,HOLD/ADD,1505403.0,3.0
-CRM,"Salesforce, Inc.",210.81,193.66,328.04,55.61,Buy,53,83.25,Bearish,25.15,Oversold,6.86,197.09,244.93,253.96,-0.7,50,80,Software - Application,Technology,AVOID,7950855.0,8.54
-CRNC,Cerence Inc.,10.9,10.35,11.33,3.94,Hold,3,68.05,Bullish Pullback,42.89,Neutral,0.64,9.62,11.41,10.35,-3.8,60,30,Software - Application,Technology,WAIT,711878.0,0.34
-CRWD,"CrowdStrike Holdings, Inc.",438.85,434.46,555.6,26.6,Buy,47,71.82,Bullish Pullback,37.32,Neutral,15.47,407.91,481.04,471.22,-0.58,50,80,Software - Infrastructure,Technology,WATCH,2073674.0,3.77
-CSTE,Caesarstone Ltd.,2.32,2.03,4.0,72.41,Strong Buy,0,28.83,Strong Bullish,60.21,Neutral,0.19,1.94,1.81,1.75,6.42,95,90,Building Products & Equipment,Industrials,HOLD/ADD,126694.0,4.42
-CTRA,Coterra Energy Inc.,27.81,26.46,32.9,18.3,Buy,23,94.42,Strong Bullish,60.89,Neutral,0.9,26.01,26.32,24.98,-3.6,80,100,Oil & Gas E&P,Energy,HOLD/ADD,27774980.0,2.83
-DLR,"Digital Realty Trust, Inc.",165.11,155.34,194.74,17.95,Buy,28,100.36,Bearish Bounce,60.66,Neutral,3.91,157.29,157.98,166.9,-0.51,70,100,REIT - Specialty,Real Estate,WAIT,1828538.0,3.79
-DNN,Denison Mines Corp.,3.78,3.45,3.84,1.59,Strong Buy,2,61.09,Strong Bullish,57.65,Neutral,0.22,3.34,3.04,2.36,-4.55,80,70,Uranium,Energy,HOLD/ADD,64128156.0,0.14
-DRS,"Leonardo DRS, Inc.",40.45,36.98,48.1,18.91,Strong Buy,10,25.56,Bearish Bounce,55.8,Neutral,1.39,37.67,36.6,40.61,-1.49,70,100,Aerospace & Defense,Industrials,WAIT,1333642.0,2.75
-DXCM,"DexCom, Inc.",72.53,66.38,86.15,18.78,Buy,26,93.03,Bearish Bounce,59.15,Neutral,2.46,67.61,67.53,74.18,-0.7,70,100,Medical Devices,Healthcare,WAIT,3274347.0,2.77
-ENVX,Enovix Corporation,6.85,5.52,18.78,174.16,Strong Buy,10,53.15,Bearish,38.79,Neutral,0.53,5.79,7.86,9.5,3.47,65,100,Electrical Equipment & Parts,Industrials,AVOID,6432978.0,11.25
-FCX,Freeport-McMoRan Inc.,60.76,57.43,63.62,4.71,Buy,20,85.41,Strong Bullish,59.46,Neutral,2.22,56.32,51.57,43.78,0.88,90,80,Copper,Basic Materials,HOLD/ADD,21334616.0,0.64
-GOOG,Alphabet Inc.,344.9,333.0,350.45,1.61,Strong Buy,17,26.69,Strong Bullish,70.43,Overbought,7.93,329.04,319.86,236.27,1.88,80,80,Internet Content & Information,Communication Services,WATCH,22775218.0,0.35
-HD,"The Home Depot, Inc.",378.12,356.37,400.49,5.92,Buy,33,73.44,Bearish Bounce,57.29,Neutral,8.7,360.72,358.92,374.75,0.94,90,90,Home Improvement Retail,Consumer Cyclical,WAIT,4757439.0,1.29
-HOOD,"Robinhood Markets, Inc.",89.91,89.01,150.95,67.89,Buy,20,63.33,Bullish Pullback,22.41,Oversold,4.8,80.31,117.06,104.23,-9.62,50,80,Capital Markets,Financial Services,WATCH,59741796.0,6.36
-HWM,Howmet Aerospace Inc.,207.21,206.78,246.28,18.86,Strong Buy,20,93.38,Strong Bullish,42.47,Neutral,5.89,195.43,206.78,185.56,-0.42,70,100,Aerospace & Defense,Industrials,BUY,2359921.0,3.32
-IBM,International Business Machines Corporation,314.73,302.48,331.24,5.25,Buy,19,63.68,Strong Bullish,59.45,Neutral,8.17,298.39,302.48,278.03,2.62,95,80,Information Technology Services,Technology,WATCH,4581189.0,1.01
-IONQ,"IonQ, Inc.",38.56,38.17,75.5,95.8,Strong Buy,13,50.75,Bullish Pullback,34.2,Neutral,3.93,30.7,48.09,47.02,-3.55,50,80,Computer Hardware,Technology,WATCH,21598052.0,4.7
-IWM,iShares Russell 2000 ETF,262.18,256.44,0.0,0.0,Hold,0,0.0,Strong Bullish,54.52,Neutral,3.83,254.52,253.68,231.65,0.97,90,50,Exchange Traded Fund,Unknown,WATCH,42896192.0,-34.23
-LAES,SEALSQ Corp,4.06,3.94,7.5,84.73,Strong Buy,2,13.85,Bullish Pullback,43.09,Neutral,0.38,3.3,4.33,3.94,-1.22,60,70,Semiconductors,Technology,WATCH,7629727.0,4.53
-LLY,Eli Lilly and Company,1044.13,1011.19,1183.88,13.38,Buy,27,73.25,Bullish Pullback,48.13,Neutral,32.94,978.25,1055.1,854.65,0.67,70,90,Drug Manufacturers - General,Healthcare,WATCH,2757079.0,2.12
-LMT,Lockheed Martin Corporation,636.0,606.95,634.47,-0.24,Buy,19,74.62,Strong Bullish,81.04,Overbought,19.37,597.26,510.39,478.12,0.28,80,70,Aerospace & Defense,Industrials,WATCH,1967841.0,-0.04
-LNG,"Cheniere Energy, Inc.",207.76,195.44,265.85,27.96,Strong Buy,22,91.0,Bearish Bounce,57.91,Neutral,4.93,197.9,200.06,223.52,-1.78,70,100,Oil & Gas Midstream,Energy,WAIT,1271216.0,5.89
-LQQ.PA,Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc,1514.6,1447.48,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,33.56,1447.48,1514.6,1514.6,0.0,50,30,Unknown,Unknown,WATCH,0.0,-22.57
-MARA,"MARA Holdings, Inc.",9.12,7.47,21.09,131.25,Buy,11,75.72,Bearish,37.43,Neutral,0.66,7.8,10.64,14.99,-4.0,50,80,Capital Markets,Financial Services,AVOID,48414832.0,9.07
-MELI,"MercadoLibre, Inc.",2147.22,1953.62,2841.08,32.31,Strong Buy,26,80.55,Bearish Bounce,51.73,Neutral,77.44,1992.34,2072.01,2282.58,-0.03,70,100,Internet Retail,Consumer Cyclical,WAIT,342198.0,4.48
-META,"Meta Platforms, Inc.",706.41,666.03,857.08,21.33,Strong Buy,59,67.11,Bearish Bounce,62.23,Neutral,16.15,674.11,650.05,682.32,-1.41,80,100,Internet Content & Information,Communication Services,WAIT,14365224.0,4.66
-MGNX,"MacroGenics, Inc.",1.75,1.6,3.5,100.0,Buy,5,53.31,Strong Bullish,51.41,Neutral,0.12,1.51,1.6,1.59,-4.37,80,80,Biotechnology,Healthcare,HOLD/ADD,425457.0,7.29
-MOS,The Mosaic Company,27.27,24.79,31.72,16.32,Buy,19,95.39,Bearish Bounce,54.28,Neutral,0.99,25.29,25.37,31.02,-0.84,70,90,Agricultural Inputs,Basic Materials,WAIT,8003173.0,2.25
-MP,MP Materials Corp.,59.11,54.07,78.87,33.43,Strong Buy,13,65.87,Bullish Pullback,44.88,Neutral,5.04,49.03,59.75,53.71,0.58,70,100,Other Industrial Metals & Mining,Basic Materials,WAIT,10044188.0,1.96
-MRVL,"Marvell Technology, Inc.",78.66,76.59,118.24,50.32,Buy,41,81.99,Bullish Pullback,39.1,Neutral,3.23,72.2,85.4,76.59,-0.33,60,80,Semiconductors,Technology,WATCH,14512952.0,6.13
-MSFT,Microsoft Corporation,423.37,397.87,605.44,43.0,Strong Buy,52,74.77,Bearish,30.64,Neutral,10.2,402.97,474.68,486.13,-1.61,50,80,Software - Infrastructure,Technology,AVOID,42219856.0,8.93
-MSTR,Strategy Inc,139.63,114.78,453.79,224.99,Strong Buy,13,54.44,Bearish,35.47,Neutral,9.94,119.75,167.26,306.27,-6.73,50,80,Software - Application,Technology,AVOID,27171514.0,15.8
-MU,"Micron Technology, Inc.",437.8,407.39,376.07,-14.1,Strong Buy,40,80.43,Strong Bullish,73.96,Overbought,20.27,397.26,299.41,178.14,5.52,85,80,Semiconductors,Technology,HOLD/ADD,37771236.0,-1.52
-MUR,Murphy Oil Corporation,29.61,28.12,31.5,6.38,Hold,15,91.75,Bullish Pullback,40.79,Neutral,1.49,26.63,31.76,26.68,-1.6,60,50,Oil & Gas E&P,Energy,WAIT,3796592.0,0.63
+AAPL,Apple Inc.,269.27,268.36,296.56,10.13,Buy,40,65.34,Strong Bullish,61.19,Neutral,5.41,258.45,268.36,237.37,-0.27,80,90,Consumer Electronics,Technology,BUY,9847694.0,2.52
+ACHR,Archer Aviation Inc.,7.09,5.79,12.5,76.3,Buy,9,44.94,Bearish,34.77,Neutral,0.52,6.05,8.11,9.58,0.5,60,80,Aerospace & Defense,Industrials,AVOID,4700008.0,5.2
+ADPT,Adaptive Biotechnologies Corporation,19.33,17.9,20.14,4.19,Strong Buy,7,93.7,Strong Bullish,62.3,Neutral,0.95,17.43,17.35,13.43,5.11,95,80,Biotechnology,Healthcare,HOLD/ADD,433725.0,0.43
+AEHR,"Aehr Test Systems, Inc.",26.92,24.31,24.33,-9.62,Buy,3,67.16,Strong Bullish,53.36,Neutral,2.47,21.98,24.31,20.06,3.32,95,60,Semiconductor Equipment & Materials,Technology,HOLD/ADD,319636.0,-0.52
+ALAB,"Astera Labs, Inc.",161.63,148.97,205.67,27.25,Buy,19,66.38,Bullish Pullback,47.51,Neutral,12.66,136.31,162.44,145.65,6.03,75,100,Semiconductors,Technology,WAIT,1223134.0,1.74
+AMD,"Advanced Micro Devices, Inc.",242.96,227.51,291.78,20.09,Buy,46,66.73,Strong Bullish,56.17,Neutral,10.3,222.36,221.96,177.33,-1.35,80,100,Semiconductors,Technology,HOLD/ADD,9288108.0,2.37
+AMPX,"Amprius Technologies, Inc.",14.35,12.93,17.57,22.44,Strong Buy,7,50.27,Strong Bullish,69.34,Neutral,0.95,12.45,10.47,8.1,9.13,95,100,Electrical Equipment & Parts,Industrials,HOLD/ADD,4799241.0,1.69
+AMZN,"Amazon.com, Inc.",238.97,233.28,298.32,24.84,Strong Buy,61,65.6,Strong Bullish,51.67,Neutral,5.85,227.27,233.28,222.42,-1.64,80,100,Internet Retail,Consumer Cyclical,WATCH,10493982.0,5.07
+APLD,Applied Digital Corporation,34.75,30.32,49.83,43.4,Strong Buy,11,64.54,Strong Bullish,51.6,Neutral,3.56,27.63,30.32,19.8,-0.14,80,100,Information Technology Services,Technology,HOLD/ADD,5112432.0,2.12
+ARM,Arm Holdings plc,106.18,94.68,163.77,54.24,Buy,35,6.78,Bearish,37.79,Neutral,4.6,96.98,119.83,137.86,-0.7,50,80,Semiconductors,Technology,AVOID,1356582.0,6.26
+ARX,Accelerant Holdings,12.49,10.79,21.06,68.61,Strong Buy,9,23.04,Bearish,27.77,Oversold,0.68,11.13,15.06,17.53,-2.12,50,80,Insurance Brokers,Financial Services,AVOID,131276.0,6.3
+ASTS,"AST SpaceMobile, Inc.",107.95,91.62,98.16,-9.07,Hold,8,35.01,Strong Bullish,54.77,Neutral,10.89,86.17,83.76,57.29,3.25,95,60,Communication Equipment,Technology,HOLD/ADD,2412779.0,-0.45
+AVGO,Broadcom Inc.,321.31,308.84,460.47,43.31,Strong Buy,45,77.71,Bullish Pullback,38.52,Neutral,12.47,296.37,353.63,306.86,-2.96,60,80,Semiconductors,Technology,WATCH,5617709.0,5.58
+BA,The Boeing Company,234.15,224.84,271.62,16.0,Buy,24,71.55,Strong Bullish,50.31,Neutral,6.21,221.73,218.75,213.62,0.49,90,100,Aerospace & Defense,Industrials,WATCH,1319527.0,3.02
+BLK,"BlackRock, Inc.",1105.11,1085.57,1322.82,19.7,Buy,16,73.69,Strong Bullish,49.03,Neutral,25.45,1054.21,1085.57,1070.53,-1.3,70,100,Asset Management,Financial Services,WATCH,77717.0,4.28
+BWXT,"BWX Technologies, Inc.",209.46,197.53,226.1,7.94,Buy,9,94.51,Strong Bullish,57.67,Neutral,7.95,193.56,188.46,164.28,1.66,90,90,Aerospace & Defense,Industrials,HOLD/ADD,139717.0,1.05
+CCJ,Cameco Corporation,126.44,118.34,112.81,-10.78,Strong Buy,8,79.93,Strong Bullish,64.05,Neutral,5.4,115.64,101.15,80.5,5.18,95,80,Uranium,Energy,HOLD/ADD,1145407.0,-1.26
+CEG,Constellation Energy Corporation,267.13,264.46,403.33,50.99,Buy,17,83.07,Bullish Pullback,26.11,Oversold,12.55,242.03,337.8,323.95,-1.38,50,80,Utilities - Independent Power Producers,Utilities,WATCH,580199.0,5.43
+CHDN,Churchill Downs Incorporated,95.65,94.69,140.8,47.2,Strong Buy,12,78.3,Bullish Pullback,23.69,Oversold,3.31,89.03,109.24,101.72,0.14,60,80,Gambling,Consumer Cyclical,WATCH,80156.0,6.82
+CLSK,"CleanSpark, Inc.",11.58,11.46,23.36,101.73,Strong Buy,13,77.51,Bullish Pullback,44.45,Neutral,0.99,9.6,12.48,12.09,4.89,65,100,Capital Markets,Financial Services,WATCH,7711588.0,5.95
+COIN,"Coinbase Global, Inc.",182.32,160.0,339.08,85.98,Buy,31,53.63,Bearish,21.6,Oversold,8.93,164.46,242.45,291.11,-2.95,50,80,Financial Data & Stock Exchanges,Financial Services,AVOID,2312780.0,8.78
+CRC,California Resources Corporation,53.06,50.41,63.47,19.62,Strong Buy,13,91.59,Strong Bullish,69.95,Neutral,1.77,49.52,47.16,47.02,0.39,90,100,Oil & Gas E&P,Energy,HOLD/ADD,91632.0,2.94
+CRM,"Salesforce, Inc.",199.74,182.59,328.04,64.23,Buy,53,83.25,Bearish,20.62,Oversold,6.86,186.02,244.36,253.7,-5.25,50,80,Software - Application,Technology,AVOID,3196433.0,9.35
+CRNC,Cerence Inc.,10.78,10.37,11.33,5.1,Hold,3,68.05,Bullish Pullback,41.79,Neutral,0.63,9.52,11.47,10.37,-1.14,60,40,Software - Application,Technology,WATCH,228212.0,0.44
+CRWD,"CrowdStrike Holdings, Inc.",424.01,419.77,555.6,31.03,Buy,47,71.82,Bullish Pullback,32.45,Neutral,15.47,393.07,479.16,471.49,-3.38,50,80,Software - Infrastructure,Technology,WATCH,667142.0,4.25
+CSTE,Caesarstone Ltd.,2.36,2.07,4.0,69.49,Strong Buy,0,28.83,Strong Bullish,61.54,Neutral,0.19,1.98,1.83,1.74,1.85,90,90,Building Products & Equipment,Industrials,HOLD/ADD,71767.0,4.32
+CTRA,Coterra Energy Inc.,28.19,26.84,32.98,16.99,Buy,23,94.42,Strong Bullish,63.62,Neutral,0.9,26.39,26.37,25.0,1.37,90,100,Oil & Gas E&P,Energy,HOLD/ADD,3992430.0,2.66
+DLR,"Digital Realty Trust, Inc.",165.24,155.62,194.74,17.85,Buy,28,100.36,Bearish Bounce,60.88,Neutral,3.85,157.54,158.09,166.98,0.08,80,100,REIT - Specialty,Real Estate,WAIT,116181.0,3.83
+DNN,Denison Mines Corp.,4.06,3.73,3.84,-5.42,Strong Buy,2,61.09,Strong Bullish,63.72,Neutral,0.22,3.62,3.07,2.37,7.41,95,70,Uranium,Energy,HOLD/ADD,14848903.0,-0.5
+DRS,"Leonardo DRS, Inc.",41.08,37.7,48.1,17.09,Strong Buy,10,25.56,Bearish Bounce,59.05,Neutral,1.35,38.38,36.75,40.64,1.56,90,100,Aerospace & Defense,Industrials,WAIT,67600.0,2.6
+DXCM,"DexCom, Inc.",74.07,67.87,86.15,16.31,Buy,26,93.03,Bearish Bounce,64.09,Neutral,2.48,69.11,67.82,74.2,2.12,85,100,Medical Devices,Healthcare,WAIT,968979.0,2.44
+ENVX,Enovix Corporation,6.76,5.48,18.78,177.81,Strong Buy,10,53.15,Bearish,37.77,Neutral,0.51,5.74,7.85,9.51,-1.39,50,80,Electrical Equipment & Parts,Industrials,AVOID,1164109.0,11.78
+FCX,Freeport-McMoRan Inc.,63.98,60.71,63.62,-0.56,Buy,20,85.41,Strong Bullish,65.78,Neutral,2.18,59.62,52.02,43.94,5.3,95,80,Copper,Basic Materials,HOLD/ADD,7193924.0,-0.08
+GOOG,Alphabet Inc.,344.56,332.67,350.45,1.71,Strong Buy,17,26.69,Strong Bullish,69.87,Neutral,7.93,328.7,320.91,237.2,-0.1,80,80,Internet Content & Information,Communication Services,WATCH,5405839.0,0.37
+HD,"The Home Depot, Inc.",384.78,362.33,400.49,4.08,Buy,33,73.44,Bearish Bounce,62.0,Neutral,8.98,366.82,359.91,374.92,1.76,90,80,Home Improvement Retail,Consumer Cyclical,WAIT,534066.0,0.87
+HOOD,"Robinhood Markets, Inc.",87.83,86.95,150.95,71.87,Buy,20,63.33,Bullish Pullback,21.21,Oversold,4.7,78.43,116.45,104.46,-2.31,50,80,Capital Markets,Financial Services,WATCH,7159880.0,6.71
+HWM,Howmet Aerospace Inc.,211.77,206.97,246.28,16.3,Strong Buy,20,93.38,Strong Bullish,49.38,Neutral,5.8,200.17,206.97,185.99,2.2,85,100,Aerospace & Defense,Industrials,WATCH,518957.0,2.97
+IBM,International Business Machines Corporation,294.41,285.56,331.24,12.51,Buy,19,63.68,Bullish Pullback,45.97,Neutral,8.85,276.71,302.58,278.32,-6.46,60,60,Information Technology Services,Technology,WATCH,1436203.0,2.08
+IONQ,"IonQ, Inc.",37.75,37.37,75.5,100.0,Strong Buy,13,50.75,Bullish Pullback,33.18,Neutral,3.86,30.03,47.88,47.09,-2.1,50,80,Computer Hardware,Technology,WATCH,4750740.0,4.89
+IWM,iShares Russell 2000 ETF,263.04,257.4,0.0,0.0,Hold,0,0.0,Strong Bullish,55.88,Neutral,3.76,255.52,254.29,232.04,0.33,90,50,Exchange Traded Fund,Unknown,WATCH,8088231.0,-34.98
+LAES,SEALSQ Corp,4.16,3.95,7.5,80.29,Strong Buy,2,13.85,Bullish Pullback,45.17,Neutral,0.37,3.42,4.34,3.95,2.46,75,90,Semiconductors,Technology,WAIT,1387731.0,4.51
+LLY,Eli Lilly and Company,1048.17,1015.87,1183.88,12.95,Buy,27,73.25,Bullish Pullback,49.26,Neutral,32.3,983.57,1055.13,856.21,0.39,70,90,Drug Manufacturers - General,Healthcare,WATCH,451813.0,2.1
+LMT,Lockheed Martin Corporation,639.66,611.29,634.47,-0.81,Buy,19,74.62,Strong Bullish,81.61,Overbought,18.91,601.84,513.78,478.93,0.58,80,70,Aerospace & Defense,Industrials,WATCH,288430.0,-0.14
+LNG,"Cheniere Energy, Inc.",208.95,196.88,265.85,27.23,Strong Buy,22,91.0,Bearish Bounce,59.56,Neutral,4.83,199.29,200.05,223.43,0.57,80,100,Oil & Gas Midstream,Energy,WAIT,164234.0,5.89
+LQQ.PA,Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc,1469.8,1398.76,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,35.52,1398.76,1469.8,1469.8,0.0,50,30,Unknown,Unknown,WAIT,0.0,-20.69
+MARA,"MARA Holdings, Inc.",9.03,7.4,21.09,133.55,Buy,11,75.72,Bearish,36.79,Neutral,0.65,7.73,10.6,14.97,-0.99,50,80,Capital Markets,Financial Services,AVOID,5936994.0,9.28
+MELI,"MercadoLibre, Inc.",2122.63,1931.43,2841.08,33.85,Strong Buy,26,80.55,Bearish Bounce,49.38,Neutral,76.48,1969.67,2072.88,2282.89,-1.15,60,80,Internet Retail,Consumer Cyclical,WAIT,63272.0,4.7
+META,"Meta Platforms, Inc.",702.57,661.62,857.08,21.99,Strong Buy,59,67.11,Bearish Bounce,60.93,Neutral,16.38,669.81,652.34,683.37,-0.54,80,100,Internet Content & Information,Communication Services,WAIT,2673072.0,4.72
+MGNX,"MacroGenics, Inc.",1.79,1.62,3.5,95.53,Buy,5,53.31,Strong Bullish,54.19,Neutral,0.11,1.57,1.6,1.59,2.29,95,80,Biotechnology,Healthcare,HOLD/ADD,49357.0,7.77
+MOS,The Mosaic Company,27.93,25.48,31.72,13.57,Buy,19,95.39,Bearish Bounce,58.9,Neutral,0.98,25.97,25.43,31.02,2.42,85,80,Agricultural Inputs,Basic Materials,WAIT,711446.0,1.93
+MP,MP Materials Corp.,62.37,59.72,78.87,26.46,Strong Buy,13,65.87,Strong Bullish,49.96,Neutral,4.95,52.47,59.72,53.88,5.52,85,100,Other Industrial Metals & Mining,Basic Materials,WATCH,3301853.0,1.67
+MRVL,"Marvell Technology, Inc.",75.25,74.5,118.18,57.05,Buy,41,81.99,Bullish Pullback,33.38,Neutral,3.29,68.67,85.27,76.7,-4.33,50,80,Semiconductors,Technology,WATCH,3352592.0,6.52
+MSFT,Microsoft Corporation,414.2,388.77,605.44,46.17,Strong Buy,52,74.77,Bearish,28.18,Oversold,10.17,393.86,473.26,486.32,-2.17,50,80,Software - Infrastructure,Technology,AVOID,11410899.0,9.4
+MSTR,Strategy Inc,135.21,110.86,453.79,235.62,Strong Buy,13,54.44,Bearish,33.59,Neutral,9.74,115.73,166.25,305.42,-3.17,50,80,Software - Application,Technology,AVOID,4097269.0,16.35
+MU,"Micron Technology, Inc.",417.64,386.71,376.07,-9.95,Strong Buy,40,80.43,Strong Bullish,65.84,Neutral,20.62,376.4,303.25,179.89,-4.6,80,80,Semiconductors,Technology,HOLD/ADD,11616724.0,-1.01
+MUR,Murphy Oil Corporation,30.06,28.58,31.5,4.79,Hold,15,91.75,Bullish Pullback,43.32,Neutral,1.48,27.1,31.76,26.73,1.52,70,60,Oil & Gas E&P,Energy,WAIT,240550.0,0.49
 NANO,NANO,0.0,0.0,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,0.0,0.0,0.0,0.0,0.0,50,30,Unknown,Unknown,BUY,0.0,0.0
-NFE,New Fortress Energy Inc.,1.31,0.91,1.0,-23.66,Buy,3,59.78,Bearish Bounce,47.01,Neutral,0.16,0.99,1.3,2.53,-1.5,60,40,Oil & Gas Midstream,Energy,WAIT,5096608.0,-0.97
-NKE,"NIKE, Inc.",62.18,57.83,75.92,22.1,Buy,32,65.88,Bearish,42.95,Neutral,1.74,58.7,63.88,66.92,0.6,60,80,Footwear & Accessories,Consumer Cyclical,AVOID,11006256.0,3.95
-NNE,NANO Nuclear Energy Inc.,27.71,20.01,47.25,70.52,Strong Buy,3,41.04,Bearish,38.99,Neutral,3.08,21.55,32.24,34.3,-5.73,50,70,Specialty Industrial Machinery,Industrials,AVOID,1721180.0,3.17
-NOC,Northrop Grumman Corporation,685.02,651.13,727.85,6.25,Buy,21,84.24,Strong Bullish,67.76,Neutral,22.59,639.84,599.68,559.38,-1.05,80,80,Aerospace & Defense,Industrials,HOLD/ADD,1180269.0,0.95
-NVDA,NVIDIA Corporation,185.61,183.9,260.09,40.13,Strong Buy,58,68.25,Strong Bullish,48.81,Neutral,4.55,176.51,183.9,168.12,-2.89,70,100,Semiconductors,Technology,BUY,165794048.0,8.18
-NVO,Novo Nordisk A/S,58.93,54.73,61.98,5.18,Buy,11,9.03,Bearish Bounce,53.59,Neutral,1.68,55.57,53.22,58.84,-0.84,80,80,Drug Manufacturers - General,Healthcare,WAIT,16647875.0,0.91
-OKLO,Oklo Inc.,73.62,72.88,123.08,67.18,Buy,17,41.98,Bullish Pullback,37.67,Neutral,7.99,57.64,89.51,81.01,-7.54,50,80,Utilities - Independent Power Producers,Utilities,WATCH,11421895.0,3.1
-OMC,Omnicom Group Inc.,76.52,75.63,99.64,30.21,Buy,10,79.43,Bullish Pullback,43.89,Neutral,2.07,72.38,77.39,75.63,-0.67,60,80,Advertising Agencies,Communication Services,WATCH,3861920.0,5.58
-PAAS,Pan American Silver Corp.,53.63,51.51,63.18,17.81,Buy,8,58.69,Strong Bullish,44.33,Neutral,2.96,47.71,51.51,36.39,-1.78,70,100,Gold,Basic Materials,WATCH,11750235.0,1.61
-PANW,"Palo Alto Networks, Inc.",175.42,161.99,228.79,30.42,Buy,47,81.46,Bearish,34.77,Neutral,5.37,164.68,187.19,193.64,-0.88,50,80,Software - Infrastructure,Technology,AVOID,4978106.0,4.97
-PBR,Petróleo Brasileiro S.A. - Petrobras,15.03,14.49,14.94,-0.6,Buy,14,15.66,Strong Bullish,76.85,Overbought,0.36,14.31,12.52,12.01,-2.02,70,80,Oil & Gas Integrated,Energy,WATCH,39216600.0,-0.12
-PLTR,Palantir Technologies Inc.,147.76,146.28,190.64,29.02,Hold,24,54.88,Bullish Pullback,27.09,Oversold,6.52,134.72,174.43,159.17,0.8,60,60,Software - Infrastructure,Technology,WATCH,72811144.0,3.29
-PRAX,"Praxis Precision Medicines, Inc.",309.11,281.66,567.25,83.51,Strong Buy,16,84.13,Strong Bullish,57.07,Neutral,18.3,272.51,264.88,116.63,-1.56,80,100,Biotechnology,Healthcare,HOLD/ADD,597241.0,7.05
-PVLA,"Palvella Therapeutics, Inc.",79.9,72.18,188.62,136.07,Strong Buy,15,67.56,Bullish Pullback,39.46,Neutral,7.72,64.46,95.63,57.29,4.19,75,100,Biotechnology,Healthcare,WAIT,471338.0,7.04
-QBTS,D-Wave Quantum Inc.,20.97,20.76,40.36,92.47,Strong Buy,15,48.61,Bullish Pullback,34.85,Neutral,2.2,16.57,26.06,21.25,-1.18,50,80,Computer Hardware,Technology,WATCH,28695316.0,4.41
-QCOM,QUALCOMM Incorporated,152.62,151.09,187.29,22.72,Buy,26,84.83,Bullish Pullback,31.47,Neutral,4.25,144.12,168.66,160.79,0.68,60,70,Semiconductors,Technology,WATCH,9099119.0,4.08
-QQQ,Invesco QQQ Trust,626.14,618.41,0.0,0.0,Hold,0,0.0,Strong Bullish,53.47,Neutral,7.41,611.32,618.41,574.44,0.69,90,50,Exchange Traded Fund,Unknown,WATCH,49020292.0,-42.25
-RBLX,Roblox Corporation,67.48,56.46,128.94,91.08,Buy,34,75.93,Bearish,33.96,Neutral,4.41,58.66,84.03,103.04,2.62,65,100,Electronic Gaming & Multimedia,Communication Services,AVOID,12804138.0,6.97
-RGTI,"Rigetti Computing, Inc.",17.71,17.53,40.3,127.56,Strong Buy,11,50.95,Bullish Pullback,30.55,Neutral,1.92,13.87,24.38,21.32,-2.53,50,80,Computer Hardware,Technology,WATCH,25196708.0,5.88
-RH,RH,195.73,163.68,205.06,4.77,Hold,17,87.56,Bearish Bounce,43.82,Neutral,12.82,170.09,185.4,194.54,-1.56,70,60,Specialty Retail,Consumer Cyclical,WAIT,732087.0,0.36
-ROIV,Roivant Sciences Ltd.,21.94,21.79,27.5,25.34,Strong Buy,11,67.8,Strong Bullish,46.86,Neutral,0.75,20.44,21.79,15.45,1.48,80,100,Biotechnology,Healthcare,BUY,8952887.0,3.71
-RTX,RTX Corporation,201.09,193.75,220.4,9.6,Buy,21,80.78,Strong Bullish,65.29,Neutral,4.89,191.31,184.49,160.09,0.08,90,80,Aerospace & Defense,Industrials,WATCH,6239853.0,1.97
-SFM,"Sprouts Farmers Market, Inc.",69.59,62.72,118.07,69.67,Buy,14,101.43,Bearish,32.69,Neutral,2.75,64.09,78.9,125.36,-1.86,50,80,Grocery Stores,Consumer Defensive,AVOID,3413617.0,8.81
-SHOP,Shopify Inc.,132.2,130.88,177.86,34.54,Buy,45,65.98,Bullish Pullback,31.49,Neutral,6.39,119.42,156.88,136.95,0.74,60,80,Software - Application,Technology,WATCH,12260546.0,3.57
-SMCI,"Super Micro Computer, Inc.",29.71,25.89,42.73,43.82,Buy,17,55.27,Bearish,43.47,Neutral,1.53,26.65,31.53,41.77,2.06,65,90,Computer Hardware,Technology,AVOID,26817000.0,4.25
-SMH,VanEck Semiconductor ETF,407.97,395.43,0.0,0.0,Hold,0,0.0,Strong Bullish,61.44,Neutral,8.36,391.25,372.07,309.51,1.12,90,50,Exchange Traded Fund,Unknown,WATCH,5946327.0,-24.4
-SNOW,Snowflake Inc.,190.68,188.77,287.18,50.61,Strong Buy,47,74.79,Bullish Pullback,30.61,Neutral,7.98,174.72,223.75,217.32,-1.05,50,80,Software - Application,Technology,WATCH,4746788.0,6.05
-SOUN,"SoundHound AI, Inc.",8.42,6.95,16.21,92.52,Strong Buy,8,46.62,Bearish,27.34,Oversold,0.59,7.24,11.05,12.43,-0.47,50,80,Software - Application,Technology,AVOID,23794924.0,6.6
-SPY,State Street SPDR S&P 500 ETF Trust,695.41,687.13,0.0,0.0,Hold,0,0.0,Strong Bullish,57.59,Neutral,5.52,684.37,684.53,641.88,0.5,90,50,Exchange Traded Fund,Unknown,WATCH,79286520.0,-62.99
-SMR,NuScale Power Corporation,16.48,12.43,32.5,97.21,Buy,13,36.26,Bearish,40.56,Neutral,1.62,13.24,18.62,30.89,-5.72,50,70,Specialty Industrial Machinery,Industrials,AVOID,21558300.0,4.94
-SUN,Sunoco LP,56.92,55.01,64.25,12.88,Strong Buy,9,46.92,Strong Bullish,53.89,Neutral,1.28,54.36,55.01,53.61,-1.15,80,90,Oil & Gas Refining & Marketing,Energy,WATCH,311225.0,2.86
-TE,T1 Energy Inc.,8.66,7.13,10.5,21.25,Strong Buy,5,39.25,Strong Bullish,58.46,Neutral,1.02,6.62,6.45,3.08,3.96,95,90,Electrical Equipment & Parts,Industrials,HOLD/ADD,18373348.0,0.9
-TSLA,"Tesla, Inc.",421.81,408.68,420.04,-0.42,Hold,39,48.85,Bullish Pullback,42.47,Neutral,13.13,395.55,444.01,378.07,-2.0,60,40,Auto Manufacturers,Consumer Cyclical,WATCH,58739456.0,-0.07
-TSM,Taiwan Semiconductor Manufacturing Company Limited,341.36,327.65,412.9,20.96,Strong Buy,17,15.89,Strong Bullish,61.33,Neutral,9.14,323.08,308.53,255.74,3.27,95,100,Semiconductors,Technology,WATCH,12459096.0,3.91
-UAL,"United Airlines Holdings, Inc.",107.35,103.57,141.79,32.08,Strong Buy,24,89.8,Bullish Pullback,47.14,Neutral,3.78,99.79,108.24,94.09,4.92,75,100,Airlines,Industrials,WATCH,5758268.0,4.56
-UEC,Uranium Energy Corp.,16.32,14.3,18.17,11.34,Strong Buy,9,78.23,Strong Bullish,49.39,Neutral,1.39,13.54,14.3,10.67,-5.34,70,90,Uranium,Energy,WAIT,12168836.0,0.67
-URG,Ur-Energy Inc.,1.71,1.54,2.19,28.07,Strong Buy,8,67.6,Strong Bullish,49.43,Neutral,0.11,1.49,1.52,1.31,-2.84,70,100,Uranium,Energy,WAIT,4641383.0,2.18
-UUUU,Energy Fuels Inc.,21.01,17.53,25.9,23.27,Strong Buy,4,66.54,Strong Bullish,50.44,Neutral,2.35,16.31,17.53,12.36,-6.37,80,90,Uranium,Energy,HOLD/ADD,17103494.0,1.04
-VG,VG,9.02,7.52,11.11,23.17,Buy,17,19.05,Bearish Bounce,56.84,Neutral,0.6,7.82,7.42,11.23,-7.96,70,90,Oil & Gas Midstream,Energy,WAIT,10644701.0,1.74
-VRT,Vertiv Holdings Co,190.01,176.63,206.24,8.54,Buy,24,80.31,Strong Bullish,60.87,Neutral,8.92,172.17,173.22,143.28,2.06,95,90,Electrical Equipment & Parts,Industrials,HOLD/ADD,4112054.0,0.91
-VST,Vistra Corp.,154.26,134.08,239.88,55.5,Buy,20,91.0,Bearish,41.79,Neutral,8.07,138.12,166.37,178.58,-2.58,50,80,Utilities - Independent Power Producers,Utilities,AVOID,5506893.0,5.3
-WDC,Western Digital Corporation,270.23,242.59,283.25,4.82,Buy,24,102.89,Strong Bullish,67.07,Neutral,18.43,233.37,193.04,111.42,7.99,95,80,Computer Hardware,Technology,HOLD/ADD,16019328.0,0.35
-ZS,"Zscaler, Inc.",200.61,183.01,317.67,58.35,Strong Buy,45,52.98,Bearish,32.42,Neutral,7.04,186.53,231.73,270.62,0.3,60,80,Software - Infrastructure,Technology,AVOID,1418152.0,8.31
-ELDN,"Eledon Pharmaceuticals, Inc.",2.28,1.98,8.0,250.88,Strong Buy,6,52.5,Bearish Bounce,68.62,Neutral,0.12,2.04,1.76,2.67,3.64,85,100,Biotechnology,Healthcare,WAIT,587453.0,23.83
-ABOS,"Acumen Pharmaceuticals, Inc.",2.59,2.23,7.0,170.27,Strong Buy,5,51.01,Strong Bullish,65.99,Neutral,0.24,2.11,2.01,1.57,-0.38,80,90,Biotechnology,Healthcare,HOLD/ADD,445545.0,9.19
-SLI,Standard Lithium Ltd.,4.4,4.05,6.28,42.73,Strong Buy,2,16.13,Bullish Pullback,40.64,Neutral,0.35,3.7,4.77,3.2,1.38,70,90,Other Industrial Metals & Mining,Basic Materials,WAIT,3090704.0,2.69
-MREO,Mereo BioPharma Group plc,0.43,0.21,3.44,700.0,Buy,7,68.71,Bearish,30.59,Neutral,0.09,0.25,1.28,1.88,-1.7,50,80,Biotechnology,Healthcare,AVOID,5067395.0,16.72
-CYBN,Cybin Inc.,6.87,5.57,43.43,532.17,Strong Buy,6,24.1,Bearish,42.22,Neutral,0.52,5.83,6.99,7.03,3.78,65,100,Biotechnology,Healthcare,AVOID,587630.0,35.15
+NFE,New Fortress Energy Inc.,1.38,0.98,1.0,-27.54,Buy,3,59.78,Bearish Bounce,50.8,Neutral,0.16,1.06,1.3,2.51,5.34,85,60,Oil & Gas Midstream,Energy,WAIT,1661923.0,-1.19
+NKE,"NIKE, Inc.",61.81,57.51,75.92,22.83,Buy,32,65.88,Bearish,41.59,Neutral,1.72,58.37,63.86,66.96,-0.6,50,80,Footwear & Accessories,Consumer Cyclical,AVOID,2211212.0,4.1
+NNE,NANO Nuclear Energy Inc.,29.03,21.51,47.25,62.76,Strong Buy,3,41.04,Bearish,42.46,Neutral,3.01,23.01,32.17,34.35,4.76,65,90,Specialty Industrial Machinery,Industrials,AVOID,295719.0,3.03
+NOC,Northrop Grumman Corporation,697.2,664.0,727.85,4.4,Buy,21,84.24,Strong Bullish,70.7,Overbought,22.13,652.94,602.33,560.18,1.78,80,70,Aerospace & Defense,Industrials,WATCH,110430.0,0.69
+NVDA,NVIDIA Corporation,181.16,176.51,260.09,43.57,Strong Buy,58,68.25,Bullish Pullback,43.23,Neutral,4.65,171.86,183.79,168.51,-2.4,60,80,Semiconductors,Technology,WATCH,41489770.0,8.49
+NVO,Novo Nordisk A/S,58.29,54.22,61.98,6.33,Buy,11,9.03,Bearish Bounce,51.56,Neutral,1.63,55.03,53.4,58.81,-1.09,70,80,Drug Manufacturers - General,Healthcare,WAIT,3266791.0,1.13
+OKLO,Oklo Inc.,76.44,75.68,123.08,61.02,Buy,17,41.98,Bullish Pullback,40.45,Neutral,7.77,60.9,88.99,81.28,3.83,65,100,Utilities - Independent Power Producers,Utilities,WATCH,2200061.0,3.0
+OMC,Omnicom Group Inc.,71.37,70.66,99.64,39.61,Buy,10,79.43,Bullish Pullback,32.03,Neutral,2.11,67.15,77.38,75.64,-6.73,50,80,Advertising Agencies,Communication Services,WATCH,1488674.0,6.7
+PAAS,Pan American Silver Corp.,56.99,52.62,63.18,10.86,Buy,8,58.69,Strong Bullish,50.94,Neutral,2.91,51.17,51.87,36.53,6.27,95,90,Gold,Basic Materials,HOLD/ADD,3374713.0,1.06
+PANW,"Palo Alto Networks, Inc.",168.01,154.28,228.79,36.18,Buy,47,81.46,Bearish,27.94,Oversold,5.49,157.03,186.57,193.65,-4.23,50,80,Software - Infrastructure,Technology,AVOID,1439148.0,5.54
+PBR,Petróleo Brasileiro S.A. - Petrobras,15.35,14.82,14.94,-2.67,Buy,14,15.66,Strong Bullish,79.03,Overbought,0.35,14.65,12.57,12.04,2.1,85,80,Oil & Gas Integrated,Energy,WATCH,5027159.0,-0.59
+PLTR,Palantir Technologies Inc.,156.77,155.2,190.36,21.43,Hold,24,54.88,Bullish Pullback,39.1,Neutral,6.72,143.33,174.27,159.48,6.1,65,80,Software - Infrastructure,Technology,WATCH,39317223.0,2.5
+PRAX,"Praxis Precision Medicines, Inc.",320.0,292.48,567.25,77.27,Strong Buy,16,84.13,Strong Bullish,60.78,Neutral,18.35,283.3,267.49,118.08,3.52,95,100,Biotechnology,Healthcare,HOLD/ADD,73751.0,6.74
+PVLA,"Palvella Therapeutics, Inc.",80.92,73.34,188.62,133.09,Strong Buy,15,67.56,Bullish Pullback,40.62,Neutral,7.58,65.76,95.31,57.57,1.28,70,100,Biotechnology,Healthcare,WAIT,7808.0,7.1
+QBTS,D-Wave Quantum Inc.,20.9,20.69,40.36,93.11,Strong Buy,15,48.61,Bullish Pullback,34.7,Neutral,2.15,16.6,26.01,21.33,-0.33,50,80,Computer Hardware,Technology,WATCH,6218333.0,4.53
+QCOM,QUALCOMM Incorporated,148.17,146.69,187.29,26.4,Buy,26,84.83,Bullish Pullback,26.91,Oversold,4.21,139.75,168.3,160.84,-2.91,50,70,Semiconductors,Technology,WATCH,1836749.0,4.65
+QQQ,Invesco QQQ Trust,619.63,618.76,0.0,0.0,Hold,0,0.0,Strong Bullish,47.92,Neutral,7.67,604.29,618.76,575.33,-1.04,70,50,Exchange Traded Fund,Unknown,BUY,15100291.0,-40.39
+RBLX,Roblox Corporation,63.64,52.72,128.94,102.61,Buy,34,75.93,Bearish,30.51,Neutral,4.37,54.9,83.36,103.06,-5.69,50,80,Electronic Gaming & Multimedia,Communication Services,AVOID,2472069.0,7.47
+RGTI,"Rigetti Computing, Inc.",17.89,17.71,40.3,125.27,Strong Buy,11,50.95,Bullish Pullback,31.4,Neutral,1.86,14.17,24.23,21.37,0.99,60,80,Computer Hardware,Technology,WATCH,5906128.0,6.02
+RH,RH,205.14,172.36,205.06,-0.04,Hold,17,87.56,Bearish Bounce,50.49,Neutral,13.11,178.92,186.58,194.81,4.81,95,60,Specialty Retail,Consumer Cyclical,WAIT,138180.0,-0.0
+ROIV,Roivant Sciences Ltd.,22.13,21.82,27.5,24.27,Strong Buy,11,67.8,Strong Bullish,49.24,Neutral,0.73,20.67,21.82,15.51,0.88,80,100,Biotechnology,Healthcare,WATCH,619334.0,3.68
+RTX,RTX Corporation,202.22,195.08,220.4,8.99,Buy,21,80.78,Strong Bullish,66.74,Neutral,4.76,192.7,185.06,160.45,0.56,90,80,Aerospace & Defense,Industrials,WATCH,1642580.0,1.91
+SFM,"Sprouts Farmers Market, Inc.",68.35,61.65,118.07,72.74,Buy,14,101.43,Bearish,30.46,Neutral,2.68,62.99,78.64,124.93,-1.79,50,80,Grocery Stores,Consumer Defensive,AVOID,406173.0,9.28
+SHOP,Shopify Inc.,124.09,122.85,177.86,43.33,Buy,45,65.98,Bullish Pullback,26.85,Oversold,6.45,111.19,156.44,137.15,-6.13,50,80,Software - Application,Technology,WATCH,3231921.0,4.17
+SMCI,"Super Micro Computer, Inc.",29.14,25.37,42.73,46.64,Buy,17,55.27,Bearish,41.19,Neutral,1.51,26.12,31.44,41.75,-1.92,50,70,Computer Hardware,Technology,AVOID,6430101.0,4.5
+SMH,VanEck Semiconductor ETF,398.32,385.22,0.0,0.0,Hold,0,0.0,Strong Bullish,54.38,Neutral,8.73,380.86,373.24,310.56,-2.37,80,50,Exchange Traded Fund,Unknown,WATCH,1852764.0,-22.81
+SNOW,Snowflake Inc.,178.66,176.87,287.18,60.74,Strong Buy,47,74.79,Bullish Pullback,25.36,Oversold,8.25,162.16,222.27,217.51,-6.3,50,80,Software - Application,Technology,WATCH,1937697.0,6.58
+SOUN,"SoundHound AI, Inc.",8.39,6.97,16.21,93.21,Strong Buy,8,46.62,Bearish,27.13,Oversold,0.57,7.25,10.99,12.44,-0.42,50,80,Software - Application,Technology,AVOID,4512727.0,6.86
+SPY,State Street SPDR S&P 500 ETF Trust,691.98,685.06,0.0,0.0,Hold,0,0.0,Strong Bullish,53.04,Neutral,5.55,680.88,685.06,642.69,-0.49,80,50,Exchange Traded Fund,Unknown,WATCH,18207389.0,-62.34
+SMR,NuScale Power Corporation,17.1,13.15,32.5,90.06,Buy,13,36.26,Bearish,43.22,Neutral,1.58,13.94,18.53,30.89,3.79,65,90,Specialty Industrial Machinery,Industrials,AVOID,4909193.0,4.87
+SUN,Sunoco LP,57.93,56.05,64.25,10.91,Strong Buy,9,46.92,Strong Bullish,59.38,Neutral,1.25,55.43,55.08,53.62,1.78,90,90,Oil & Gas Refining & Marketing,Energy,WATCH,46766.0,2.53
+TE,T1 Energy Inc.,8.84,7.32,10.5,18.78,Strong Buy,5,39.25,Strong Bullish,59.72,Neutral,1.01,6.82,6.57,3.12,2.02,95,90,Electrical Equipment & Parts,Industrials,HOLD/ADD,2999614.0,0.82
+TSLA,"Tesla, Inc.",420.35,407.57,420.04,-0.07,Hold,39,48.85,Bullish Pullback,41.94,Neutral,12.78,394.79,444.3,378.97,-0.35,60,40,Auto Manufacturers,Consumer Cyclical,WATCH,10787786.0,-0.01
+TSM,Taiwan Semiconductor Manufacturing Company Limited,336.88,322.93,412.9,22.57,Strong Buy,17,15.89,Strong Bullish,57.78,Neutral,9.3,318.28,309.63,256.67,-1.31,80,100,Semiconductors,Technology,WATCH,2932930.0,4.09
+UAL,"United Airlines Holdings, Inc.",111.4,108.64,141.79,27.28,Strong Buy,24,89.8,Strong Bullish,53.72,Neutral,3.75,103.9,108.64,94.32,3.77,95,100,Airlines,Industrials,WATCH,1130315.0,4.05
+UEC,Uranium Energy Corp.,17.34,15.3,18.17,4.79,Strong Buy,9,78.23,Strong Bullish,54.16,Neutral,1.36,14.62,14.41,10.73,6.26,95,80,Uranium,Energy,HOLD/ADD,1871461.0,0.31
+URG,Ur-Energy Inc.,1.77,1.6,2.19,23.73,Strong Buy,8,67.6,Strong Bullish,53.39,Neutral,0.11,1.55,1.53,1.31,3.8,95,100,Uranium,Energy,HOLD/ADD,1234893.0,1.91
+UUUU,Energy Fuels Inc.,23.33,19.88,25.9,11.02,Strong Buy,4,66.54,Strong Bullish,56.23,Neutral,2.3,18.73,17.69,12.46,11.02,95,80,Uranium,Energy,HOLD/ADD,4687050.0,0.56
+VG,VG,9.1,7.62,11.11,22.09,Buy,17,19.05,Bearish Bounce,57.54,Neutral,0.59,7.92,7.45,11.23,0.84,80,90,Oil & Gas Midstream,Energy,WAIT,1388450.0,1.7
+VRT,Vertiv Holdings Co,186.4,173.54,206.24,10.64,Buy,24,80.31,Strong Bullish,56.94,Neutral,8.94,168.52,173.54,143.86,-1.9,80,90,Electrical Equipment & Parts,Industrials,HOLD/ADD,1012201.0,1.11
+VST,Vistra Corp.,152.64,132.86,239.88,57.15,Buy,20,91.0,Bearish,40.65,Neutral,7.91,136.82,165.84,178.76,-1.05,50,80,Utilities - Independent Power Producers,Utilities,AVOID,645115.0,5.51
+WDC,Western Digital Corporation,274.66,246.72,283.25,3.13,Buy,24,102.89,Strong Bullish,68.12,Neutral,18.63,237.4,195.46,112.61,1.64,90,80,Computer Hardware,Technology,HOLD/ADD,4585411.0,0.23
+ZS,"Zscaler, Inc.",192.12,174.37,317.67,65.35,Strong Buy,45,52.98,Bearish,27.73,Oversold,7.1,177.92,229.73,270.55,-4.23,50,80,Software - Infrastructure,Technology,AVOID,351993.0,8.84
+ELDN,"Eledon Pharmaceuticals, Inc.",2.21,1.91,8.0,261.99,Strong Buy,6,52.5,Bearish Bounce,62.56,Neutral,0.12,1.97,1.77,2.67,-3.07,70,100,Biotechnology,Healthcare,WAIT,97775.0,24.12
+ABOS,"Acumen Pharmaceuticals, Inc.",2.59,2.23,7.0,170.27,Strong Buy,5,51.01,Strong Bullish,65.99,Neutral,0.24,2.11,2.03,1.58,0.0,80,90,Biotechnology,Healthcare,HOLD/ADD,94135.0,9.19
+SLI,Standard Lithium Ltd.,4.66,4.31,6.28,34.76,Strong Buy,2,16.13,Bullish Pullback,45.45,Neutral,0.35,3.96,4.78,3.22,5.8,75,90,Other Industrial Metals & Mining,Basic Materials,WAIT,773516.0,2.31
+MREO,Mereo BioPharma Group plc,0.44,0.24,3.44,681.82,Buy,7,68.71,Bearish,31.58,Neutral,0.08,0.28,1.25,1.86,2.84,65,100,Biotechnology,Healthcare,AVOID,790464.0,18.75
+CYBN,Cybin Inc.,6.99,5.69,43.43,521.32,Strong Buy,6,24.1,Bearish,44.79,Neutral,0.52,5.95,7.0,7.02,1.82,60,80,Biotechnology,Healthcare,AVOID,45764.0,35.04
 LAZR,"Luminar Technologies, Inc.",0.07,0.03,0.0,0.0,Hold,1,26.68,Neutral,0.0,Oversold,0.02,0.03,0.07,0.07,0.0,50,30,Consumer Cyclical,Consumer Cyclical,WAIT,0.0,-1.75
-JOBY,"Joby Aviation, Inc.",10.56,10.45,13.17,24.72,Hold,8,32.39,Bullish Pullback,26.18,Oversold,0.95,8.66,14.22,13.19,-0.09,50,60,Airports & Air Services,Industrials,WATCH,41443616.0,1.37
+JOBY,"Joby Aviation, Inc.",10.62,10.51,13.17,24.01,Hold,8,32.39,Bullish Pullback,26.86,Oversold,0.93,8.76,14.16,13.21,0.58,60,60,Airports & Air Services,Industrials,WATCH,5532968.0,1.37
