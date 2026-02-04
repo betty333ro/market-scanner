@@ -4,7 +4,7 @@ ACHR,Archer Aviation Inc.,7.2,5.88,12.5,73.61,Buy,9,44.94,Bearish,36.82,Neutral,
 ADPT,Adaptive Biotechnologies Corporation,18.5,17.33,20.14,8.86,Strong Buy,7,93.7,Strong Bullish,56.82,Neutral,0.98,16.54,17.33,13.42,0.6,90,90,Biotechnology,Healthcare,HOLD/ADD,2067611.0,0.84
 AEHR,"Aehr Test Systems, Inc.",27.19,24.32,24.33,-10.52,Buy,3,67.16,Strong Bullish,54.22,Neutral,2.51,22.17,24.32,20.07,4.34,95,60,Semiconductor Equipment & Materials,Technology,HOLD/ADD,965361.0,-0.57
 ALAB,"Astera Labs, Inc.",158.52,145.65,205.67,29.74,Buy,19,66.38,Bullish Pullback,45.62,Neutral,12.87,132.78,162.38,145.64,3.99,75,100,Semiconductors,Technology,WAIT,5250080.0,1.83
-AMD,"Advanced Micro Devices, Inc.",242.11,226.33,292.41,20.78,Buy,46,66.73,Strong Bullish,55.55,Neutral,10.52,221.07,221.94,177.33,-1.69,80,100,Semiconductors,Technology,HOLD/ADD,48084725.0,2.39
+AMD,"Advanced Micro Devices, Inc.",242.11,226.33,291.53,20.41,Buy,46,66.73,Strong Bullish,55.55,Neutral,10.52,221.07,221.94,177.33,-1.69,80,100,Semiconductors,Technology,HOLD/ADD,48084725.0,2.35
 AMPX,"Amprius Technologies, Inc.",14.68,13.25,17.57,19.69,Strong Buy,7,50.27,Strong Bullish,70.46,Overbought,0.95,12.78,10.48,8.1,11.63,85,100,Electrical Equipment & Parts,Industrials,HOLD/ADD,15318929.0,1.52
 AMZN,"Amazon.com, Inc.",238.62,233.26,298.32,25.02,Strong Buy,63,65.6,Strong Bullish,51.25,Neutral,5.96,226.7,233.26,222.43,-1.79,80,100,Internet Retail,Consumer Cyclical,WATCH,50527331.0,5.01
 APLD,Applied Digital Corporation,36.7,31.33,49.83,35.78,Strong Buy,11,64.54,Strong Bullish,55.19,Neutral,3.58,29.54,30.36,19.81,5.46,95,100,Information Technology Services,Technology,HOLD/ADD,26548205.0,1.83
@@ -64,7 +64,7 @@ NVDA,NVIDIA Corporation,180.34,175.53,260.09,44.22,Strong Buy,58,68.25,Bullish P
 NVO,Novo Nordisk A/S,50.3,45.27,61.94,23.14,Buy,11,9.03,Bearish,35.02,Neutral,2.01,46.28,53.24,58.78,-14.64,50,70,Drug Manufacturers - General,Healthcare,AVOID,69260608.0,2.9
 OKLO,Oklo Inc.,78.0,77.22,123.08,57.79,Buy,17,41.98,Bullish Pullback,41.88,Neutral,7.85,62.3,89.01,81.29,5.95,65,100,Utilities - Independent Power Producers,Utilities,WATCH,10594332.0,2.87
 OMC,Omnicom Group Inc.,67.99,67.31,99.64,46.55,Buy,10,79.43,Bullish Pullback,27.21,Oversold,2.19,63.61,77.31,75.61,-11.15,50,80,Advertising Agencies,Communication Services,WATCH,8403550.0,7.23
-PAAS,Pan American Silver Corp.,56.67,52.23,63.18,11.49,Buy,8,58.73,Strong Bullish,50.37,Neutral,2.96,50.75,51.86,36.53,5.67,95,90,Gold,Basic Materials,HOLD/ADD,12730255.0,1.1
+PAAS,Pan American Silver Corp.,56.67,52.23,65.18,15.02,Buy,8,58.73,Strong Bullish,50.37,Neutral,2.96,50.75,51.86,36.53,5.67,95,100,Gold,Basic Materials,HOLD/ADD,12730255.0,1.44
 PANW,"Palo Alto Networks, Inc.",166.24,152.12,228.79,37.63,Buy,47,81.46,Bearish,26.7,Oversold,5.65,154.94,186.54,193.64,-5.23,50,80,Software - Infrastructure,Technology,AVOID,9921887.0,5.54
 PBR,Petróleo Brasileiro S.A. - Petrobras,15.28,14.74,14.94,-2.23,Buy,14,15.65,Strong Bullish,78.61,Overbought,0.36,14.56,12.57,12.03,1.66,80,80,Oil & Gas Integrated,Energy,WATCH,33859609.0,-0.47
 PLTR,Palantir Technologies Inc.,157.88,156.3,192.77,22.1,Buy,24,54.88,Bullish Pullback,40.31,Neutral,6.78,144.32,174.28,159.49,6.85,65,90,Software - Infrastructure,Technology,WATCH,112346222.0,2.57
@@ -80,7 +80,7 @@ ROIV,Roivant Sciences Ltd.,21.97,21.82,27.5,25.17,Strong Buy,11,67.8,Strong Bull
 RTX,RTX Corporation,203.5,196.21,220.4,8.3,Buy,21,80.78,Strong Bullish,68.25,Neutral,4.86,193.78,185.08,160.46,1.2,90,80,Aerospace & Defense,Industrials,WATCH,8439620.0,1.74
 SFM,"Sprouts Farmers Market, Inc.",68.11,61.34,116.6,71.19,Buy,14,101.43,Bearish,30.08,Neutral,2.71,62.69,78.63,124.9,-2.13,50,80,Grocery Stores,Consumer Defensive,AVOID,4049092.0,8.95
 SHOP,Shopify Inc.,119.29,118.1,177.86,49.1,Buy,45,65.98,Bullish Pullback,24.69,Oversold,6.76,105.77,156.34,137.13,-9.77,50,80,Software - Application,Technology,WATCH,25716739.0,4.33
-SMCI,"Super Micro Computer, Inc.",29.67,25.85,42.73,44.02,Buy,17,55.27,Bearish,43.3,Neutral,1.53,26.61,31.45,41.76,-0.13,50,70,Computer Hardware,Technology,AVOID,35290050.0,4.27
+SMCI,"Super Micro Computer, Inc.",29.67,25.85,41.2,38.86,Buy,17,55.27,Bearish,43.3,Neutral,1.53,26.61,31.45,41.76,-0.13,50,70,Computer Hardware,Technology,AVOID,35290050.0,3.77
 SMH,VanEck Semiconductor ETF,397.68,384.17,0.0,0.0,Hold,0,0.0,Strong Bullish,53.97,Neutral,9.01,379.66,373.23,310.54,-2.52,80,50,Exchange Traded Fund,Unknown,WATCH,12075574.0,-22.07
 SNOW,Snowflake Inc.,173.24,171.51,287.18,65.77,Strong Buy,47,74.79,Bullish Pullback,23.54,Oversold,8.61,156.02,222.16,217.47,-9.15,50,80,Software - Application,Technology,WATCH,13787400.0,6.62
 SOUN,"SoundHound AI, Inc.",8.26,6.79,16.21,96.25,Strong Buy,8,46.62,Bearish,26.39,Oversold,0.59,7.08,10.98,12.43,-1.9,50,80,Software - Application,Technology,AVOID,29722650.0,6.74
