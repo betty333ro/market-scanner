@@ -8,6 +8,8 @@ import os
 import datetime
 import requests
 import math
+import argparse
+import pytz
 
 # --- CONFIGURARE ---
 TICKERS_FILE = 'tickers.txt'
@@ -821,7 +823,8 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
                 
                 <!-- CENTERED NAVIGATION TABS -->
                 <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
-                    <li class="nav-item"><button class="nav-link active" data-bs-target="#overview" data-bs-toggle="tab">Market Overview</button></li>
+                    <li class="nav-item"><button class="nav-link active" data-bs-target="#crocodil" data-bs-toggle="tab">Crocodil</button></li>
+                    <li class="nav-item"><button class="nav-link" data-bs-target="#overview" data-bs-toggle="tab">Market Overview</button></li>
                     <li class="nav-item"><button class="nav-link" data-bs-target="#watchlist" data-bs-toggle="tab">Watchlist & Scan</button></li>
                     <li class="nav-item"><button class="nav-link" data-bs-target="#custom" data-bs-toggle="tab">Custom Watchlist</button></li>
                     <li class="nav-item"><button class="nav-link" data-bs-target="#portfolio" data-bs-toggle="tab">Portofoliu</button></li>
@@ -835,8 +838,13 @@ def generate_html(df_main, df_custom, cortex_data, verdict_data):
             <!-- TABS MOVED TO HEADER -->
 
             <div class="tab-content">
-                <!-- MARKET OVERVIEW TAB (Default) -->
-                <div class="tab-pane fade show active" id="overview">
+                <!-- CROCODIL TAB (New Default) -->
+                <div class="tab-pane fade show active" id="crocodil">
+                     <div class="alert alert-dark text-center">Modul Crocodil în lucru...</div>
+                </div>
+
+                <!-- MARKET OVERVIEW TAB -->
+                <div class="tab-pane fade" id="overview">
                     <div class="mb-4">{indices_html}</div>
 
                     <!-- SYSTEM VERDICT -->
@@ -1121,8 +1129,51 @@ def process_ticker_list(tickers):
         if res: results.append(res)
     return pd.DataFrame(results) if results else None
 
+def check_market_status(force=False):
+    if force:
+        print("FORCE MODE: Skipping market status check.")
+        return True
+    
+    try:
+        # Define US Eastern Time
+        tz = pytz.timezone('US/Eastern')
+        now = datetime.datetime.now(tz)
+        
+        # Check Weekend (Mon=0, ..., Sun=6)
+        if now.weekday() >= 5: # Saturday or Sunday
+            print(f"MARKET CLOSED (Weekend: {now.strftime('%A')}). Exiting.")
+            return False
+            
+        # Check Hours (09:30 - 16:00 ET)
+        market_open = now.replace(hour=9, minute=30, second=0, microsecond=0)
+        market_close = now.replace(hour=16, minute=0, second=0, microsecond=0)
+        
+        # Allow a small buffer after close (e.g. 15 mins) to capture final data
+        # Actually, let's strictly restrict start times. 
+        # But if the script runs at 16:00, it might be slightly after. 
+        # Let's say we allow running up to 16:15 to be safe for the "close" scan.
+        extended_close = now.replace(hour=16, minute=15, second=0, microsecond=0)
+        
+        if market_open <= now <= extended_close:
+            return True
+        else:
+            print(f"MARKET CLOSED (Time: {now.strftime('%H:%M')} ET). Exiting.")
+            return False
+    except Exception as e:
+        print(f"Warning: Could not check market status ({e}). Proceeding carefully.")
+        return True # Default to running if check fails
+
 def main():
     print("--- Market Cortex v3.0 (Advanced) ---")
+
+    # Argument Parsing
+    parser = argparse.ArgumentParser(description='Market Scanner')
+    parser.add_argument('--force', action='store_true', help='Force run even if market is closed')
+    args = parser.parse_args()
+
+    if not check_market_status(args.force):
+        return
+    
     
     print(">>> LOADING MAIN WATCHLIST")
     main_tickers = load_tickers(TICKERS_FILE)
