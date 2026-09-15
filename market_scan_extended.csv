@@ -1,108 +1,108 @@
 Ticker,Company_Name,Price,Sug. Buy,Target,To Target %,Consensus,Analysts,Inst Own,Trend,RSI,RSI Status,ATR,Stop Loss,SMA 50,SMA 200,Change %,Momentum_Score,Watchlist_Score,Industry,Theme,Decision,Volume,R:R
-AAPL,Apple Inc.,334.46,320.2,0.0,0.0,Hold,39,66.34,Neutral,0.0,Oversold,7.13,320.2,334.46,334.46,0.0,50,40,Consumer Electronics,Technology,WATCH,0.0,-23.45
-ACHR,Archer Aviation Inc.,5.59,5.03,0.0,0.0,Hold,9,50.04,Neutral,0.0,Oversold,0.28,5.03,5.59,5.59,0.0,50,40,Aerospace & Defense,Industrials,WAIT,0.0,-9.98
-ADPT,Adaptive Biotechnologies Corporation,24.58,22.54,0.0,0.0,Hold,7,99.33,Neutral,0.0,Oversold,1.02,22.54,24.58,24.58,0.0,50,40,Diagnostics & Research,Healthcare,WAIT,0.0,-12.05
-AEHR,"Aehr Test Systems, Inc.",85.15,67.13,0.0,0.0,Hold,5,75.72,Neutral,0.0,Oversold,9.01,67.13,85.15,85.15,0.0,50,30,Semiconductor Equipment & Materials,Technology,WAIT,0.0,-4.73
-ALAB,"Astera Labs, Inc.",262.1,227.28,0.0,0.0,Hold,23,75.88,Neutral,0.0,Oversold,17.41,227.28,262.1,262.1,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-7.53
-AMD,"Advanced Micro Devices, Inc.",493.26,459.5,0.0,0.0,Hold,50,75.38,Neutral,0.0,Oversold,16.88,459.5,493.26,493.26,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-14.61
-AMPX,"Amprius Technologies, Inc.",9.14,8.16,0.0,0.0,Hold,9,69.54,Neutral,0.0,Oversold,0.49,8.16,9.14,9.14,0.0,50,40,Electrical Equipment & Parts,Industrials,WAIT,0.0,-9.33
-AMZN,"Amazon.com, Inc.",253.7,244.08,0.0,0.0,Hold,60,68.71,Neutral,0.0,Oversold,4.81,244.08,253.7,253.7,0.0,50,40,Internet Retail,Consumer Cyclical,WATCH,0.0,-26.37
-APLD,Applied Digital Corporation,25.0,21.88,0.0,0.0,Hold,11,76.14,Neutral,0.0,Oversold,1.56,21.88,25.0,25.0,0.0,50,40,Information Technology Services,Technology,WAIT,0.0,-8.01
-ARM,Arm Holdings plc,240.74,217.06,0.0,0.0,Hold,40,96.23,Neutral,0.0,Oversold,11.84,217.06,240.74,240.74,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-10.17
-ARX,Accelerant Holdings,19.87,19.71,0.0,0.0,Hold,3,59.63,Neutral,0.0,Oversold,0.08,19.71,19.87,19.87,0.0,50,30,Insurance Brokers,Financial Services,BUY,0.0,-124.19
-ASTS,"AST SpaceMobile, Inc.",60.44,53.32,0.0,0.0,Hold,12,54.61,Neutral,0.0,Oversold,3.56,53.32,60.44,60.44,0.0,50,40,Communication Equipment,Technology,WAIT,0.0,-8.49
-AVGO,Broadcom Inc.,346.35,327.07,0.0,0.0,Hold,47,79.82,Neutral,0.0,Oversold,9.64,327.07,346.35,346.35,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-17.96
-BA,The Boeing Company,210.07,202.13,0.0,0.0,Hold,26,76.81,Neutral,0.0,Oversold,3.97,202.13,210.07,210.07,0.0,50,40,Aerospace & Defense,Industrials,WATCH,0.0,-26.46
-BLK,"BlackRock, Inc.",1071.67,1033.39,0.0,0.0,Hold,16,84.46,Neutral,0.0,Oversold,19.14,1033.39,1071.67,1071.67,0.0,50,40,Asset Management,Financial Services,WATCH,0.0,-28.0
-BWXT,"BWX Technologies, Inc.",147.77,137.35,0.0,0.0,Hold,15,94.33,Neutral,0.0,Oversold,5.21,137.35,147.77,147.77,0.0,50,40,Aerospace & Defense,Industrials,WAIT,0.0,-14.18
-CCJ,Cameco Corporation,93.48,86.96,0.0,0.0,Hold,12,69.72,Neutral,0.0,Oversold,3.26,86.96,93.48,93.48,0.0,50,40,Uranium,Energy,WAIT,0.0,-14.34
-CEG,Constellation Energy Corporation,265.31,246.69,0.0,0.0,Hold,20,82.96,Neutral,0.0,Oversold,9.31,246.69,265.31,265.31,0.0,50,40,Utilities - Independent Power Producers,Utilities,WAIT,0.0,-14.25
-CHDN,Churchill Downs Incorporated,83.54,78.36,0.0,0.0,Hold,12,89.25,Neutral,0.0,Oversold,2.59,78.36,83.54,83.54,0.0,50,40,Gambling,Consumer Cyclical,WAIT,0.0,-16.13
-CLSK,"CleanSpark, Inc.",13.51,11.73,0.0,0.0,Hold,13,100.62,Neutral,0.0,Oversold,0.89,11.73,13.51,13.51,0.0,50,40,Capital Markets,Financial Services,WAIT,0.0,-7.59
-COIN,"Coinbase Global, Inc.",190.49,171.19,0.0,0.0,Hold,29,68.68,Neutral,0.0,Oversold,9.65,171.19,190.49,190.49,0.0,50,40,Financial Data & Stock Exchanges,Financial Services,WAIT,0.0,-9.87
-CRC,California Resources Corporation,57.05,54.33,0.0,0.0,Hold,12,105.64,Neutral,0.0,Oversold,1.36,54.33,57.05,57.05,0.0,50,40,Oil & Gas E&P,Energy,WAIT,0.0,-20.97
-CRM,"Salesforce, Inc.",257.24,239.78,0.0,0.0,Hold,54,87.47,Neutral,0.0,Oversold,8.73,239.78,257.24,257.24,0.0,50,40,Software - Application,Technology,WAIT,0.0,-14.73
-CRNC,Cerence Inc.,8.43,7.67,0.0,0.0,Hold,4,83.64,Neutral,0.0,Oversold,0.38,7.67,8.43,8.43,0.0,50,30,Software - Application,Technology,WAIT,0.0,-11.09
-CRWD,"CrowdStrike Holdings, Inc.",237.55,214.15,0.0,0.0,Hold,50,76.4,Neutral,0.0,Oversold,11.7,214.15,237.55,237.55,0.0,50,40,Software - Infrastructure,Technology,WAIT,0.0,-10.15
-CSTE,Caesarstone Ltd.,3.16,2.74,0.0,0.0,Hold,0,16.25,Neutral,0.0,Oversold,0.21,2.74,3.16,3.16,0.0,50,30,Building Products & Equipment,Industrials,WAIT,0.0,-7.52
+AAPL,Apple Inc.,330.36,316.1,0.0,0.0,Hold,39,66.34,Neutral,0.0,Oversold,7.13,316.1,330.36,330.36,0.0,50,40,Consumer Electronics,Technology,WATCH,0.0,-23.17
+ACHR,Archer Aviation Inc.,5.46,4.94,0.0,0.0,Hold,9,50.03,Neutral,0.0,Oversold,0.26,4.94,5.46,5.46,0.0,50,40,Aerospace & Defense,Industrials,WAIT,0.0,-10.5
+ADPT,Adaptive Biotechnologies Corporation,25.77,23.69,0.0,0.0,Hold,7,99.36,Neutral,0.0,Oversold,1.04,23.69,25.77,25.77,0.0,50,40,Diagnostics & Research,Healthcare,WAIT,0.0,-12.39
+AEHR,"Aehr Test Systems, Inc.",81.75,64.61,0.0,0.0,Hold,5,75.72,Neutral,0.0,Oversold,8.57,64.61,81.75,81.75,0.0,50,30,Semiconductor Equipment & Materials,Technology,WAIT,0.0,-4.77
+ALAB,"Astera Labs, Inc.",257.27,222.87,0.0,0.0,Hold,23,75.89,Neutral,0.0,Oversold,17.2,222.87,257.27,257.27,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-7.48
+AMD,"Advanced Micro Devices, Inc.",503.81,471.15,0.0,0.0,Hold,50,75.39,Neutral,0.0,Oversold,16.33,471.15,503.81,503.81,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-15.43
+AMPX,"Amprius Technologies, Inc.",9.17,8.23,0.0,0.0,Hold,9,69.56,Neutral,0.0,Oversold,0.47,8.23,9.17,9.17,0.0,50,40,Electrical Equipment & Parts,Industrials,WAIT,0.0,-9.76
+AMZN,"Amazon.com, Inc.",248.58,238.74,0.0,0.0,Hold,60,68.71,Neutral,0.0,Oversold,4.92,238.74,248.58,248.58,0.0,50,40,Internet Retail,Consumer Cyclical,WATCH,0.0,-25.26
+APLD,Applied Digital Corporation,23.77,20.73,0.0,0.0,Hold,11,76.12,Neutral,0.0,Oversold,1.52,20.73,23.77,23.77,0.0,50,40,Information Technology Services,Technology,WAIT,0.0,-7.82
+ARM,Arm Holdings plc,243.63,219.49,0.0,0.0,Hold,40,96.21,Neutral,0.0,Oversold,12.07,219.49,243.63,243.63,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-10.09
+ARX,Accelerant Holdings,19.84,19.7,0.0,0.0,Hold,3,59.67,Neutral,0.0,Oversold,0.07,19.7,19.84,19.84,0.0,50,30,Insurance Brokers,Financial Services,BUY,0.0,-141.71
+ASTS,"AST SpaceMobile, Inc.",59.51,52.45,0.0,0.0,Hold,12,54.56,Neutral,0.0,Oversold,3.53,52.45,59.51,59.51,0.0,50,40,Communication Equipment,Technology,WAIT,0.0,-8.43
+AVGO,Broadcom Inc.,338.58,320.68,0.0,0.0,Hold,47,79.82,Neutral,0.0,Oversold,8.95,320.68,338.58,338.58,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-18.92
+BA,The Boeing Company,210.7,202.64,0.0,0.0,Hold,26,76.81,Neutral,0.0,Oversold,4.03,202.64,210.7,210.7,0.0,50,40,Aerospace & Defense,Industrials,WATCH,0.0,-26.14
+BLK,"BlackRock, Inc.",1054.56,1014.96,0.0,0.0,Hold,16,84.48,Neutral,0.0,Oversold,19.8,1014.96,1054.56,1054.56,0.0,50,40,Asset Management,Financial Services,WATCH,0.0,-26.63
+BWXT,"BWX Technologies, Inc.",146.98,136.46,0.0,0.0,Hold,16,94.33,Neutral,0.0,Oversold,5.26,136.46,146.98,146.98,0.0,50,40,Aerospace & Defense,Industrials,WAIT,0.0,-13.97
+CCJ,Cameco Corporation,91.32,84.64,0.0,0.0,Hold,12,69.71,Neutral,0.0,Oversold,3.34,84.64,91.32,91.32,0.0,50,40,Uranium,Energy,WAIT,0.0,-13.67
+CEG,Constellation Energy Corporation,261.86,243.16,0.0,0.0,Hold,20,82.96,Neutral,0.0,Oversold,9.35,243.16,261.86,261.86,0.0,50,40,Utilities - Independent Power Producers,Utilities,WAIT,0.0,-14.0
+CHDN,Churchill Downs Incorporated,82.09,77.01,0.0,0.0,Hold,12,89.49,Neutral,0.0,Oversold,2.54,77.01,82.09,82.09,0.0,50,40,Gambling,Consumer Cyclical,WAIT,0.0,-16.16
+CLSK,"CleanSpark, Inc.",12.66,10.92,0.0,0.0,Hold,13,100.62,Neutral,0.0,Oversold,0.87,10.92,12.66,12.66,0.0,50,40,Capital Markets,Financial Services,WAIT,0.0,-7.28
+COIN,"Coinbase Global, Inc.",180.1,160.32,0.0,0.0,Hold,29,68.68,Neutral,0.0,Oversold,9.89,160.32,180.1,180.1,0.0,50,40,Financial Data & Stock Exchanges,Financial Services,WAIT,0.0,-9.11
+CRC,California Resources Corporation,57.89,55.05,0.0,0.0,Hold,12,105.69,Neutral,0.0,Oversold,1.42,55.05,57.89,57.89,0.0,50,40,Oil & Gas E&P,Energy,WAIT,0.0,-20.38
+CRM,"Salesforce, Inc.",260.27,242.83,0.0,0.0,Hold,54,87.48,Neutral,0.0,Oversold,8.72,242.83,260.27,260.27,0.0,50,40,Software - Application,Technology,WAIT,0.0,-14.92
+CRNC,Cerence Inc.,8.27,7.51,0.0,0.0,Hold,4,83.66,Neutral,0.0,Oversold,0.38,7.51,8.27,8.27,0.0,50,30,Software - Application,Technology,WAIT,0.0,-10.88
+CRWD,"CrowdStrike Holdings, Inc.",242.68,219.12,0.0,0.0,Hold,50,76.4,Neutral,0.0,Oversold,11.78,219.12,242.68,242.68,0.0,50,40,Software - Infrastructure,Technology,WAIT,0.0,-10.3
+CSTE,Caesarstone Ltd.,3.01,2.59,0.0,0.0,Hold,0,16.25,Neutral,0.0,Oversold,0.21,2.59,3.01,3.01,0.0,50,30,Building Products & Equipment,Industrials,WAIT,0.0,-7.17
 CTRA,CTRA,0.0,0.0,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,0.0,0.0,0.0,0.0,0.0,50,30,Unknown,Unknown,BUY,0.0,0.0
-DLR,"Digital Realty Trust, Inc.",183.07,173.27,0.0,0.0,Hold,31,104.95,Neutral,0.0,Oversold,4.9,173.27,183.07,183.07,0.0,50,40,REIT - Specialty,Real Estate,WAIT,0.0,-18.68
-DNN,Denison Mines Corp.,2.88,2.54,0.0,0.0,Hold,2,64.78,Neutral,0.0,Oversold,0.17,2.54,2.88,2.88,0.0,50,30,Uranium,Energy,WAIT,0.0,-8.47
-DRS,"Leonardo DRS, Inc.",35.73,33.35,0.0,0.0,Hold,10,28.19,Neutral,0.0,Oversold,1.19,33.35,35.73,35.73,0.0,50,40,Aerospace & Defense,Industrials,WAIT,0.0,-15.01
-DXCM,"DexCom, Inc.",84.39,79.85,0.0,0.0,Hold,25,106.43,Neutral,0.0,Oversold,2.27,79.85,84.39,84.39,0.0,50,40,Medical Devices,Healthcare,WAIT,0.0,-18.59
-ENVX,Enovix Corporation,3.07,2.63,0.0,0.0,Hold,10,51.77,Neutral,0.0,Oversold,0.22,2.63,3.07,3.07,0.0,50,40,Electrical Equipment & Parts,Industrials,WAIT,0.0,-6.98
-FCX,Freeport-McMoRan Inc.,69.47,64.23,0.0,0.0,Hold,22,89.4,Neutral,0.0,Oversold,2.62,64.23,69.47,69.47,0.0,50,40,Copper,Basic Materials,WAIT,0.0,-13.26
-GOOG,Alphabet Inc.,342.58,331.16,0.0,0.0,Hold,15,62.1,Neutral,0.0,Oversold,5.71,331.16,342.58,342.58,0.0,50,40,Internet Content & Information,Communication Services,WATCH,0.0,-30.0
-HD,"The Home Depot, Inc.",311.39,299.55,0.0,0.0,Hold,32,76.79,Neutral,0.0,Oversold,5.92,299.55,311.39,311.39,0.0,50,40,Home Improvement Retail,Consumer Cyclical,WATCH,0.0,-26.3
-HOOD,"Robinhood Markets, Inc.",114.99,103.05,0.0,0.0,Hold,27,79.44,Neutral,0.0,Oversold,5.97,103.05,114.99,114.99,0.0,50,40,Capital Markets,Financial Services,WAIT,0.0,-9.63
-HWM,Howmet Aerospace Inc.,227.68,211.48,0.0,0.0,Hold,20,93.3,Neutral,0.0,Oversold,8.1,211.48,227.68,227.68,0.0,50,40,Aerospace & Defense,Industrials,WAIT,0.0,-14.05
-IBM,International Business Machines Corporation,250.79,239.01,0.0,0.0,Hold,23,66.61,Neutral,0.0,Oversold,5.89,239.01,250.79,250.79,0.0,50,40,Information Technology Services,Technology,WATCH,0.0,-21.29
-IONQ,"IonQ, Inc.",38.38,33.62,0.0,0.0,Hold,12,50.58,Neutral,0.0,Oversold,2.38,33.62,38.38,38.38,0.0,50,40,Computer Hardware,Technology,WAIT,0.0,-8.06
-IWM,iShares Russell 2000 ETF,289.06,283.9,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,2.58,283.9,289.06,289.06,0.0,50,30,Exchange Traded Fund,Unknown,WATCH,0.0,-56.02
-LAES,SEALSQ Corp,2.34,2.12,0.0,0.0,Hold,2,6.74,Neutral,0.0,Oversold,0.11,2.12,2.34,2.34,0.0,50,30,Semiconductors,Technology,WAIT,0.0,-10.64
-LLY,Eli Lilly and Company,1147.63,1088.57,0.0,0.0,Hold,29,85.32,Neutral,0.0,Oversold,29.53,1088.57,1147.63,1147.63,0.0,50,40,Drug Manufacturers - General,Healthcare,WAIT,0.0,-19.43
-LMT,Lockheed Martin Corporation,529.07,504.73,0.0,0.0,Hold,19,76.66,Neutral,0.0,Oversold,12.17,504.73,529.07,529.07,0.0,50,40,Aerospace & Defense,Industrials,WATCH,0.0,-21.74
-LNG,"Cheniere Energy, Inc.",277.47,264.33,0.0,0.0,Hold,21,91.56,Neutral,0.0,Oversold,6.57,264.33,277.47,277.47,0.0,50,40,Oil & Gas Midstream,Energy,WATCH,0.0,-21.12
-LQQ.PA,Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc,9.31,8.93,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,0.19,8.93,9.31,9.31,0.0,50,30,Unknown,Unknown,WATCH,0.0,-24.5
-MARA,"MARA Holdings, Inc.",11.68,10.02,0.0,0.0,Hold,12,75.79,Neutral,0.0,Oversold,0.83,10.02,11.68,11.68,0.0,50,40,Capital Markets,Financial Services,WAIT,0.0,-7.04
-MELI,"MercadoLibre, Inc.",1902.41,1778.69,0.0,0.0,Hold,24,80.32,Neutral,0.0,Oversold,61.86,1778.69,1902.41,1902.41,0.0,50,40,Internet Retail,Consumer Cyclical,WAIT,0.0,-15.38
-META,"Meta Platforms, Inc.",660.32,625.46,0.0,0.0,Hold,57,79.02,Neutral,0.0,Oversold,17.43,625.46,660.32,660.32,0.0,50,40,Internet Content & Information,Communication Services,WAIT,0.0,-18.94
-MGNX,"MacroGenics, Inc.",4.14,3.72,0.0,0.0,Hold,4,77.54,Neutral,0.0,Oversold,0.21,3.72,4.14,4.14,0.0,50,30,Biotechnology,Healthcare,WAIT,0.0,-9.86
-MOS,The Mosaic Company,24.64,22.66,0.0,0.0,Hold,18,98.32,Neutral,0.0,Oversold,0.99,22.66,24.64,24.64,0.0,50,40,Agricultural Inputs,Basic Materials,WAIT,0.0,-12.44
-MP,MP Materials Corp.,51.42,45.38,0.0,0.0,Hold,16,77.61,Neutral,0.0,Oversold,3.02,45.38,51.42,51.42,0.0,50,40,Other Industrial Metals & Mining,Basic Materials,WAIT,0.0,-8.51
-MRVL,"Marvell Technology, Inc.",221.68,197.86,0.0,0.0,Hold,42,81.79,Neutral,0.0,Oversold,11.91,197.86,221.68,221.68,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-9.31
-MSFT,Microsoft Corporation,505.0,487.0,0.0,0.0,Hold,52,75.79,Neutral,0.0,Oversold,9.0,487.0,505.0,505.0,0.0,50,40,Software - Infrastructure,Technology,WATCH,0.0,-28.06
-MSTR,Strategy Inc,136.35,120.95,0.0,0.0,Hold,15,60.46,Neutral,0.0,Oversold,7.7,120.95,136.35,136.35,0.0,50,40,Software - Application,Technology,WAIT,0.0,-8.85
-MU,"Micron Technology, Inc.",919.25,841.91,0.0,0.0,Hold,45,79.88,Neutral,0.0,Oversold,38.67,841.91,919.25,919.25,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-11.89
-MUR,Murphy Oil Corporation,39.03,36.73,0.0,0.0,Hold,14,92.46,Neutral,0.0,Oversold,1.15,36.73,39.03,39.03,0.0,50,40,Oil & Gas E&P,Energy,WAIT,0.0,-16.97
+DLR,"Digital Realty Trust, Inc.",178.37,168.41,0.0,0.0,Hold,31,104.96,Neutral,0.0,Oversold,4.98,168.41,178.37,178.37,0.0,50,40,REIT - Specialty,Real Estate,WAIT,0.0,-17.91
+DNN,Denison Mines Corp.,2.8,2.46,0.0,0.0,Hold,2,64.78,Neutral,0.0,Oversold,0.17,2.46,2.8,2.8,0.0,50,30,Uranium,Energy,WAIT,0.0,-8.24
+DRS,"Leonardo DRS, Inc.",36.79,34.43,0.0,0.0,Hold,11,28.19,Neutral,0.0,Oversold,1.18,34.43,36.79,36.79,0.0,50,40,Aerospace & Defense,Industrials,WAIT,0.0,-15.59
+DXCM,"DexCom, Inc.",86.87,82.19,0.0,0.0,Hold,25,106.42,Neutral,0.0,Oversold,2.34,82.19,86.87,86.87,0.0,50,40,Medical Devices,Healthcare,WAIT,0.0,-18.56
+ENVX,Enovix Corporation,2.99,2.57,0.0,0.0,Hold,10,51.79,Neutral,0.0,Oversold,0.21,2.57,2.99,2.99,0.0,50,40,Electrical Equipment & Parts,Industrials,WAIT,0.0,-7.12
+FCX,Freeport-McMoRan Inc.,68.89,63.67,0.0,0.0,Hold,22,89.41,Neutral,0.0,Oversold,2.61,63.67,68.89,68.89,0.0,50,40,Copper,Basic Materials,WAIT,0.0,-13.2
+GOOG,Alphabet Inc.,339.58,327.98,0.0,0.0,Hold,15,62.12,Neutral,0.0,Oversold,5.8,327.98,339.58,339.58,0.0,50,40,Internet Content & Information,Communication Services,WATCH,0.0,-29.27
+HD,"The Home Depot, Inc.",307.3,295.28,0.0,0.0,Hold,32,76.79,Neutral,0.0,Oversold,6.01,295.28,307.3,307.3,0.0,50,40,Home Improvement Retail,Consumer Cyclical,WATCH,0.0,-25.57
+HOOD,"Robinhood Markets, Inc.",111.37,99.29,0.0,0.0,Hold,27,79.44,Neutral,0.0,Oversold,6.04,99.29,111.37,111.37,0.0,50,40,Capital Markets,Financial Services,WAIT,0.0,-9.22
+HWM,Howmet Aerospace Inc.,224.36,208.08,0.0,0.0,Hold,21,93.31,Neutral,0.0,Oversold,8.14,208.08,224.36,224.36,0.0,50,40,Aerospace & Defense,Industrials,WAIT,0.0,-13.78
+IBM,International Business Machines Corporation,250.84,239.02,0.0,0.0,Hold,23,66.61,Neutral,0.0,Oversold,5.91,239.02,250.84,250.84,0.0,50,40,Information Technology Services,Technology,WATCH,0.0,-21.22
+IONQ,"IonQ, Inc.",37.36,32.68,0.0,0.0,Hold,12,50.6,Neutral,0.0,Oversold,2.34,32.68,37.36,37.36,0.0,50,40,Computer Hardware,Technology,WAIT,0.0,-7.98
+IWM,iShares Russell 2000 ETF,285.27,280.01,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,2.63,280.01,285.27,285.27,0.0,50,30,Exchange Traded Fund,Unknown,WATCH,0.0,-54.23
+LAES,SEALSQ Corp,2.29,2.09,0.0,0.0,Hold,2,6.74,Neutral,0.0,Oversold,0.1,2.09,2.29,2.29,0.0,50,30,Semiconductors,Technology,WAIT,0.0,-11.45
+LLY,Eli Lilly and Company,1140.99,1082.59,0.0,0.0,Hold,29,85.32,Neutral,0.0,Oversold,29.2,1082.59,1140.99,1140.99,0.0,50,40,Drug Manufacturers - General,Healthcare,WAIT,0.0,-19.54
+LMT,Lockheed Martin Corporation,533.31,508.83,0.0,0.0,Hold,19,76.66,Neutral,0.0,Oversold,12.24,508.83,533.31,533.31,0.0,50,40,Aerospace & Defense,Industrials,WATCH,0.0,-21.79
+LNG,"Cheniere Energy, Inc.",272.73,259.37,0.0,0.0,Hold,21,91.55,Neutral,0.0,Oversold,6.68,259.37,272.73,272.73,0.0,50,40,Oil & Gas Midstream,Energy,WAIT,0.0,-20.41
+LQQ.PA,Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc,9.2,8.82,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,0.19,8.82,9.2,9.2,0.0,50,30,Unknown,Unknown,WATCH,0.0,-24.21
+MARA,"MARA Holdings, Inc.",11.37,9.67,0.0,0.0,Hold,12,75.79,Neutral,0.0,Oversold,0.85,9.67,11.37,11.37,0.0,50,40,Capital Markets,Financial Services,WAIT,0.0,-6.69
+MELI,"MercadoLibre, Inc.",1853.89,1729.05,0.0,0.0,Hold,24,80.33,Neutral,0.0,Oversold,62.42,1729.05,1853.89,1853.89,0.0,50,40,Internet Retail,Consumer Cyclical,WAIT,0.0,-14.85
+META,"Meta Platforms, Inc.",666.15,629.87,0.0,0.0,Hold,57,79.02,Neutral,0.0,Oversold,18.14,629.87,666.15,666.15,0.0,50,40,Internet Content & Information,Communication Services,WAIT,0.0,-18.36
+MGNX,"MacroGenics, Inc.",4.08,3.68,0.0,0.0,Hold,4,77.62,Neutral,0.0,Oversold,0.2,3.68,4.08,4.08,0.0,50,30,Biotechnology,Healthcare,WAIT,0.0,-10.2
+MOS,The Mosaic Company,25.25,23.25,0.0,0.0,Hold,18,98.32,Neutral,0.0,Oversold,1.0,23.25,25.25,25.25,0.0,50,40,Agricultural Inputs,Basic Materials,WAIT,0.0,-12.62
+MP,MP Materials Corp.,49.53,43.73,0.0,0.0,Hold,16,77.61,Neutral,0.0,Oversold,2.9,43.73,49.53,49.53,0.0,50,40,Other Industrial Metals & Mining,Basic Materials,WAIT,0.0,-8.54
+MRVL,"Marvell Technology, Inc.",222.33,198.41,0.0,0.0,Hold,42,81.8,Neutral,0.0,Oversold,11.96,198.41,222.33,222.33,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-9.29
+MSFT,Microsoft Corporation,499.45,480.89,0.0,0.0,Hold,52,75.79,Neutral,0.0,Oversold,9.28,480.89,499.45,499.45,0.0,50,40,Software - Infrastructure,Technology,WATCH,0.0,-26.91
+MSTR,Strategy Inc,133.23,117.59,0.0,0.0,Hold,15,60.46,Neutral,0.0,Oversold,7.82,117.59,133.23,133.23,0.0,50,40,Software - Application,Technology,WAIT,0.0,-8.52
+MU,"Micron Technology, Inc.",925.51,848.03,0.0,0.0,Hold,45,79.88,Neutral,0.0,Oversold,38.74,848.03,925.51,925.51,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-11.95
+MUR,Murphy Oil Corporation,40.44,38.0,0.0,0.0,Hold,14,92.41,Neutral,0.0,Oversold,1.22,38.0,40.44,40.44,0.0,50,40,Oil & Gas E&P,Energy,WAIT,0.0,-16.57
 NANO,NANO,0.0,0.0,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,0.0,0.0,0.0,0.0,0.0,50,30,Unknown,Unknown,BUY,0.0,0.0
-NFE,New Fortress Energy Inc.,13.17,9.29,0.0,0.0,Hold,1,36.66,Neutral,0.0,Oversold,1.94,9.29,13.17,13.17,0.0,50,30,Oil & Gas Midstream,Energy,WAIT,0.0,-3.39
-NKE,"NIKE, Inc.",37.35,35.61,0.0,0.0,Hold,36,82.56,Neutral,0.0,Oversold,0.87,35.61,37.35,37.35,0.0,50,40,Footwear & Accessories,Consumer Cyclical,WATCH,0.0,-21.47
-NNE,NANO Nuclear Energy Inc.,16.13,14.01,0.0,0.0,Hold,6,44.71,Neutral,0.0,Oversold,1.06,14.01,16.13,16.13,0.0,50,40,Specialty Industrial Machinery,Industrials,WAIT,0.0,-7.61
-NOC,Northrop Grumman Corporation,528.03,504.63,0.0,0.0,Hold,21,84.48,Neutral,0.0,Oversold,11.7,504.63,528.03,528.03,0.0,50,40,Aerospace & Defense,Industrials,WATCH,0.0,-22.57
-NVDA,NVIDIA Corporation,211.75,200.69,0.0,0.0,Hold,58,71.41,Neutral,0.0,Oversold,5.53,200.69,211.75,211.75,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-19.15
-NVO,Novo Nordisk A/S,43.53,41.67,0.0,0.0,Hold,12,9.91,Neutral,0.0,Oversold,0.93,41.67,43.53,43.53,0.0,50,40,Drug Manufacturers - General,Healthcare,WATCH,0.0,-23.4
-OKLO,Oklo Inc.,36.65,31.79,0.0,0.0,Hold,21,47.54,Neutral,0.0,Oversold,2.43,31.79,36.65,36.65,0.0,50,40,Utilities - Independent Power Producers,Utilities,WAIT,0.0,-7.54
-OMC,Omnicom Group Inc.,80.95,76.77,0.0,0.0,Hold,12,110.7,Neutral,0.0,Oversold,2.09,76.77,80.95,80.95,0.0,50,40,Advertising Agencies,Communication Services,WAIT,0.0,-19.37
-PAAS,Pan American Silver Corp.,48.63,45.21,0.0,0.0,Hold,8,61.43,Neutral,0.0,Oversold,1.71,45.21,48.63,48.63,0.0,50,40,Gold,Basic Materials,WAIT,0.0,-14.22
-PANW,"Palo Alto Networks, Inc.",373.19,338.71,0.0,0.0,Hold,50,84.47,Neutral,0.0,Oversold,17.24,338.71,373.19,373.19,0.0,50,40,Software - Infrastructure,Technology,WAIT,0.0,-10.82
-PBR,Petróleo Brasileiro S.A. - Petrobras,21.19,20.21,0.0,0.0,Hold,14,22.35,Neutral,0.0,Oversold,0.49,20.21,21.19,21.19,0.0,50,40,Oil & Gas Integrated,Energy,WATCH,0.0,-21.62
-PLTR,Palantir Technologies Inc.,173.46,159.84,0.0,0.0,Hold,27,64.74,Neutral,0.0,Oversold,6.81,159.84,173.46,173.46,0.0,50,40,Software - Infrastructure,Technology,WAIT,0.0,-12.74
-PRAX,"Praxis Precision Medicines, Inc.",333.93,300.57,0.0,0.0,Hold,19,123.17,Neutral,0.0,Oversold,16.68,300.57,333.93,333.93,0.0,50,40,Biotechnology,Healthcare,WAIT,0.0,-10.01
-PVLA,"Palvella Therapeutics, Inc.",152.46,138.64,0.0,0.0,Hold,15,104.22,Neutral,0.0,Oversold,6.91,138.64,152.46,152.46,0.0,50,40,Biotechnology,Healthcare,WAIT,0.0,-11.03
-QBTS,D-Wave Quantum Inc.,17.22,15.4,0.0,0.0,Hold,16,53.82,Neutral,0.0,Oversold,0.91,15.4,17.22,17.22,0.0,50,40,Computer Hardware,Technology,WAIT,0.0,-9.46
-QCOM,QUALCOMM Incorporated,179.15,167.25,0.0,0.0,Hold,30,83.06,Neutral,0.0,Oversold,5.95,167.25,179.15,179.15,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-15.05
-QQQ,Invesco QQQ Trust,710.21,697.37,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,6.42,697.37,710.21,710.21,0.0,50,30,Exchange Traded Fund,Unknown,WATCH,0.0,-55.31
-RBLX,Roblox Corporation,50.47,46.65,0.0,0.0,Hold,34,86.46,Neutral,0.0,Oversold,1.91,46.65,50.47,50.47,0.0,50,40,Electronic Gaming & Multimedia,Communication Services,WAIT,0.0,-13.21
-RGTI,"Rigetti Computing, Inc.",15.49,13.71,0.0,0.0,Hold,12,55.83,Neutral,0.0,Oversold,0.89,13.71,15.49,15.49,0.0,50,40,Computer Hardware,Technology,WAIT,0.0,-8.7
-RH,RH,139.01,124.39,0.0,0.0,Hold,17,106.03,Neutral,0.0,Oversold,7.31,124.39,139.01,139.01,0.0,50,40,Specialty Retail,Consumer Cyclical,WAIT,0.0,-9.51
-ROIV,Roivant Sciences Ltd.,41.53,38.91,0.0,0.0,Hold,11,78.36,Neutral,0.0,Oversold,1.31,38.91,41.53,41.53,0.0,50,40,Biotechnology,Healthcare,WAIT,0.0,-15.85
-RTX,RTX Corporation,194.92,187.22,0.0,0.0,Hold,22,81.7,Neutral,0.0,Oversold,3.85,187.22,194.92,194.92,0.0,50,40,Aerospace & Defense,Industrials,WATCH,0.0,-25.31
-SFM,"Sprouts Farmers Market, Inc.",75.86,69.24,0.0,0.0,Hold,14,114.37,Neutral,0.0,Oversold,3.31,69.24,75.86,75.86,0.0,50,40,Grocery Stores,Consumer Defensive,WAIT,0.0,-11.46
-SHOP,Shopify Inc.,133.96,123.28,0.0,0.0,Hold,48,73.22,Neutral,0.0,Oversold,5.34,123.28,133.96,133.96,0.0,50,40,Software - Application,Technology,WAIT,0.0,-12.54
-SMCI,"Super Micro Computer, Inc.",37.81,33.75,0.0,0.0,Hold,16,69.43,Neutral,0.0,Oversold,2.03,33.75,37.81,37.81,0.0,50,40,Computer Hardware,Technology,WAIT,0.0,-9.31
-SMH,VanEck Semiconductor ETF,543.85,522.23,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,10.81,522.23,543.85,543.85,0.0,50,30,Exchange Traded Fund,Unknown,WATCH,0.0,-25.15
-SNOW,Snowflake Inc.,334.5,307.92,0.0,0.0,Hold,48,81.0,Neutral,0.0,Oversold,13.29,307.92,334.5,334.5,0.0,50,40,Software - Application,Technology,WAIT,0.0,-12.58
-SOUN,"SoundHound AI, Inc.",6.56,5.96,0.0,0.0,Hold,7,38.57,Neutral,0.0,Oversold,0.3,5.96,6.56,6.56,0.0,50,40,Software - Application,Technology,WAIT,0.0,-10.93
-SPY,State Street SPDR S&P 500 ETF Trust,762.01,753.49,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,4.26,753.49,762.01,762.01,0.0,50,30,Exchange Traded Fund,Unknown,WATCH,0.0,-89.44
-SMR,NuScale Power Corporation,8.74,7.4,0.0,0.0,Hold,15,59.4,Neutral,0.0,Oversold,0.67,7.4,8.74,8.74,0.0,50,40,Specialty Industrial Machinery,Industrials,WAIT,0.0,-6.52
-SUN,Sunoco LP,79.3,75.66,0.0,0.0,Hold,7,49.48,Neutral,0.0,Oversold,1.82,75.66,79.3,79.3,0.0,50,40,Oil & Gas Refining & Marketing,Energy,WATCH,0.0,-21.79
-TE,T1 Energy Inc.,4.35,3.71,0.0,0.0,Hold,7,80.26,Neutral,0.0,Oversold,0.32,3.71,4.35,4.35,0.0,50,40,Electrical Equipment & Parts,Industrials,WAIT,0.0,-6.8
-TSLA,"Tesla, Inc.",362.95,338.17,0.0,0.0,Hold,39,43.66,Neutral,0.0,Oversold,12.39,338.17,362.95,362.95,0.0,50,40,Auto Manufacturers,Consumer Cyclical,WAIT,0.0,-14.65
-TSM,Taiwan Semiconductor Manufacturing Company Limited,419.55,402.63,0.0,0.0,Hold,20,15.49,Neutral,0.0,Oversold,8.46,402.63,419.55,419.55,0.0,50,40,Semiconductors,Technology,WATCH,0.0,-24.8
-UAL,"United Airlines Holdings, Inc.",108.54,102.54,0.0,0.0,Hold,23,90.69,Neutral,0.0,Oversold,3.0,102.54,108.54,108.54,0.0,50,40,Airlines,Industrials,WAIT,0.0,-18.09
-UEC,Uranium Energy Corp.,10.07,8.79,0.0,0.0,Hold,10,88.48,Neutral,0.0,Oversold,0.64,8.79,10.07,10.07,0.0,50,40,Uranium,Energy,WAIT,0.0,-7.87
-URG,Ur-Energy Inc.,1.25,1.13,0.0,0.0,Hold,9,78.64,Neutral,0.0,Oversold,0.06,1.13,1.25,1.25,0.0,50,40,Uranium,Energy,WAIT,0.0,-10.42
-UUUU,Energy Fuels Inc.,12.42,10.9,0.0,0.0,Hold,5,74.54,Neutral,0.0,Oversold,0.76,10.9,12.42,12.42,0.0,50,30,Uranium,Energy,WAIT,0.0,-8.17
-VG,"Venture Global, Inc.",15.88,14.74,0.0,0.0,Hold,18,88.21,Neutral,0.0,Oversold,0.57,14.74,15.88,15.88,0.0,50,40,Oil & Gas Midstream,Energy,WAIT,0.0,-13.93
-VRT,Vertiv Holdings Co,236.66,211.66,0.0,0.0,Hold,26,84.54,Neutral,0.0,Oversold,12.5,211.66,236.66,236.66,0.0,50,40,Electrical Equipment & Parts,Industrials,WAIT,0.0,-9.47
-VST,Vistra Corp.,141.65,132.69,0.0,0.0,Hold,19,92.07,Neutral,0.0,Oversold,4.48,132.69,141.65,141.65,0.0,50,40,Utilities - Independent Power Producers,Utilities,WAIT,0.0,-15.81
-WDC,Western Digital Corporation,428.23,378.43,0.0,0.0,Hold,24,91.86,Neutral,0.0,Oversold,24.9,378.43,428.23,428.23,0.0,50,40,Computer Hardware,Technology,WAIT,0.0,-8.6
-ZS,"Zscaler, Inc.",188.81,171.39,0.0,0.0,Hold,44,53.22,Neutral,0.0,Oversold,8.71,171.39,188.81,188.81,0.0,50,40,Software - Infrastructure,Technology,WAIT,0.0,-10.84
-ELDN,"Eledon Pharmaceuticals, Inc.",2.81,2.49,0.0,0.0,Hold,5,62.48,Neutral,0.0,Oversold,0.16,2.49,2.81,2.81,0.0,50,30,Biotechnology,Healthcare,WAIT,0.0,-8.78
-ABOS,"Acumen Pharmaceuticals, Inc.",2.98,2.62,0.0,0.0,Hold,5,66.59,Neutral,0.0,Oversold,0.18,2.62,2.98,2.98,0.0,50,30,Biotechnology,Healthcare,WAIT,0.0,-8.28
-SLI,Standard Lithium Ltd.,2.09,1.79,0.0,0.0,Hold,4,24.63,Neutral,0.0,Oversold,0.15,1.79,2.09,2.09,0.0,50,30,Other Industrial Metals & Mining,Basic Materials,WAIT,0.0,-6.97
+NFE,New Fortress Energy Inc.,13.01,12.79,0.0,0.0,Hold,1,36.49,Neutral,0.0,Oversold,0.11,12.79,13.01,13.01,0.0,50,30,Oil & Gas Midstream,Energy,WATCH,0.0,-59.14
+NKE,"NIKE, Inc.",36.46,34.72,0.0,0.0,Hold,36,82.56,Neutral,0.0,Oversold,0.87,34.72,36.46,36.46,0.0,50,40,Footwear & Accessories,Consumer Cyclical,WAIT,0.0,-20.95
+NNE,NANO Nuclear Energy Inc.,15.85,13.83,0.0,0.0,Hold,6,44.72,Neutral,0.0,Oversold,1.01,13.83,15.85,15.85,0.0,50,40,Specialty Industrial Machinery,Industrials,WAIT,0.0,-7.85
+NOC,Northrop Grumman Corporation,531.76,508.46,0.0,0.0,Hold,22,84.49,Neutral,0.0,Oversold,11.65,508.46,531.76,531.76,0.0,50,40,Aerospace & Defense,Industrials,WATCH,0.0,-22.82
+NVDA,NVIDIA Corporation,211.58,200.5,0.0,0.0,Hold,58,71.41,Neutral,0.0,Oversold,5.54,200.5,211.58,211.58,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-19.1
+NVO,Novo Nordisk A/S,42.67,40.87,0.0,0.0,Hold,12,9.91,Neutral,0.0,Oversold,0.9,40.87,42.67,42.67,0.0,50,40,Drug Manufacturers - General,Healthcare,WATCH,0.0,-23.71
+OKLO,Oklo Inc.,36.32,31.62,0.0,0.0,Hold,21,47.55,Neutral,0.0,Oversold,2.35,31.62,36.32,36.32,0.0,50,40,Utilities - Independent Power Producers,Utilities,WAIT,0.0,-7.73
+OMC,Omnicom Group Inc.,80.94,76.78,0.0,0.0,Hold,12,110.7,Neutral,0.0,Oversold,2.08,76.78,80.94,80.94,0.0,50,40,Advertising Agencies,Communication Services,WAIT,0.0,-19.46
+PAAS,Pan American Silver Corp.,48.26,44.86,0.0,0.0,Hold,8,61.44,Neutral,0.0,Oversold,1.7,44.86,48.26,48.26,0.0,50,40,Gold,Basic Materials,WAIT,0.0,-14.19
+PANW,"Palo Alto Networks, Inc.",376.79,342.23,0.0,0.0,Hold,50,84.47,Neutral,0.0,Oversold,17.28,342.23,376.79,376.79,0.0,50,40,Software - Infrastructure,Technology,WAIT,0.0,-10.9
+PBR,Petróleo Brasileiro S.A. - Petrobras,21.76,20.72,0.0,0.0,Hold,14,22.35,Neutral,0.0,Oversold,0.52,20.72,21.76,21.76,0.0,50,40,Oil & Gas Integrated,Energy,WAIT,0.0,-20.92
+PLTR,Palantir Technologies Inc.,175.74,162.0,0.0,0.0,Hold,27,64.74,Neutral,0.0,Oversold,6.87,162.0,175.74,175.74,0.0,50,40,Software - Infrastructure,Technology,WAIT,0.0,-12.79
+PRAX,"Praxis Precision Medicines, Inc.",316.43,282.53,0.0,0.0,Hold,19,123.2,Neutral,0.0,Oversold,16.95,282.53,316.43,316.43,0.0,50,40,Biotechnology,Healthcare,WAIT,0.0,-9.33
+PVLA,"Palvella Therapeutics, Inc.",150.07,136.11,0.0,0.0,Hold,15,104.3,Neutral,0.0,Oversold,6.98,136.11,150.07,150.07,0.0,50,40,Biotechnology,Healthcare,WAIT,0.0,-10.75
+QBTS,D-Wave Quantum Inc.,16.56,14.78,0.0,0.0,Hold,16,53.85,Neutral,0.0,Oversold,0.89,14.78,16.56,16.56,0.0,50,40,Computer Hardware,Technology,WAIT,0.0,-9.3
+QCOM,QUALCOMM Incorporated,188.86,176.32,0.0,0.0,Hold,30,83.06,Neutral,0.0,Oversold,6.27,176.32,188.86,188.86,0.0,50,40,Semiconductors,Technology,WAIT,0.0,-15.06
+QQQ,Invesco QQQ Trust,704.89,691.91,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,6.49,691.91,704.89,704.89,0.0,50,30,Exchange Traded Fund,Unknown,WATCH,0.0,-54.31
+RBLX,Roblox Corporation,50.7,46.82,0.0,0.0,Hold,34,86.46,Neutral,0.0,Oversold,1.94,46.82,50.7,50.7,0.0,50,40,Electronic Gaming & Multimedia,Communication Services,WAIT,0.0,-13.07
+RGTI,"Rigetti Computing, Inc.",15.3,13.54,0.0,0.0,Hold,12,55.89,Neutral,0.0,Oversold,0.88,13.54,15.3,15.3,0.0,50,40,Computer Hardware,Technology,WAIT,0.0,-8.69
+RH,RH,128.5,113.6,0.0,0.0,Hold,17,106.04,Neutral,0.0,Oversold,7.45,113.6,128.5,128.5,0.0,50,40,Specialty Retail,Consumer Cyclical,WAIT,0.0,-8.62
+ROIV,Roivant Sciences Ltd.,39.62,36.9,0.0,0.0,Hold,11,78.36,Neutral,0.0,Oversold,1.36,36.9,39.62,39.62,0.0,50,40,Biotechnology,Healthcare,WAIT,0.0,-14.57
+RTX,RTX Corporation,195.9,188.06,0.0,0.0,Hold,22,81.7,Neutral,0.0,Oversold,3.92,188.06,195.9,195.9,0.0,50,40,Aerospace & Defense,Industrials,WATCH,0.0,-24.99
+SFM,"Sprouts Farmers Market, Inc.",73.72,67.02,0.0,0.0,Hold,14,114.37,Neutral,0.0,Oversold,3.35,67.02,73.72,73.72,0.0,50,40,Grocery Stores,Consumer Defensive,WAIT,0.0,-11.0
+SHOP,Shopify Inc.,130.26,119.74,0.0,0.0,Hold,48,73.22,Neutral,0.0,Oversold,5.26,119.74,130.26,130.26,0.0,50,40,Software - Application,Technology,WAIT,0.0,-12.38
+SMCI,"Super Micro Computer, Inc.",36.22,32.18,0.0,0.0,Hold,16,69.45,Neutral,0.0,Oversold,2.02,32.18,36.22,36.22,0.0,50,40,Computer Hardware,Technology,WAIT,0.0,-8.97
+SMH,VanEck Semiconductor ETF,540.94,519.3,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,10.82,519.3,540.94,540.94,0.0,50,30,Exchange Traded Fund,Unknown,WATCH,0.0,-25.0
+SNOW,Snowflake Inc.,323.19,296.85,0.0,0.0,Hold,47,81.0,Neutral,0.0,Oversold,13.17,296.85,323.19,323.19,0.0,50,40,Software - Application,Technology,WAIT,0.0,-12.27
+SOUN,"SoundHound AI, Inc.",6.36,5.78,0.0,0.0,Hold,7,38.58,Neutral,0.0,Oversold,0.29,5.78,6.36,6.36,0.0,50,40,Software - Application,Technology,WAIT,0.0,-10.97
+SPY,State Street SPDR S&P 500 ETF Trust,757.07,748.39,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,4.34,748.39,757.07,757.07,0.0,50,30,Exchange Traded Fund,Unknown,WATCH,0.0,-87.22
+SMR,NuScale Power Corporation,8.6,7.28,0.0,0.0,Hold,15,59.47,Neutral,0.0,Oversold,0.66,7.28,8.6,8.6,0.0,50,40,Specialty Industrial Machinery,Industrials,WAIT,0.0,-6.52
+SUN,Sunoco LP,79.6,75.96,0.0,0.0,Hold,7,49.48,Neutral,0.0,Oversold,1.82,75.96,79.6,79.6,0.0,50,40,Oil & Gas Refining & Marketing,Energy,WATCH,0.0,-21.87
+TE,T1 Energy Inc.,4.32,3.7,0.0,0.0,Hold,8,80.26,Neutral,0.0,Oversold,0.31,3.7,4.32,4.32,0.0,50,40,Electrical Equipment & Parts,Industrials,WAIT,0.0,-6.97
+TSLA,"Tesla, Inc.",355.37,331.37,0.0,0.0,Hold,39,43.66,Neutral,0.0,Oversold,12.0,331.37,355.37,355.37,0.0,50,40,Auto Manufacturers,Consumer Cyclical,WAIT,0.0,-14.81
+TSM,Taiwan Semiconductor Manufacturing Company Limited,413.82,396.42,0.0,0.0,Hold,20,15.49,Neutral,0.0,Oversold,8.7,396.42,413.82,413.82,0.0,50,40,Semiconductors,Technology,WATCH,0.0,-23.78
+UAL,"United Airlines Holdings, Inc.",106.25,99.97,0.0,0.0,Hold,23,90.69,Neutral,0.0,Oversold,3.14,99.97,106.25,106.25,0.0,50,40,Airlines,Industrials,WAIT,0.0,-16.92
+UEC,Uranium Energy Corp.,10.15,8.85,0.0,0.0,Hold,10,89.26,Neutral,0.0,Oversold,0.65,8.85,10.15,10.15,0.0,50,40,Uranium,Energy,WAIT,0.0,-7.81
+URG,Ur-Energy Inc.,1.22,1.1,0.0,0.0,Hold,9,78.66,Neutral,0.0,Oversold,0.06,1.1,1.22,1.22,0.0,50,40,Uranium,Energy,WAIT,0.0,-10.17
+UUUU,Energy Fuels Inc.,11.8,10.26,0.0,0.0,Hold,5,74.55,Neutral,0.0,Oversold,0.77,10.26,11.8,11.8,0.0,50,30,Uranium,Energy,WAIT,0.0,-7.66
+VG,"Venture Global, Inc.",15.43,14.27,0.0,0.0,Hold,18,88.22,Neutral,0.0,Oversold,0.58,14.27,15.43,15.43,0.0,50,40,Oil & Gas Midstream,Energy,WAIT,0.0,-13.3
+VRT,Vertiv Holdings Co,236.64,211.54,0.0,0.0,Hold,26,84.54,Neutral,0.0,Oversold,12.55,211.54,236.64,236.64,0.0,50,40,Electrical Equipment & Parts,Industrials,WAIT,0.0,-9.43
+VST,Vistra Corp.,141.55,132.65,0.0,0.0,Hold,19,92.07,Neutral,0.0,Oversold,4.45,132.65,141.55,141.55,0.0,50,40,Utilities - Independent Power Producers,Utilities,WAIT,0.0,-15.9
+WDC,Western Digital Corporation,413.2,364.16,0.0,0.0,Hold,24,91.88,Neutral,0.0,Oversold,24.52,364.16,413.2,413.2,0.0,50,40,Computer Hardware,Technology,WAIT,0.0,-8.43
+ZS,"Zscaler, Inc.",194.79,176.95,0.0,0.0,Hold,44,53.2,Neutral,0.0,Oversold,8.92,176.95,194.79,194.79,0.0,50,40,Software - Infrastructure,Technology,WAIT,0.0,-10.92
+ELDN,"Eledon Pharmaceuticals, Inc.",2.66,2.34,0.0,0.0,Hold,5,62.49,Neutral,0.0,Oversold,0.16,2.34,2.66,2.66,0.0,50,30,Biotechnology,Healthcare,WAIT,0.0,-8.31
+ABOS,"Acumen Pharmaceuticals, Inc.",2.8,2.44,0.0,0.0,Hold,5,66.6,Neutral,0.0,Oversold,0.18,2.44,2.8,2.8,0.0,50,30,Biotechnology,Healthcare,WAIT,0.0,-7.78
+SLI,Standard Lithium Ltd.,2.05,1.77,0.0,0.0,Hold,4,24.63,Neutral,0.0,Oversold,0.14,1.77,2.05,2.05,0.0,50,30,Other Industrial Metals & Mining,Basic Materials,WAIT,0.0,-7.32
 MREO,Mereo BioPharma Group plc,0.28,0.24,0.0,0.0,Hold,5,36.08,Neutral,0.0,Oversold,0.02,0.24,0.28,0.28,0.0,50,30,Biotechnology,Healthcare,WAIT,0.0,-7.0
 CYBN,CYBN,0.0,0.0,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,0.0,0.0,0.0,0.0,0.0,50,30,Biotechnology,Unknown,BUY,0.0,0.0
-LAZR,Tema Photonics & Optical ETF,41.05,38.03,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,1.51,38.03,41.05,41.05,0.0,50,30,Exchange Traded Fund,Unknown,WAIT,0.0,-13.59
-JOBY,"Joby Aviation, Inc.",6.34,5.78,0.0,0.0,Hold,9,45.61,Neutral,0.0,Oversold,0.28,5.78,6.34,6.34,0.0,50,40,Airports & Air Services,Industrials,WAIT,0.0,-11.32
+LAZR,Tema Photonics & Optical ETF,40.52,37.58,0.0,0.0,Hold,0,0.0,Neutral,0.0,Oversold,1.47,37.58,40.52,40.52,0.0,50,30,Exchange Traded Fund,Unknown,WAIT,0.0,-13.78
+JOBY,"Joby Aviation, Inc.",6.28,5.74,0.0,0.0,Hold,9,45.62,Neutral,0.0,Oversold,0.27,5.74,6.28,6.28,0.0,50,40,Airports & Air Services,Industrials,WAIT,0.0,-11.63
